@@ -1,0 +1,10 @@
+*
+
+!.gitignore
+!Makefile
+!*.c
+!*.h
+!*.sh
+!libft
+!pipex
+!*.pdf
