@@ -6,7 +6,7 @@
 #    By: unix <unix@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 14:23:43 by unix              #+#    #+#              #
-#    Updated: 2022/01/14 12:03:51 by unix             ###   ########.fr        #
+#    Updated: 2022/01/14 12:22:24 by unix             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,13 @@ FLAGS =
 #FLAGS = -Wall -Werror -Wextra
 LIB = -L '.' -lft 
 
-HEADER = minishell.h
+HEADER = 	./minishell.h \
+			./gnl/get_next_line.h \
+			./pipex/pipex.h
 
-SRC = minishell.c
+SRC = 	./minishell.c \
+		./gnl/get_next_line_utils.c ./gnl/get_next_line.c \
+		./pipex/pipex.c ./pipex/ft_exec.c ./pipex/ft_env.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -44,4 +48,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

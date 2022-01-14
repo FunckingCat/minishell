@@ -6,7 +6,7 @@
 /*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 10:47:27 by tyamcha           #+#    #+#             */
-/*   Updated: 2021/12/10 15:48:11 by unix             ###   ########.fr       */
+/*   Updated: 2022/01/14 12:25:17 by unix             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <sys/wait.h>
-# include "./libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_command
 {
@@ -38,6 +38,7 @@ typedef struct s_env
 
 t_env	*make_env(int argc, char **argv, char **envp);
 
+char	*get_next_line(int fd);
 void	error(char *name, char *desc);
 void	fork_proc(t_env *env);
 
