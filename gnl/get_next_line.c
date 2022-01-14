@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:39:28 by unix              #+#    #+#             */
-/*   Updated: 2021/12/11 10:24:45 by tyamcha          ###   ########.fr       */
+/*   Updated: 2022/01/14 12:13:02 by unix             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_move_to_nl(char	*rd)
 		free(rd);
 		return (0);
 	}
-	res = malloc(sizeof(char) * ((ft_strl(rd) - i) + 1));
+	res = malloc(sizeof(char) * ((ft_strlen(rd) - i) + 1));
 	if (!res)
 		return (0);
 	i++;
@@ -53,7 +53,9 @@ char	*ft_getres(char *rd)
 	res = malloc(i + 2);
 	if (!res)
 		return (NULL);
-	ft_memm(res, rd, i);
+	ft_memmove(res, rd, i);
+	if (rd[i] == '\n')
+		res[i++] = '\n';
 	res[i] = '\0';
 	return (res);
 }
@@ -69,9 +71,9 @@ char	*ft_get_buffer(int fd, char *buffer)
 	{
 		buf[r] = '\0';
 		tmp = buffer;
-		buffer = ft_strjo(tmp, buf);
+		buffer = ft_strjoin(tmp, buf);
 		free(tmp);
-		if (ft_strch(buffer, '\n'))
+		if (ft_strchr(buffer, '\n'))
 		{
 			break ;
 		}
@@ -82,15 +84,15 @@ char	*ft_get_buffer(int fd, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[10400];
 	char		*res;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = ft_get_buffer(fd, buffer);
-	if (!buffer)
+	buffer[fd] = ft_get_buffer(fd, buffer[fd]);
+	if (!buffer[fd])
 		return (NULL);
-	res = ft_getres(buffer);
-	buffer = ft_move_to_nl(buffer);
+	res = ft_getres(buffer[fd]);
+	buffer[fd] = ft_move_to_nl(buffer[fd]);
 	return (res);
 }

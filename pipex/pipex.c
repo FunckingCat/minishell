@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 10:47:22 by tyamcha           #+#    #+#             */
-/*   Updated: 2021/12/11 13:10:49 by tyamcha          ###   ########.fr       */
+/*   Updated: 2022/01/14 12:06:55 by unix             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	wait_children(t_env *env)
 	}
 }
 
-int	main(int argc, char **argv, char **envp)
+int	pipex(int argc, char **argv, char **envp)
 {
 	t_env	*env;
 

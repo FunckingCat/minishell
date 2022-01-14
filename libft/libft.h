@@ -6,7 +6,7 @@
 /*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 14:20:53 by tyamcha           #+#    #+#             */
-/*   Updated: 2021/12/10 16:06:49 by unix             ###   ########.fr       */
+/*   Updated: 2022/01/14 12:08:59 by unix             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
-
-char	*get_next_line(int fd);
 
 int		ft_isalpha(int ch);
 int		ft_isdigit(int ch);
