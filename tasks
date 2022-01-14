@@ -138,3 +138,5 @@
 
 Полезные git алиасы:
 	alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+Статья по readline: https://russianblogs.com/article/7614321785/

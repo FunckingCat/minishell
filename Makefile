@@ -6,7 +6,7 @@
 #    By: unix <unix@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 14:23:43 by unix              #+#    #+#              #
-#    Updated: 2022/01/14 17:57:14 by unix             ###   ########.fr        #
+#    Updated: 2022/01/14 18:21:15 by unix             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 CC = gcc
 FLAGS = 
 #FLAGS = -Wall -Werror -Wextra
-LIB = -L '.' -lft 
+LIB = -L '.' -lft -lreadline
 
 HEADER = 	./minishell.h \
 			./gnl/get_next_line.h \

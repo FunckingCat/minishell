@@ -2,7 +2,11 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	printf("Hello world!!\n");
-	pipex(argc, argv, envp);
+	while (1)
+	{
+		char * str = readline(YELLOW PROMPT NONE);
+		add_history(str);
+		free(str);
+	}
 	return (0);
 }
