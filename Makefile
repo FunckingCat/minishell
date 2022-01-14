@@ -6,7 +6,7 @@
 #    By: unix <unix@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 14:23:43 by unix              #+#    #+#              #
-#    Updated: 2022/01/14 18:21:15 by unix             ###   ########.fr        #
+#    Updated: 2022/01/14 18:55:47 by unix             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ HEADER = 	./minishell.h \
 
 SRC = 	./minishell.c \
 		./gnl/get_next_line_utils.c ./gnl/get_next_line.c \
-		./pipex/pipex.c ./pipex/ft_exec.c ./pipex/ft_env.c
+		./pipex/pipex.c ./pipex/ft_exec.c ./pipex/ft_env.c \
+		./error.c
 
 OBJ = $(SRC:.c=.o)
 

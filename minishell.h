@@ -9,6 +9,8 @@
 char	*get_next_line(int fd);
 int		pipex(int argc, char **argv, char **envp);
 
+int		put_error(char *module, char *text);
+
 # define PROMPT	"MINISHELL > "
 
 # define RED	"\001\033[0;31m\002"
