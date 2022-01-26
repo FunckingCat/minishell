@@ -20,4 +20,15 @@ int		put_error(char *module, char *text);
 # define PURPLE	"\001\033[0;35m\002"
 # define NONE	"\001\033[0m\002"
 
+#define RD_IN	1
+#define RD_DIN	2
+#define RD_OUT	3
+#define RD_DOUT	4
+
+typedef	struct	s_shell
+{
+	int		cmds;
+	char	**cmds_arr;
+}	t_shell;
+
 #endif
