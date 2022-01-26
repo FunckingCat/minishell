@@ -3,12 +3,20 @@
 
 #include "../minishell.h"
 
-typedef struct t_env
+# define ENV "env"
+# define ENV_MALLOC "malloc error" 
+typedef struct s_env
 {
 	char **env;
-} s_env;
+} t_env;
 
-//Функция инициализации принимает массив строк
+int	get_memory_env(char **envp, t_env *envi, int count);
+t_env *init_env(char **envp);
+char	*env_get(char *name, t_env *envi);
+
+
+
+//Функция инициализации принимает массив строк                   --------DONE---------
 
 //Здесь еще приходит указатель на структуру
 //Функция получения переменной по имени char *func(char *);
