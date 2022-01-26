@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 17:39:28 by unix              #+#    #+#             */
-/*   Updated: 2022/01/14 12:13:02 by unix             ###   ########.fr       */
+/*   Updated: 2022/01/26 17:08:11 by tyamcha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ char	*ft_getres(char *rd)
 	if (!res)
 		return (NULL);
 	ft_memmove(res, rd, i);
-	if (rd[i] == '\n')
-		res[i++] = '\n';
 	res[i] = '\0';
 	return (res);
 }
