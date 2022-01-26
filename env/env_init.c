@@ -2,8 +2,8 @@
 
 int	get_memory_env(char **envp, t_env *envi, int count)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < count)
@@ -20,31 +20,36 @@ int	get_memory_env(char **envp, t_env *envi, int count)
 		envi->env[i][j] = '\0';
 		i++;
 	}
+	envi->env[i] = NULL;
 	return (0);
 }
 
-
-t_env *init_env(char **envp)
+void	init_struct(t_env *envi)
 {
-	int count;
-	t_env envi;
+	envi->env = NULL;
+}
+
+int	init_env(t_env *envi, char **envp)
+{
+	int	count;
 
 	count = 0;
 	while (envp[count])
 		count++;
-	envi.env = malloc(sizeof(char*) * count);
-	if (!envi.env || get_memory_env(envp, &envi, count))
+	envi->env = malloc(sizeof(char *) * (count + 1));
+	get_memory_env(envp, envi, count);
+	if (envi->env == NULL)
 	{
 		put_error(ENV, ENV_MALLOC);
-		return (NULL);
+		return (1);
 	}
-	return (&envi);
+	return (0);
 }
 
-// int main(int argc, char *argv[], char **envp)
+// int	main(int argc, char *argv[], char **envp)
 // {
 // 	int i;
-// 	t_env *envi;
+// 	t_env envi;
 
 // 	i = 0;
 // 	// while (i < 29)
@@ -52,10 +57,16 @@ t_env *init_env(char **envp)
 // 	// 	printf("--------%s\n", envp[i]);
 // 	// 	i++;
 // 	// }
-// 	envi = init_env(envp);
+// 	init_env(&envi, envp);
+// 	// while (i < 29)
+// 	// {
+// 	// 	printf("%s\n", envi->env[i]);
+// 	// 	i++;
+// 	// }
 // 	while (i < 29)
 // 	{
-// 		printf("%s\n", envi->env[i]);
+// 		ft_putstr_fd (envi.env[i], 1);
+// 		write(1, "\n", 1);
 // 		i++;
 // 	}
 // 	return (0);

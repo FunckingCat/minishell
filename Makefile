@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: unix <unix@student.42.fr>                  +#+  +:+       +#+         #
+#    By: wmika <wmika@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 14:23:43 by unix              #+#    #+#              #
-#    Updated: 2022/01/14 18:55:47 by unix             ###   ########.fr        #
+#    Updated: 2022/01/26 21:03:42 by wmika            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,14 @@ LIB = -L '.' -lft -lreadline
 
 HEADER = 	./minishell.h \
 			./gnl/get_next_line.h \
-			./pipex/pipex.h
+			./pipex/pipex.h \
+			./env/env.h
 
 SRC = 	./minishell.c \
 		./gnl/get_next_line_utils.c ./gnl/get_next_line.c \
 		./pipex/pipex.c ./pipex/ft_exec.c ./pipex/ft_env.c \
-		./error.c
+		./error.c \
+		./env/env_get_par.c ./env/env_init.c \
 
 OBJ = $(SRC:.c=.o)
 
