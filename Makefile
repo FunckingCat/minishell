@@ -1,5 +1,5 @@
 NAME = minishell
-CC = gcc
+CC = gcc -g
 #FLAGS = -Wall -Werror -Wextra
 LIB = -L '.' -lft -lreadline
 
