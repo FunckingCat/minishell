@@ -7,15 +7,15 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include "./libft/libft.h"
-# include "redirect/redirect.h"
 
 char	*get_next_line(int fd);
 int		pipex(int argc, char **argv, char **envp);
 
 int		put_error(char *module, char *text);
 
-# define PROMPT	"MINISHELL > "
+# define PROMPT			"MINISHELL > "
+# define MINISHELL		"minishell"
+# define SYNTAX_ERROR	"syntax error"
 
 # define RED	"\001\033[0;31m\002"
 # define GREEN	"\001\033[0;32m\002"
@@ -34,5 +34,9 @@ typedef struct s_shell
 	int		cmds;
 	char	**cmds_arr;
 }	t_shell;
+
+# include "./libft/libft.h"
+# include "redirect/redirect.h"
+# include "./parsing/parsing.h"
 
 #endif
