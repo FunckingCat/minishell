@@ -11,3 +11,5 @@
 !*.pdf
 !tasks*
 !env
+!redirect
+!builtin

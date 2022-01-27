@@ -19,14 +19,17 @@ LIB = -L '.' -lft -lreadline
 HEADER = 	./minishell.h \
 			./gnl/get_next_line.h \
 			./pipex/pipex.h \
-			./env/env.h
+			./env/env.h \
+			./redirect/redirect.h
 
 SRC = 	./minishell.c \
 		./gnl/get_next_line_utils.c ./gnl/get_next_line.c \
 		./pipex/pipex.c ./pipex/ft_exec.c ./pipex/ft_env.c \
 		./error.c \
 		./env/env_get_par.c ./env/env_init.c ./env/env_contain.c \
-		./env/env_set_par.c ./env/env_del.c ./env/env_free.c
+		./env/env_set_par.c ./env/env_del.c ./env/env_free.c \
+		./redirect/new_redirect.c ./redirect/free_redirect.c
+
 
 OBJ = $(SRC:.c=.o)
 
