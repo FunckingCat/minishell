@@ -23,8 +23,7 @@ t_env	*malloc_return_pointer(t_env *envi)
 	return (NULL);
 }
 
-
-t_env	*init_env(char **envp)
+t_env	*env_init(char **envp)
 {
 	t_env	*envi;
 	int		count;

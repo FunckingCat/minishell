@@ -1,6 +1,6 @@
 #include "env.h"
 
-int	is_contain(char *name, t_env *envi)
+int	env_contain(char *name, t_env *envi)
 {
 	int	i;
 

@@ -1,6 +1,6 @@
 #include "env.h"
 
-t_env *env_free(t_env *envi)
+t_env	*env_free(t_env *envi)
 {
 	int	i;
 

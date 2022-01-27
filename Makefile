@@ -6,7 +6,7 @@
 #    By: wmika <wmika@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 14:23:43 by unix              #+#    #+#              #
-#    Updated: 2022/01/27 13:51:56 by wmika            ###   ########.fr        #
+#    Updated: 2022/01/27 15:45:07 by wmika            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,15 +20,19 @@ HEADER = 	./minishell.h \
 			./gnl/get_next_line.h \
 			./pipex/pipex.h \
 			./env/env.h \
-			./redirect/redirect.h
+			./redirect/redirect.h \
+			./builtin/builtin.h \
+			./error/error.h \
+			./constants.h
 
 SRC = 	./minishell.c \
 		./gnl/get_next_line_utils.c ./gnl/get_next_line.c \
 		./pipex/pipex.c ./pipex/ft_exec.c ./pipex/ft_env.c \
-		./error.c \
-		./env/env_get_par.c ./env/env_init.c ./env/env_contain.c \
+		./error/error.c \
+		./env/env_init.c ./env/env_contain.c ./env/env_get_par.c \
 		./env/env_set_par.c ./env/env_del.c ./env/env_free.c \
-		./redirect/new_redirect.c ./redirect/free_redirect.c
+		./redirect/new_redirect.c ./redirect/free_redirect.c \
+		./builtin/env.c ./builtin/unset.c ./builtin/export.c 
 
 
 OBJ = $(SRC:.c=.o)

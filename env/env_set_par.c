@@ -1,8 +1,8 @@
 #include "env.h"
 
-int	fill_new_vars(t_env *envi, char *str,char **extra)
+int	fill_new_vars(t_env *envi, char *str, char **extra)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	envi->vars = malloc(sizeof(char *) * (envi->length + 2));
@@ -20,8 +20,8 @@ int	fill_new_vars(t_env *envi, char *str,char **extra)
 
 void	env_reset(t_env *envi, char *name, char *str)
 {
-	int	i;
-	char *old;
+	int		i;
+	char	*old;
 
 	i = 0;
 	while (i < envi->length)
@@ -42,7 +42,7 @@ int	malloc_return_int(void)
 	return (1);
 }
 
-int env_set(char *name, char *content, t_env *envi)
+int	env_set(char *name, char *content, t_env *envi)
 {
 	char	**extra;
 	char	*str;
@@ -55,10 +55,10 @@ int env_set(char *name, char *content, t_env *envi)
 	}	
 	str1 = ft_strjoin(name, "=");
 	str = ft_strjoin(str1, content);
-	if (is_contain(name, envi) == 0)
+	if (env_contain(name, envi) == 0)
 	{
 		extra = envi->vars;
-		if 	(fill_new_vars(envi, str, extra) == 1)
+		if (fill_new_vars(envi, str, extra) == 1)
 			return (malloc_return_int());
 		envi->length++;
 		free(extra);
