@@ -59,7 +59,7 @@ int	parse_pipes(t_shell *shell, char *cmd)
 	if (!shell->cmds)
 		return (1);
 	printf("%d command\n", shell->cmds);
-	shell->cmds_arr = split_to_commands(cmd, shell->cmds);
+	shell->cmds_arr = split_to_commands(cmd, shell->cmds, 0, 0);
 	if (!shell->cmds_arr)
 		return (put_error(MINISHELL, "allocation error"));
 	for (int i = 0; i < shell->cmds; i++)
