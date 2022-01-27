@@ -6,7 +6,7 @@
 #    By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 14:23:43 by unix              #+#    #+#              #
-#    Updated: 2022/01/27 12:15:43 by tyamcha          ###   ########.fr        #
+#    Updated: 2022/01/27 16:38:50 by tyamcha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC = 	./minishell.c \
 		./pipex/pipex.c ./pipex/ft_exec.c ./pipex/ft_env.c \
 		./error.c \
 		./redirect/new_redirect.c ./redirect/free_redirect.c \
-		./parsing/parse_pipes.c
+		./parsing/parse_pipes.c ./parsing/parse_pipes_utils.c
 
 OBJ = $(SRC:.c=.o)
 

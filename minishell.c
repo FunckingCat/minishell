@@ -36,9 +36,11 @@ int	main(int argc, char **argv, char **envp)
 	{
 		char * str = readline(YELLOW PROMPT NONE);
 		add_history(str);
-		parse_pipes(&shell, str);
+		if (!parse_pipes(&shell, str))
+		{
+			free_last_commands_data(&shell);
+		}
 		free(str);
-		free_last_commands_data(&shell);
 	}
 	return (0);
 }
