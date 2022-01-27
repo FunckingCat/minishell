@@ -23,4 +23,8 @@ typedef struct s_shell
 	char	**cmds_arr;
 }	t_shell;
 
+# include "./libft/libft.h"
+# include "redirect/redirect.h"
+# include "./parsing/parsing.h"
+
 #endif

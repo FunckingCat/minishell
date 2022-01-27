@@ -13,4 +13,5 @@
 !env
 !redirect
 !builtin
+!parsing
 !error

@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: wmika <wmika@student.42.fr>                +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/08 14:23:43 by unix              #+#    #+#              #
-#    Updated: 2022/01/27 15:45:07 by wmika            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = minishell
 CC = gcc
 FLAGS = 
@@ -19,8 +7,9 @@ LIB = -L '.' -lft -lreadline
 HEADER = 	./minishell.h \
 			./gnl/get_next_line.h \
 			./pipex/pipex.h \
-			./env/env.h \
 			./redirect/redirect.h \
+			./parsing/parsing.h
+			./env/env.h \
 			./builtin/builtin.h \
 			./error/error.h \
 			./constants.h
@@ -28,12 +17,12 @@ HEADER = 	./minishell.h \
 SRC = 	./minishell.c \
 		./gnl/get_next_line_utils.c ./gnl/get_next_line.c \
 		./pipex/pipex.c ./pipex/ft_exec.c ./pipex/ft_env.c \
+		./parsing/parse_pipes.c ./parsing/parse_pipes_utils.c
 		./error/error.c \
 		./env/env_init.c ./env/env_contain.c ./env/env_get_par.c \
 		./env/env_set_par.c ./env/env_del.c ./env/env_free.c \
 		./redirect/new_redirect.c ./redirect/free_redirect.c \
 		./builtin/env.c ./builtin/unset.c ./builtin/export.c 
-
 
 OBJ = $(SRC:.c=.o)
 
