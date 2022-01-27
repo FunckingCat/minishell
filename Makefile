@@ -6,7 +6,7 @@
 #    By: wmika <wmika@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 14:23:43 by unix              #+#    #+#              #
-#    Updated: 2022/01/27 15:45:07 by wmika            ###   ########.fr        #
+#    Updated: 2022/01/27 21:02:08 by wmika            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC = 	./minishell.c \
 		./env/env_init.c ./env/env_contain.c ./env/env_get_par.c \
 		./env/env_set_par.c ./env/env_del.c ./env/env_free.c \
 		./redirect/new_redirect.c ./redirect/free_redirect.c \
-		./builtin/env.c ./builtin/unset.c ./builtin/export.c 
+		./builtin/env.c ./builtin/unset.c ./builtin/export.c \
+		./builtin/pwd.c 
 
 
 OBJ = $(SRC:.c=.o)
