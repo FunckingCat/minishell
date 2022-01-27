@@ -39,11 +39,49 @@ int	count_cmds(char *str)
 	return (res);
 }
 
+int	split_to_commands(t_shell *shell, char *cmd)
+{
+	int		i;
+	int		j;
+	char	quote;
+
+	i = 0;
+	j = 0;
+	while (j < shell->cmds)
+	{
+		if (*(cmd + i) == '\"' || *(cmd + i) == '\'')
+		{
+			quote = *(cmd + i);
+			i++;
+			while (*(cmd + i) && *(cmd + i) != quote)
+				i++;
+		}
+		if (*(cmd + i) == '|' || *(cmd + i) == '\0')
+		{
+			shell->cmds_arr[j] = malloc(sizeof(char) * (i + 1));
+			if (!shell->cmds_arr[j])
+				return (put_error(MINISHELL, "allocation error"));
+			ft_strlcpy(shell->cmds_arr[j], cmd, i + 1);
+			j++;
+			cmd += i + 1;
+			i = 0;
+		}
+		i++;
+	}
+	shell->cmds_arr[j] = NULL;
+	return (0);
+}
+
 int	parse_pipes(t_shell *shell, char *cmd)
 {
 	shell->cmds = count_cmds(cmd);
 	if (!shell->cmds)
 		return (1);
-	printf("---> %d\n", shell->cmds);
+	shell->cmds_arr = malloc(sizeof(char *) * (shell->cmds + 1));
+	if (!shell->cmds_arr)
+		return (put_error(MINISHELL, "allocation error"));
+	printf("%d command\n", shell->cmds);
+	split_to_commands(shell, cmd);
+	printf("Finished\n");
 	return (0);
 }
