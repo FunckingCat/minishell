@@ -17,9 +17,9 @@ int	check_reverse_pipe(char *cmd)
 	int	i;
 
 	i = 1;
-	while (*(cmd-i) == ' ')
+	while (*(cmd - i) == ' ')
 		i++;
-	if (*(cmd-i) == '|')
+	if (*(cmd - i) == '|')
 		return (1);
 	return (0);
 }

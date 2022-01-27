@@ -17,8 +17,8 @@ int	free_last_commands_data(t_shell *shell)
 		i = 0;
 		while (i < shell->cmds)
 		{
-			//if (shell->cmds_arr[i])
-			//	free(shell->cmds_arr[i]);
+			if (shell->cmds_arr[i])
+				free(shell->cmds_arr[i]);
 			i++;
 		}
 		free(shell->cmds_arr);
