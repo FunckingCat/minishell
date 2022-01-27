@@ -11,18 +11,16 @@
 
 typedef struct s_env
 {
-	char	**env;
+	size_t	length;
+	char	**vars; 
 }		t_env;
 
-int		get_memory_env(char **envp, t_env *envi, int count);
-int		init_env(t_env *envi, char **envp);
+int		get_memory_env(char **envp, t_env *envi);
+t_env	*init_env(char **envp);
 char	*env_get(char *name, t_env *envi);
-int		check_line(char *name, char *str, char **deffin);
-void	init_struct(t_env *envi); // функция для начальной нулевой инициализации структуры
+char	*malloc_return(void);
 
 //Функция инициализации принимает массив строк                   --------DONE---------
-// Инитить структуру все что в ней изачальн                      --------DONE---------
-// спросить про выделение памяти под струткуру отдельно, а не только под ее элемент
 
 //Здесь еще приходит указатель на структуру
 //Функция получения переменной по имени char *func(char *);      --------DONE---------
