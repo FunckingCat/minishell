@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "error.h"
 
 int	put_error(char *module, char *text)
 {
