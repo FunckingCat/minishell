@@ -8,7 +8,9 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include "./libft/libft.h"
-# include "redirect/redirect.h"
+# include "./env/env.h"
+# include "./redirect/redirect.h"
+
 
 char	*get_next_line(int fd);
 int		pipex(int argc, char **argv, char **envp);
