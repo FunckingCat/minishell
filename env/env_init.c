@@ -15,9 +15,11 @@ int	get_memory_env(char **envp, t_env *envi)
 	return (0);
 }
 
-char	*malloc_return(void)
+t_env	*malloc_return_pointer(t_env *envi)
 {
 	put_error(ENV, ENV_MALLOC);
+	if (envi)
+		free(envi);
 	return (NULL);
 }
 
@@ -32,12 +34,12 @@ t_env	*init_env(char **envp)
 		count++;
 	envi = malloc(sizeof(t_env));
 	if (!envi)
-		return (malloc_return());
+		return (malloc_return_pointer(envi));
 	envi->length = count;
 	envi->vars = malloc(sizeof(char *) * (envi->length + 1));
 	if (!envi->vars)
-		return (malloc_return());
+		return (malloc_return_pointer(envi));
 	if (get_memory_env(envp, envi))
-		return (malloc_return());
+		return (malloc_return_pointer(envi));
 	return (envi);
 }

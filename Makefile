@@ -6,7 +6,7 @@
 #    By: wmika <wmika@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 14:23:43 by unix              #+#    #+#              #
-#    Updated: 2022/01/26 21:03:42 by wmika            ###   ########.fr        #
+#    Updated: 2022/01/27 13:51:56 by wmika            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRC = 	./minishell.c \
 		./gnl/get_next_line_utils.c ./gnl/get_next_line.c \
 		./pipex/pipex.c ./pipex/ft_exec.c ./pipex/ft_env.c \
 		./error.c \
-		./env/env_get_par.c ./env/env_init.c \
+		./env/env_get_par.c ./env/env_init.c ./env/env_contain.c \
+		./env/env_set_par.c ./env/env_del.c ./env/env_free.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -5,6 +5,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdlib.h>
+#include "./env/env.h"
 
 char	*get_next_line(int fd);
 int		pipex(int argc, char **argv, char **envp);
