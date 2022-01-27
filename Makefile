@@ -1,6 +1,5 @@
 NAME = minishell
 CC = gcc
-FLAGS = 
 #FLAGS = -Wall -Werror -Wextra
 LIB = -L '.' -lft -lreadline
 
@@ -8,17 +7,17 @@ HEADER = 	./minishell.h \
 			./gnl/get_next_line.h \
 			./pipex/pipex.h \
 			./redirect/redirect.h \
-			./parsing/parsing.h
+			./parsing/parsing.h \
 			./env/env.h \
 			./builtin/builtin.h \
 			./error/error.h \
 			./constants.h
 
 SRC = 	./minishell.c \
+		./error/error.c \
 		./gnl/get_next_line_utils.c ./gnl/get_next_line.c \
 		./pipex/pipex.c ./pipex/ft_exec.c ./pipex/ft_env.c \
-		./parsing/parse_pipes.c ./parsing/parse_pipes_utils.c
-		./error/error.c \
+		./parsing/parse_pipes.c ./parsing/parse_pipes_utils.c \
 		./env/env_init.c ./env/env_contain.c ./env/env_get_par.c \
 		./env/env_set_par.c ./env/env_del.c ./env/env_free.c \
 		./redirect/new_redirect.c ./redirect/free_redirect.c \
