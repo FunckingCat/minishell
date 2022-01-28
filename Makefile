@@ -21,7 +21,8 @@ SRC = 	./minishell.c \
 		./env/env_init.c ./env/env_contain.c ./env/env_get_par.c \
 		./env/env_set_par.c ./env/env_del.c ./env/env_free.c \
 		./redirect/new_redirect.c ./redirect/free_redirect.c \
-		./builtin/env.c ./builtin/unset.c ./builtin/export.c 
+		./builtin/env.c ./builtin/unset.c ./builtin/export.c \
+		./builtin/pwd.c 
 
 OBJ = $(SRC:.c=.o)
 
