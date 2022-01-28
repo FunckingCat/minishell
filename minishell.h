@@ -17,10 +17,9 @@
 char	*get_next_line(int fd);
 int		pipex(int argc, char **argv, char **envp);
 
-typedef struct s_shell
-{
-	int		cmds;
-	char	**cmds_arr;
-}	t_shell;
+# include "shell.h"
+# include "./libft/libft.h"
+# include "redirect/redirect.h"
+# include "./parsing/parsing.h"
 
 #endif

@@ -1,16 +1,47 @@
 #include "minishell.h"
 
+int	init_shell(t_shell *shell)
+{
+	shell->cmds = 0;
+	shell->cmds_arr = NULL;
+	return (0);
+}
+
+int	free_last_commands_data(t_shell *shell)
+{
+	int	i;
+
+	printf(PURPLE "Commands clean\n" NONE);
+	if (shell->cmds_arr)
+	{
+		i = 0;
+		while (i < shell->cmds)
+		{
+			if (shell->cmds_arr[i])
+				free(shell->cmds_arr[i]);
+			i++;
+		}
+		free(shell->cmds_arr);
+	}
+	shell->cmds = 0;
+	return (0);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
-	t_env *envi;
 
+	t_shell	shell;
 
-	envi = env_init(envp);
-	cd ("../../", envi);
-	ft_putstr_fd(env_get("PWD", envi), 1);
-	write(1, "\n", 1);
-	ft_putstr_fd(env_get("OLDPWD", envi), 1);
-	// printf("%s\n", env_get("OLDPWD", envi));
-	// printf("%s\n", env_get("PWD", envi));
+	init_shell(&shell);
+	while (1)
+	{
+		char * str = readline(YELLOW PROMPT NONE);
+		add_history(str);
+		if (!parse_pipes(&shell, str))
+		{
+			free_last_commands_data(&shell);
+		}
+		free(str);
+	}
 	return (0);
 }
