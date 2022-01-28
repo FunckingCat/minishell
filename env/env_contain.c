@@ -8,7 +8,7 @@ int	env_contain(char *name, t_env *envi)
 	if (!name || !envi || !envi->vars)
 	{
 		put_error(ENV, ENV_NO_PAR);
-		return (1);
+		return (-1);
 	}
 	while (i < envi->length)
 	{

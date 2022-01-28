@@ -75,6 +75,6 @@ int	parse_pipes(t_shell *shell, char *cmd)
 	while (*(shell->cmds_arr + shell->cmds))
 		shell->cmds++;
 	for (int i = 0; i < shell->cmds; i++)
-		printf("%d > %s\n", i + 1, shell->cmds_arr[i]);
+		printf("command %d : %s\n", i + 1, shell->cmds_arr[i]);
 	return (0);
 }

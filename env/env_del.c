@@ -35,7 +35,7 @@ int	env_delete(char *name, t_env *envi)
 		put_error(ENV, ENV_NO_PAR);
 		return (1);
 	}
-	if (env_contain(name, envi) == 1)
+	if (env_contain(name, envi))
 	{
 		extra = envi->vars;
 		envi->vars = malloc(sizeof(char *) * (envi->length));
