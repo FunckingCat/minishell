@@ -5,8 +5,10 @@ char	*env_get(char *name, t_env *envi)
 	char	*deffin;
 	int		i;
 
+	i = 0;
 	if (!name || !envi->vars || !envi)
 	{
+		
 		put_error(ENV, ENV_NO_PAR);
 		return (NULL);
 	}
