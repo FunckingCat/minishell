@@ -15,11 +15,12 @@
 // Parsing errors
 # define Q_NCL			"quotes are not closed"
 # define SYNTAX_PIPE	"syntax error near unexpected token '|'"
+# define MALLOC_ERR		"malloc error"
 
 // Env errors
-# define ENV "env"
-# define ENV_MALLOC "malloc error" 
-# define ENV_NO_PAR "no parameters"
+# define ENV		"env"
+# define ENV_MALLOC	"malloc error" 
+# define ENV_NO_PAR	"no parameters"
 
 // Redirect errors
 # define RD			"redirect"

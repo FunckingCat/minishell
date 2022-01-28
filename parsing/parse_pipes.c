@@ -1,68 +1,80 @@
 #include "parsing.h"
 
-int	check_double_pipe(char *cmd)
+char	*skip_quotes(char *cmd)
 {
-	int	i;
+	char	quote;
 
-	i = 1;
-	while (cmd[i] == ' ')
-		i++;
-	if (cmd[i] == '|')
-		return (1);
-	return (0);
+	quote = *cmd++;
+	while(*cmd && *cmd != quote)
+		cmd++;
+	return (cmd);
 }
 
-int	check_reverse_pipe(char *cmd)
+char	*replace_pipes(char *cmd)
 {
-	int	i;
+	int	len;
 
-	i = 1;
-	while (*(cmd - i) == ' ')
-		i++;
-	if (*(cmd - i) == '|')
-		return (1);
-	return (0);
-}
-
-int	count_cmds(char *str)
-{
-	int		res;
-	char	qoute;
-
-	res = 1;
-	if (*str == '|' || (*str == ' ' && check_double_pipe(str)))
-		return (put_error(MINISHELL, SYNTAX_PIPE) - 1);
-	while (*str)
+	len = ft_strlen(cmd);
+	while (*cmd)
 	{
-		if (*str == '|' && res++ > 0)
-			if (check_double_pipe(str))
-				return (put_error(MINISHELL, SYNTAX_PIPE) - 1);
-		if (*str == '\"' || *str == '\'')
-		{
-			qoute = *str;
-			str++;
-			while (*str && *str != qoute)
-				str++;
-		}
-		if (!(*str))
-			return (put_error(MINISHELL, Q_NCL) - 1);
-		str++;
+		if (*cmd == '\'' || *cmd == '\"')
+			cmd = skip_quotes(cmd);
+		if (!*cmd)
+			return(NULL);
+		if (*cmd == '|')
+			*cmd = RCH;
+		cmd++;
 	}
-	if (check_reverse_pipe(str))
-		return (put_error(MINISHELL, SYNTAX_PIPE) - 1);
-	return (res);
+	return (cmd - len);
+}
+
+int	check_tail(char *cmd)
+{
+	while (*cmd == ' ')
+		cmd--;
+	if (*cmd == RCH)
+		return (1);
+	return (0);
+}
+
+int	check_pipes(char *cmd)
+{
+	int pipe_fl;
+
+	pipe_fl = 0;
+	while (*cmd == ' ')
+			cmd++;
+	if (*cmd == RCH)
+		return (1);
+	while (*cmd)
+	{
+		while (*cmd == ' ')
+			cmd++;
+		if (*cmd == RCH && pipe_fl)
+			return (1);
+		else if (*cmd == RCH)
+			pipe_fl = 1;
+		else
+			pipe_fl = 0;
+		if (*cmd)
+			cmd++;
+	}
+	return (check_tail(cmd - 1));
 }
 
 int	parse_pipes(t_shell *shell, char *cmd)
 {
-	shell->cmds = count_cmds(cmd);
-	if (!shell->cmds)
-		return (1);
-	printf("%d command\n", shell->cmds);
-	shell->cmds_arr = split_to_commands(cmd, shell->cmds, 0, 0);
+	cmd = replace_pipes(cmd);
+	if (!cmd)
+		return (put_error(MINISHELL, Q_NCL));
+	if (check_pipes(cmd))
+		return (put_error(MINISHELL, SYNTAX_PIPE));
+	shell->cmds_arr = ft_split(cmd, RCH);
 	if (!shell->cmds_arr)
-		return (put_error(MINISHELL, "allocation error"));
+		return (1);
+	while (*(shell->cmds_arr + shell->cmds))
+		shell->cmds++;
 	for (int i = 0; i < shell->cmds; i++)
-		printf("--> %s\n", shell->cmds_arr[i]);
+		printf("%d > %s\n", i + 1, shell->cmds_arr[i]);
 	return (0);
 }
