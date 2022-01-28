@@ -71,7 +71,7 @@ int	parse_pipes(t_shell *shell, char *cmd)
 		return (put_error(MINISHELL, SYNTAX_PIPE));
 	shell->cmds_arr = ft_split(cmd, RCH);
 	if (!shell->cmds_arr)
-		return (1);
+		return (put_error(MINISHELL, MALLOC_ERR));
 	while (*(shell->cmds_arr + shell->cmds))
 		shell->cmds++;
 	for (int i = 0; i < shell->cmds; i++)
