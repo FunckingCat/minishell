@@ -6,8 +6,8 @@
 # include "../shell.h"
 # include "../error/error.h"
 
-int		parse_pipes(t_shell *shell, char *cmd);
+# define RCH 13
 
-char	**split_to_commands(char *cmd, int cmds, int i, int j);
+int		parse_pipes(t_shell *shell, char *cmd);
 
 #endif

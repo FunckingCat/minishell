@@ -4,6 +4,7 @@ CC = gcc -g
 LIB = -L '.' -lft -lreadline
 
 HEADER = 	./minishell.h \
+			./shell.h \
 			./gnl/get_next_line.h \
 			./pipex/pipex.h \
 			./redirect/redirect.h \
@@ -13,16 +14,36 @@ HEADER = 	./minishell.h \
 			./error/error.h \
 			./constants.h
 
-SRC = 	./minishell.c \
-		./error/error.c \
-		./gnl/get_next_line_utils.c ./gnl/get_next_line.c \
-		./pipex/pipex.c ./pipex/ft_exec.c ./pipex/ft_env.c \
-		./parsing/parse_pipes.c ./parsing/parse_pipes_utils.c \
-		./env/env_init.c ./env/env_contain.c ./env/env_get_par.c \
-		./env/env_set_par.c ./env/env_del.c ./env/env_free.c \
-		./redirect/new_redirect.c ./redirect/free_redirect.c \
-		./builtin/env.c ./builtin/unset.c ./builtin/export.c \
+MAIN =	./minishell.c
+
+GNL =	./gnl/get_next_line_utils.c \
+		./gnl/get_next_line.c
+
+PIPEX =	./pipex/pipex.c \
+		./pipex/ft_exec.c \
+		./pipex/ft_env.c
+
+REDIR =	./redirect/new_redirect.c \
+		./redirect/free_redirect.c
+
+ENV =	./env/env_init.c \
+		./env/env_contain.c \
+		./env/env_get_par.c \
+		./env/env_set_par.c \
+		./env/env_del.c \
+		./env/env_free.c
+
+PARSE =	./parsing/parse_pipes.c
+
+BUILT =	./builtin/env.c \
+		./builtin/unset.c \
+		./builtin/export.c \
 		./builtin/pwd.c 
+
+ERROR =	./error/error.c
+
+SRC = 	$(MAIN)		$(GNL)		$(PIPEX)	$(REDIR)	$(ENV) \
+		$(PARSE)	$(BUILT)	$(ERROR)
 
 OBJ = $(SRC:.c=.o)
 
@@ -40,7 +61,7 @@ $(NAME): $(OBJ) $(HEADER)
 
 clean:
 	make clean -C ./libft
-	$(RM) $(OBJ) $(BONUS_OBJ_FILES)
+	$(RM) $(OBJ)
 
 fclean: clean
 	make fclean -C ./libft
