@@ -22,7 +22,7 @@ SRC = 	./minishell.c \
 		./env/env_set_par.c ./env/env_del.c ./env/env_free.c \
 		./redirect/new_redirect.c ./redirect/free_redirect.c \
 		./builtin/env.c ./builtin/unset.c ./builtin/export.c \
-		./builtin/pwd.c 
+		./builtin/pwd.c ./builtin/cd.c 
 
 OBJ = $(SRC:.c=.o)
 

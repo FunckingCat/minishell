@@ -29,6 +29,7 @@ int	free_last_commands_data(t_shell *shell)
 
 int	main(int argc, char **argv, char **envp)
 {
+
 	t_shell	shell;
 
 	init_shell(&shell);
