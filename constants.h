@@ -1,7 +1,8 @@
 #ifndef CONSTANTS_H
 # define CONSTANTS_H
 
-# define PROMPT	"MINISHELL > "
+# define MINISHELL	"minishell"
+# define PROMPT		"MINISHELL > "
 
 # define RED	"\001\033[0;31m\002"
 # define GREEN	"\001\033[0;32m\002"

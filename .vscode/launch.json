@@ -1,0 +1,17 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+		"name": "(lldb) Запустить",
+		"type": "cppdbg",
+		"request": "launch",
+		"program": "${workspaceFolder}/${workspaceFolderBasename}",
+		"args": [],
+		"stopAtEntry": false,
+		"cwd": "${workspaceFolder}",
+		"environment": [ { "name": "squid", "value": "clam" } ],
+		"externalConsole": true,
+		"MIMode": "lldb"
+		}
+	]
+}
