@@ -3,10 +3,7 @@
 
 # include "../libft/libft.h"
 # include "../error/error.h"
-
-# define ENV "env"
-# define ENV_MALLOC "malloc error" 
-# define ENV_NO_PAR "no parameters"
+# include "../constants.h"
 
 typedef struct s_env
 {
