@@ -8,7 +8,7 @@ int cd(char *arg, t_env *envi)
 
 	old_pwd = env_get("PWD", envi);
 	if (chdir(arg) == -1 || !old_pwd)
-		return (1);
+		return(put_error(CD, CD_NO_FILE));
 	getcwd(buff, 1044480);
 	new_pwd = ft_strdup(buff);
 	env_set("PWD", new_pwd, envi);

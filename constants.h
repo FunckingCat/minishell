@@ -38,6 +38,8 @@
 
 // Builtin errors
 # define EXP "Export"
-# define EXP_PAR "error with parameters"
+# define EXP_NOT_VALID "not a valid identifier"
+# define CD "cd"
+# define CD_NO_FILE "No such file or directory"
 
 #endif
