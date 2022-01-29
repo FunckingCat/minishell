@@ -65,7 +65,9 @@ int	main(int argc, char **argv, char **envp)
 	{
 		char * str = readline(YELLOW PROMPT NONE);
 		add_history(str);
-		command_routine(&shell, str);
+		str = ft_remove_char(str, '@');
+		printf("--> %s\n", str);
+		//command_routine(&shell, str);
 		free(str);
 	}
 	env_free(shell.env);
