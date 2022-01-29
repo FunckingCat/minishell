@@ -29,6 +29,7 @@
 # define RD_FD_PD	"Permission denied"
 # define RD_FD_FR	"File read failed"
 # define RD_FD_FC	"File create failed"
+# define RD_ERR_T	"syntax error near unexpected token '<'"
 
 // Redirect types
 # define RD_IN		1

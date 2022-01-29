@@ -62,19 +62,16 @@ int	check_pipes(char *cmd)
 	return (check_tail(cmd - 1));
 }
 
-int	parse_pipes(t_shell *shell, char *cmd)
+char	**parse_pipes(char *cmd)
 {
+	char	**res;
 	cmd = replace_pipes(cmd);
 	if (!cmd)
-		return (put_error(MINISHELL, Q_NCL));
+		return (put_error_null(MINISHELL, Q_NCL));
 	if (check_pipes(cmd))
-		return (put_error(MINISHELL, SYNTAX_PIPE));
-	shell->cmds_arr = ft_split(cmd, RCH);
-	if (!shell->cmds_arr)
-		return (put_error(MINISHELL, MALLOC_ERR));
-	while (*(shell->cmds_arr + shell->cmds))
-		shell->cmds++;
-	for (int i = 0; i < shell->cmds; i++)
-		printf("command %d : %s\n", i + 1, shell->cmds_arr[i]);
-	return (0);
+		return (put_error_null(MINISHELL, SYNTAX_PIPE));
+	res = ft_split(cmd, RCH);
+	if (!res)
+		return (put_error_null(MINISHELL, MALLOC_ERR));
+	return (res);
 }

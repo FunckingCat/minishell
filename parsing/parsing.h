@@ -8,6 +8,7 @@
 
 # define RCH 13
 
-int		parse_pipes(t_shell *shell, char *cmd);
+char	**parse_pipes(char *cmd);
+int		parse_redirects(t_cmd *cmd);
 
 #endif
