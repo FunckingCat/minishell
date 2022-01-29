@@ -20,5 +20,4 @@
 char	*get_next_line(int fd);
 int		pipex(int argc, char **argv, char **envp);
 
-
 #endif
