@@ -41,7 +41,10 @@ int	make_commands(t_shell *shell, char **parse)
 	if (!shell->cmds_arr)
 		return(put_error(MINISHELL, MALLOC_ERR));
 	while (i < shell->cmds)
-		shell->cmds_arr[i].full = parse[i];
+	{
+		shell->cmds_arr[i].full = ft_strtrim(parse[i], " \t");
+		free(parse[i]);
+	}
 	free(parse);
 }
 
@@ -65,9 +68,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		char * str = readline(YELLOW PROMPT NONE);
 		add_history(str);
-		str = ft_remove_char(str, '@');
-		printf("--> %s\n", str);
-		//command_routine(&shell, str);
+		command_routine(&shell, str);
 		free(str);
 	}
 	env_free(shell.env);
