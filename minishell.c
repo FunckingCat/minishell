@@ -10,7 +10,7 @@ int	init_shell(t_shell *shell, char **envp)
 	return (0);
 }
 
-int	free_last_commands_data(t_shell *shell)
+int	free_commands_data(t_shell *shell)
 {
 	int	i;
 
@@ -20,8 +20,8 @@ int	free_last_commands_data(t_shell *shell)
 		i = 0;
 		while (i < shell->cmds)
 		{
-			// if (shell->cmds_arr[i])
-			// 	free(shell->cmds_arr[i]);
+			if (shell->cmds_arr[i].full)
+				free(shell->cmds_arr[i].full);
 			i++;
 		}
 		free(shell->cmds_arr);
@@ -30,32 +30,31 @@ int	free_last_commands_data(t_shell *shell)
 	return (0);
 }
 
-int	make_commands(t_shell *shell, char **parse)
+
+
+void	*parse_commands(t_shell *shell, char *cmd)
 {
-	int	i;
+	char	**parse;
+	int		i;
 
 	i = 0;
+	parse = parse_pipes(cmd);
+	if (!parse)
+		return (NULL);
 	while (*(parse + shell->cmds))
 		shell->cmds++;
 	shell->cmds_arr = malloc(sizeof(t_cmd) * shell->cmds);
 	if (!shell->cmds_arr)
-		return(put_error(MINISHELL, MALLOC_ERR));
+		return(put_error_null(MINISHELL, MALLOC_ERR));
 	while (i < shell->cmds)
 	{
 		shell->cmds_arr[i].full = ft_strtrim(parse[i], " \t");
-		free(parse[i]);
+		printf(PURPLE "cmd %d: %s\n" NONE, i, shell->cmds_arr[i].full);
+		shell->cmds_arr[i].in = 0;
+		shell->cmds_arr[i].out = 1;
+		free(parse[i++]);
 	}
 	free(parse);
-}
-
-void	command_routine(t_shell *shell, char *cmd)
-{
-	char	**parse;
-
-	parse = parse_pipes(cmd);
-	if (!parse)
-		return ;
-	make_commands(shell, parse);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -68,8 +67,9 @@ int	main(int argc, char **argv, char **envp)
 	{
 		char * str = readline(YELLOW PROMPT NONE);
 		add_history(str);
-		command_routine(&shell, str);
+		parse_commands(&shell, str);
 		free(str);
+		free_commands_data(&shell);
 	}
 	env_free(shell.env);
 	return (0);
