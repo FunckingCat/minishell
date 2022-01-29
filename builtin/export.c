@@ -5,7 +5,7 @@ void	clean_split(char **new_var)
 	int	i;
 
 	i = 0;
-	while (new_var[i])
+	while (new_var && new_var[i])
 	{
 		free(new_var[i]);
 		i++;
@@ -57,8 +57,10 @@ int	setting_element(t_env *envi, char *str)
 	if (env_set(extra[0], new, envi) == 1)
 	{
 		clean_split(extra);
+		free(new);
 		return (1);
 	}
+	free(new);
 	clean_split(extra);
 	return (0);
 }
