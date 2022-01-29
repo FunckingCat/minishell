@@ -41,7 +41,6 @@ void	command_routine(t_shell *shell, char *cmd)
 
 int	main(int argc, char **argv, char **envp)
 {
-
 	t_shell	shell;
 
 	if (init_shell(&shell, envp))

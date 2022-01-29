@@ -1,46 +1,5 @@
 #include "redirect.h"
 
-int	read_loop(t_redirect *this, int *pip)
-{
-	char	*line;
-
-	while (1)
-	{
-		ft_putstr_fd(GREEN "> " NONE, 1);
-		line = get_next_line(0);
-		if (!line)
-		{
-			close(pip[1]);
-			return (1);
-		}
-		if (!ft_strcmp(line, this->file))
-		{
-			free(line);
-			break ;
-		}
-		else
-		{
-			ft_putstr_fd(line, pip[1]);
-			ft_putstr_fd("\n", pip[1]);
-		}
-		free(line);
-	}
-	return (0);
-}
-
-int	read_multiline(t_redirect *this)
-{
-	int		pip[2];
-
-	if (pipe(pip) == -1)
-		return (put_error("pipe", "failed create a pipe"));
-	this->fd = pip[0];
-	if (read_loop(this, pip))
-		return (put_error(RD, "failed to read input"));
-	close(pip[1]);
-	return (0);
-}
-
 int	open_out(t_redirect *this)
 {
 	if (!access(this->file, ACCESS_EXIST))
@@ -77,24 +36,40 @@ int	rd_open_fd(t_redirect *this)
 	return (0);
 }
 
+int	validate_input(char *str)
+{
+	if (!ft_strchr("<>", *str))
+		return (1);
+	if (str[0] == '>' && str[1] == '<')
+		return (1);
+	if (ft_strchr("<>", *str))
+		str++;
+	if (ft_strchr("<>", *str))
+		str++;
+	while (*str == ' ')
+		str++;
+	if (ft_strchr("<>", *str))
+		return (1);
+	return (0);
+}
+
 t_redirect	*new_redirect(char *str)
 {
 	t_redirect	*this;
 
+	if (validate_input(str))
+		return (put_error_null(MINISHELL, RD_ERR_T));
 	this = malloc(sizeof(t_redirect));
+	if (!this)
+		return (put_error_null(MINISHELL, MALLOC_ERR));
 	if (str[0] == '<' && str[1] == '<')
 		this->type = RD_DIN;
-	else if (str[0] == '<')
-		this->type = RD_IN;
 	else if (str[0] == '>' && str[1] == '>')
 		this->type = RD_DOUT;
-	else if (str[0] == '>')
-		this->type = RD_OUT;
+	else if (str[0] == '<')
+		this->type = RD_IN;
 	else
-	{
-		free(this);
-		return (NULL);
-	}
+		this->type = RD_OUT;
 	while (ft_strchr("><", *str))
 		str++;
 	while (ft_strchr(" ", *str))
