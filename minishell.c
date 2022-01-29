@@ -30,6 +30,21 @@ int	free_last_commands_data(t_shell *shell)
 	return (0);
 }
 
+int	make_commands(t_shell *shell, char **parse)
+{
+	int	i;
+
+	i = 0;
+	while (*(parse + shell->cmds))
+		shell->cmds++;
+	shell->cmds_arr = malloc(sizeof(t_cmd) * shell->cmds);
+	if (!shell->cmds_arr)
+		return(put_error(MINISHELL, MALLOC_ERR));
+	while (i < shell->cmds)
+		shell->cmds_arr[i].full = parse[i];
+	free(parse);
+}
+
 void	command_routine(t_shell *shell, char *cmd)
 {
 	char	**parse;
@@ -37,6 +52,7 @@ void	command_routine(t_shell *shell, char *cmd)
 	parse = parse_pipes(cmd);
 	if (!parse)
 		return ;
+	make_commands(shell, parse);
 }
 
 int	main(int argc, char **argv, char **envp)

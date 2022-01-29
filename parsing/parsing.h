@@ -9,5 +9,6 @@
 # define RCH 13
 
 char	**parse_pipes(char *cmd);
+int		parse_redirects(t_cmd *cmd);
 
 #endif
