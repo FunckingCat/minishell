@@ -12,6 +12,6 @@
 # include "../error/error.h"
 # include "../parsing/parsing.h"
 
-void	fork_proc(t_shell *shell);
+int	fork_proc(t_shell *shell);
 
 #endif
