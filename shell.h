@@ -3,6 +3,7 @@
 
 # include <sys/wait.h>
 # include "./env/env.h"
+# include "./redirect/redirect.h"
 
 typedef struct s_cmd
 {
@@ -11,6 +12,8 @@ typedef struct s_cmd
 	char	*args;
 	int		in;
 	int		out;
+	t_redirect *left;
+	t_redirect *right;
 	pid_t	pid;
 }	t_cmd;
 

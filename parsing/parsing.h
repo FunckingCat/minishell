@@ -5,6 +5,7 @@
 # include "../constants.h"
 # include "../shell.h"
 # include "../error/error.h"
+# include "../redirect/redirect.h"
 
 # define RCH 13
 

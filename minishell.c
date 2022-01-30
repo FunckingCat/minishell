@@ -68,6 +68,7 @@ int	main(int argc, char **argv, char **envp)
 		char * str = readline(YELLOW PROMPT NONE);
 		add_history(str);
 		parse_commands(&shell, str);
+		pipex(&shell);
 		free(str);
 		free_commands_data(&shell);
 	}

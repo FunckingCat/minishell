@@ -20,8 +20,7 @@ GNL =	./gnl/get_next_line_utils.c \
 		./gnl/get_next_line.c
 
 PIPEX =	./pipex/pipex.c \
-		./pipex/ft_exec.c \
-		./pipex/ft_env.c
+		./pipex/ft_exec.c
 
 REDIR =	./redirect/new_redirect.c \
 		./redirect/free_redirect.c
@@ -33,7 +32,8 @@ ENV =	./env/env_init.c \
 		./env/env_del.c \
 		./env/env_free.c
 
-PARSE =	./parsing/parse_pipes.c
+PARSE =	./parsing/parse_pipes.c \
+		./parsing/parse_redirects.c
 
 BUILT =	./builtin/env.c \
 		./builtin/unset.c \

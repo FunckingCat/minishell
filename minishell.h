@@ -18,6 +18,6 @@
 # include "./builtin/builtin.h"
 
 char	*get_next_line(int fd);
-int		pipex(int argc, char **argv, char **envp);
+int		pipex(t_shell *shell);
 
 #endif
