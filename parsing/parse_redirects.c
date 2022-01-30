@@ -53,7 +53,9 @@ int	parse_redirects(t_cmd *cmd)
 			i++;
 	}
 	cmd->full = ft_remove_char(cmd->full, RCH);
-	cmd->in = cmd->left->fd;
-	cmd->out = cmd->right->fd;
+	if (cmd->left)
+		cmd->in = cmd->left->fd;
+	if (cmd->right)
+		cmd->out = cmd->right->fd;
 	return (0);
 }
