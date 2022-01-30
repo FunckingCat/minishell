@@ -1,74 +1,71 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 10:47:22 by tyamcha           #+#    #+#             */
-/*   Updated: 2022/01/14 12:06:55 by unix             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "pipex.h"
 
-void	error(char *name, char *desc)
-{
-	ft_putstr_fd("pipex: ", 2);
-	ft_putstr_fd(name, 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(desc, 2);
-	ft_putstr_fd("\n", 2);
-	exit(EXIT_FAILURE);
-}
+// t_command	*who_returned(t_shell *shell, pid_t pid)
+// {
+// 	int	i;
 
-t_command	*who_returned(t_env *env, pid_t pid)
-{
-	int	i;
+// 	i = 0;
+// 	while (i < env->cmds)
+// 	{
+// 		if (env->pids[i] == pid)
+// 			return (&env->commands[i]);
+// 		i++;
+// 	}
+// 	return (NULL);
+// }
 
-	i = 0;
-	while (i < env->cmds)
+// void	wait_children(t_shell *shell)
+// {
+// 	int			i;
+// 	int			ret;
+// 	t_command	*child;
+
+// 	i = 0;
+// 	while (i < env->cmds)
+// 	{
+// 		ret = wait(NULL);
+// 		child = who_returned(env, ret);
+// 		if (child)
+// 		{
+// 			if (child->out != 1)
+// 				close(child->out);
+// 			if (child->in != 0)
+// 				close(child->in);
+// 		}
+// 		i++;
+// 	}
+// }
+
+int	set_in_out(t_shell *shell)
+{
+	int		i;
+	int		pip[2];
+
+	i = 1;
+	while (i < shell->cmds)
 	{
-		if (env->pids[i] == pid)
-			return (&env->commands[i]);
+		if (pipe(pip) == -1)
+			return (put_error(MINISHELL, "pipe create failed"));
+		shell->cmds_arr[i - 1]->out = pip[1];
+		shell->cmds_arr[i]->in = pip[0];
 		i++;
 	}
-	return (NULL);
+	return (0);
 }
 
-void	wait_children(t_env *env)
+int	pipex(t_shell *shell)
 {
-	int			i;
-	int			ret;
-	t_command	*child;
-
-	i = 0;
-	while (i < env->cmds)
+	printf(PURPLE "--------PIPEX-------\n" NONE);
+	if (set_in_out(shell))
+		return (1);
+	for (int i = 0; i < shell->cmds; i++)
 	{
-		ret = wait(NULL);
-		child = who_returned(env, ret);
-		if (child)
-		{
-			if (child->out != 1)
-				close(child->out);
-			if (child->in != 0)
-				close(child->in);
-		}
-		i++;
+		printf("cmd %d: %s in: %d out: %d\n", i, shell->cmds_arr[i]->full, shell->cmds_arr[i]->in, shell->cmds_arr[i]->out);
+		if (parse_redirects(shell->cmds_arr[i]))
+			return (1);
+		printf("cmd %d: %s in: %d out: %d\n", i, shell->cmds_arr[i]->full, shell->cmds_arr[i]->in, shell->cmds_arr[i]->out);
 	}
-}
-
-int	pipex(int argc, char **argv, char **envp)
-{
-	t_env	*env;
-
-	if (argc < 4)
-		error("too few args", "usage ./pipex ./in \"cmd1\" \"cmd2\" ./out");
-	env = make_env(argc - 1, argv + 1, envp);
-	fork_proc(env);
-	wait_children(env);
-	free(env->pids);
-	free(env->commands);
-	free(env);
+	//fork_proc(shell);
+	//wait_children(env);
 	return (0);
 }

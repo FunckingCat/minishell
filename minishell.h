@@ -11,13 +11,13 @@
 # include "./constants.h"
 # include "./libft/libft.h"
 # include "./error/error.h"
-# include "./shell.h"
+# include "./shell/shell.h"
 # include "./env/env.h"
 # include "./redirect/redirect.h"
 # include "./parsing/parsing.h"
 # include "./builtin/builtin.h"
 
 char	*get_next_line(int fd);
-int		pipex(int argc, char **argv, char **envp);
+int		pipex(t_shell *shell);
 
 #endif

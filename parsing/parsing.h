@@ -3,8 +3,9 @@
 
 # include "../libft/libft.h"
 # include "../constants.h"
-# include "../shell.h"
+# include "../command/command.h"
 # include "../error/error.h"
+# include "../redirect/redirect.h"
 
 # define RCH 13
 
