@@ -46,8 +46,8 @@ int	set_in_out(t_shell *shell)
 	{
 		if (pipe(pip) == -1)
 			return (put_error(MINISHELL, "pipe create failed"));
-		shell->cmds_arr[i - 1].out = pip[1];
-		shell->cmds_arr[i].in = pip[0];
+		shell->cmds_arr[i - 1]->out = pip[1];
+		shell->cmds_arr[i]->in = pip[0];
 		i++;
 	}
 	return (0);
@@ -60,10 +60,10 @@ int	pipex(t_shell *shell)
 		return (1);
 	for (int i = 0; i < shell->cmds; i++)
 	{
-		printf("cmd %d: %s in: %d out: %d\n", i, shell->cmds_arr[i].full, shell->cmds_arr[i].in, shell->cmds_arr[i].out);
-		if (parse_redirects(&shell->cmds_arr[i]))
+		printf("cmd %d: %s in: %d out: %d\n", i, shell->cmds_arr[i]->full, shell->cmds_arr[i]->in, shell->cmds_arr[i]->out);
+		if (parse_redirects(shell->cmds_arr[i]))
 			return (1);
-		printf("cmd %d: %s in: %d out: %d\n", i, shell->cmds_arr[i].full, shell->cmds_arr[i].in, shell->cmds_arr[i].out);
+		printf("cmd %d: %s in: %d out: %d\n", i, shell->cmds_arr[i]->full, shell->cmds_arr[i]->in, shell->cmds_arr[i]->out);
 	}
 	//fork_proc(shell);
 	//wait_children(env);

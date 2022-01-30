@@ -11,4 +11,6 @@ typedef struct s_shell
 	t_env	*env;
 }	t_shell;
 
+int	init_shell(t_shell *shell, char **envp);
+
 #endif
