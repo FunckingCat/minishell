@@ -26,7 +26,8 @@ void	env_reset(t_env *envi, char *name, char *str)
 	i = 0;
 	while (i < envi->length)
 	{
-		if (ft_strncmp(envi->vars[i], name, ft_strlen(name)) == 0)
+		if (ft_strncmp(envi->vars[i], name, ft_strlen(name)) == 0
+				&& envi->vars[i][ft_strlen(name)] == '=')
 		{
 			old = envi->vars[i];
 			envi->vars[i] = str;
@@ -36,12 +37,6 @@ void	env_reset(t_env *envi, char *name, char *str)
 	}
 }
 
-int	malloc_return_int(void)
-{
-	put_error(ENV, ENV_MALLOC);
-	return (1);
-}
-
 int	env_set(char *name, char *content, t_env *envi)
 {
 	char	**extra;
@@ -49,22 +44,19 @@ int	env_set(char *name, char *content, t_env *envi)
 	char	*str1;
 
 	if (!name || !envi || !envi->vars)
-	{
-		put_error(ENV, ENV_NO_PAR);
-		return (1);
-	}	
+		return(put_error(ENV, ENV_NO_PAR));
 	str1 = ft_strjoin(name, "=");
 	str = ft_strjoin(str1, content);
+	free(str1);
 	if (env_contain(name, envi) == 0)
 	{
 		extra = envi->vars;
 		if (fill_new_vars(envi, str, extra) == 1)
-			return (malloc_return_int());
+			return (put_error(ENV, ENV_MALLOC));
 		envi->length++;
 		free(extra);
 	}
 	else
 		env_reset(envi, name, str);
-	free(str1);
 	return (0);
 }

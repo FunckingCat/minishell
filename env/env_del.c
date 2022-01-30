@@ -31,16 +31,13 @@ int	env_delete(char *name, t_env *envi)
 	char	**extra;
 
 	if (!envi || !name || !envi->vars)
-	{
-		put_error(ENV, ENV_NO_PAR);
-		return (1);
-	}
+		return (put_error(ENV, ENV_MALLOC));
 	if (env_contain(name, envi))
 	{
 		extra = envi->vars;
 		envi->vars = malloc(sizeof(char *) * (envi->length));
 		if (!envi->vars)
-			return (malloc_return_int());
+			return (put_error(ENV, ENV_MALLOC));
 		exclude_var(envi, name, extra);
 		free(extra);
 	}

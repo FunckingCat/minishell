@@ -10,7 +10,7 @@ t_env	*env_free(t_env *envi)
 		put_error(ENV, ENV_NO_PAR);
 		return (NULL);
 	}
-	while (i < envi->length && envi->vars)
+	while (i < envi->length && envi->vars && envi->vars[i])
 	{
 		free(envi->vars[i]);
 		i++;
