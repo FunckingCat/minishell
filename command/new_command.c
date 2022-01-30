@@ -44,11 +44,15 @@ int	add_redirect(t_cmd *cmd, char *redirect)
 		return (1);
 	if (new->type == RD_IN || new->type == RD_DIN)
 	{
+		if (cmd->left == NULL && cmd->in > 2)
+		 	close(cmd->in);
 		free_redirect(cmd->left);
 		cmd->left = new;
 	}
 	else
 	{
+		if (cmd->right == NULL && cmd->out > 2)
+		 	close(cmd->out);
 		free_redirect(cmd->right);
 		cmd->right = new;
 	}
