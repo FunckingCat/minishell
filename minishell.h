@@ -11,7 +11,7 @@
 # include "./constants.h"
 # include "./libft/libft.h"
 # include "./error/error.h"
-# include "./shell.h"
+# include "./shell/shell.h"
 # include "./env/env.h"
 # include "./redirect/redirect.h"
 # include "./parsing/parsing.h"

@@ -4,7 +4,8 @@ CC = gcc -g
 LIB = -L '.' -lft -lreadline
 
 HEADER = 	./minishell.h \
-			./shell.h \
+			./shell/shell.h \
+			./command/command.h \
 			./gnl/get_next_line.h \
 			./pipex/pipex.h \
 			./redirect/redirect.h \
@@ -15,6 +16,10 @@ HEADER = 	./minishell.h \
 			./constants.h
 
 MAIN =	./minishell.c
+
+SHLL =	./shell/init_shell.c
+
+CMD =	./command/new_command.c
 
 GNL =	./gnl/get_next_line_utils.c \
 		./gnl/get_next_line.c
@@ -43,7 +48,7 @@ BUILT =	./builtin/env.c \
 ERROR =	./error/error.c
 
 SRC = 	$(MAIN)		$(GNL)		$(PIPEX)	$(REDIR)	$(ENV) \
-		$(PARSE)	$(BUILT)	$(ERROR)
+		$(PARSE)	$(BUILT)	$(ERROR)	$(SHLL)		$(CMD)
 
 OBJ = $(SRC:.c=.o)
 

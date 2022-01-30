@@ -8,7 +8,7 @@
 # include <sys/wait.h>
 # include "../libft/libft.h"
 # include "../constants.h"
-# include "../shell.h"
+# include "../shell/shell.h"
 # include "../error/error.h"
 # include "../parsing/parsing.h"
 
