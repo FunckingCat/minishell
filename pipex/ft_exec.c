@@ -56,26 +56,29 @@
 // 	}
 // }
 
-// void	exec(t_command *cmd, t_env *env)
-// {
-// 	if (dup2(cmd->in, 0) == -1 || dup2(cmd->out, 1) == -1)
-// 		error("dup2", "dup failed");
-// 	close_descriptors(env);
-// 	run(cmd->arg, env->ep);
-// }
+void	exec(t_cmd *cmd, t_shell *shell)
+{
+	sleep(3);
+	printf(GREEN "%s\n" NONE, cmd->full);
+	exit(0);
+	// if (dup2(cmd->in, 0) == -1 || dup2(cmd->out, 1) == -1)
+	// 	error("dup2", "dup failed");
+	// close_descriptors(env);
+	// run(cmd->arg, env->ep);
+}
 
-// void	fork_proc(t_env *env)
-// {
-// 	int	i;
+void	fork_proc(t_shell *shell)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (i < env->cmds)
-// 	{
-// 		env->pids[i] = fork();
-// 		if (env->pids[i] == -1)
-// 			error("fork", "fork failed");
-// 		else if (env->pids[i] == 0)
-// 			exec(&env->commands[i], env);
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (i < shell->cmds)
+	{
+		shell->cmds_arr[i]->pid = fork();
+		if (shell->cmds_arr[i]->pid == -1)
+			put_error("fork", "fork failed");
+		else if (shell->cmds_arr[i]->pid == 0)
+			exec(shell->cmds_arr[i], shell);
+		i++;
+	}
+}
