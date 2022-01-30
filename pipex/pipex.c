@@ -1,40 +1,40 @@
 #include "pipex.h"
 
-// t_command	*who_returned(t_shell *shell, pid_t pid)
-// {
-// 	int	i;
+t_cmd	*who_returned(t_shell *shell, pid_t pid)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (i < env->cmds)
-// 	{
-// 		if (env->pids[i] == pid)
-// 			return (&env->commands[i]);
-// 		i++;
-// 	}
-// 	return (NULL);
-// }
+	i = 0;
+	while (i < shell->cmds)
+	{
+		if (shell->cmds_arr[i]->pid == pid)
+			return (shell->cmds_arr[i]);
+		i++;
+	}
+	return (NULL);
+}
 
-// void	wait_children(t_shell *shell)
-// {
-// 	int			i;
-// 	int			ret;
-// 	t_command	*child;
+void	wait_children(t_shell *shell)
+{
+	int			i;
+	int			ret;
+	t_cmd		*child;
 
-// 	i = 0;
-// 	while (i < env->cmds)
-// 	{
-// 		ret = wait(NULL);
-// 		child = who_returned(env, ret);
-// 		if (child)
-// 		{
-// 			if (child->out != 1)
-// 				close(child->out);
-// 			if (child->in != 0)
-// 				close(child->in);
-// 		}
-// 		i++;
-// 	}
-// }
+	i = 0;
+	while (i < shell->cmds)
+	{
+		ret = wait(NULL);
+		child = who_returned(shell, ret);
+		if (child)
+		{
+			if (child->out != 1)
+				close(child->out);
+			if (child->in != 0)
+				close(child->in);
+		}
+		i++;
+	}
+}
 
 int	set_in_out(t_shell *shell)
 {
@@ -65,7 +65,7 @@ int	pipex(t_shell *shell)
 			return (1);
 		printf("cmd %d: %s in: %d out: %d\n", i, shell->cmds_arr[i]->full, shell->cmds_arr[i]->in, shell->cmds_arr[i]->out);
 	}
-	//fork_proc(shell);
-	//wait_children(env);
+	fork_proc(shell);
+	wait_children(shell);
 	return (0);
 }
