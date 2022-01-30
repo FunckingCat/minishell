@@ -19,5 +19,6 @@ typedef struct s_cmd
 
 t_cmd	*new_cmd(char	*cmd);
 t_cmd	*free_cmd(t_cmd *cmd);
+int		add_redirect(t_cmd *cmd, char *redirect);
 
 #endif

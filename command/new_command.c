@@ -4,6 +4,7 @@ t_cmd	*new_cmd(char	*cmd)
 {
 	t_cmd	*res;
 
+	printf(PURPLE "new CMD: %s\n" NONE, cmd);
 	res = malloc(sizeof(t_cmd));
 	res->full = cmd;
 	res->cmd = NULL;
@@ -28,6 +29,32 @@ t_cmd	*free_cmd(t_cmd *cmd)
 			free_redirect(cmd->left);
 		if (cmd->right)
 			free_redirect(cmd->right);
+		free(cmd);
 	}
 	return (NULL);
+}
+
+int	add_redirect(t_cmd *cmd, char *redirect)
+{
+	t_redirect *new;
+
+	printf(PURPLE "new RD: %s\n" NONE, redirect);
+	new = new_redirect(redirect);
+	if (!new)
+		return (1);
+	if (new->type == RD_IN || new->type == RD_DIN)
+	{
+		free_redirect(cmd->left);
+		cmd->left = new;
+	}
+	else
+	{
+		free_redirect(cmd->right);
+		cmd->right = new;
+	}
+	if (cmd->left)
+		cmd->in = cmd->left->fd;
+	if (cmd->right)
+		cmd->out = cmd->right->fd;
+	return (0);
 }
