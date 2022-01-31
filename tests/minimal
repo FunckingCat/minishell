@@ -1,0 +1,19 @@
+/bin/ls 
+
+		 	  	 
+echo Hello
+echo Hello every body
+echo -n Hello every body
+echo
+
+env
+export NEWVAR=newvar
+env
+export NEWVAR=new_value_to_old_var
+env
+unset	NEWVAR
+env
+
+
+
+exit
