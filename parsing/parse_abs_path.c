@@ -62,8 +62,8 @@ char	*parse_abs_path(t_env *env, char *path)
 
 	while (*path && *path == ' ')
 		path++;
-	if (*path == '/')
-		return (path);
+	if (*path != '.')
+		return (ft_strtrim(path, " \t"));
 	back = move_path(&path);
 	pwd = move_pwd(back, env);
 	if (!pwd)

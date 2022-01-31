@@ -37,7 +37,6 @@ int	add_redirect(t_cmd *cmd, char *redirect)
 {
 	t_redirect *new;
 
-	printf(PURPLE "new RD: %s\n" NONE, redirect);
 	new = new_redirect(redirect);
 	if (!new)
 		return (1);
