@@ -38,7 +38,8 @@ PARSE =	./parsing/parse_pipes.c
 BUILT =	./builtin/env.c \
 		./builtin/unset.c \
 		./builtin/export.c \
-		./builtin/pwd.c 
+		./builtin/pwd.c \
+		./builtin/echo.c
 
 ERROR =	./error/error.c
 
