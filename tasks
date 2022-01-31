@@ -45,8 +45,8 @@
 	[ ] cd - нужен env
 		[ ] отностильный путь
 		[ ] аболютный путь
-    [ ] oldpwd в env
-	[ ] pwd
+    [x] oldpwd в env
+	[x] pwd
 	[x] export
 	[x] unset
 	[x] env
