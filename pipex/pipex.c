@@ -55,15 +55,12 @@ int	set_in_out(t_shell *shell)
 
 int	pipex(t_shell *shell)
 {
-	printf(PURPLE "--------PIPEX-------\n" NONE);
 	if (set_in_out(shell))
 		return (1);
 	for (int i = 0; i < shell->cmds; i++)
 	{
-		printf("cmd %d: %s in: %d out: %d\n", i, shell->cmds_arr[i]->full, shell->cmds_arr[i]->in, shell->cmds_arr[i]->out);
 		if (parse_redirects(shell->cmds_arr[i]))
 			return (1);
-		printf("cmd %d: %s in: %d out: %d\n", i, shell->cmds_arr[i]->full, shell->cmds_arr[i]->in, shell->cmds_arr[i]->out);
 	}
 	fork_proc(shell);
 	wait_children(shell);

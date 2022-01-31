@@ -29,6 +29,8 @@ void	run(char *comand, char **envp)
 	i = 0;
 	j = 0;
 	ac = ft_split(comand, ' ');
+	if (!ft_strcmp(ft_strtrim(comand, " \t"), "exit"))
+		exit(0);
 	while (ft_strncmp("PATH", envp[j], 4))
 		j++;
 	while (*(envp[j]) != '=')
@@ -60,7 +62,6 @@ void	close_descriptors(t_shell *shell)
 
 void	exec(t_cmd *cmd, t_shell *shell)
 {
-	printf(GREEN "%s\n" NONE, cmd->full);
 	if (dup2(cmd->in, 0) == -1 || dup2(cmd->out, 1) == -1)
 		put_error_exit("dup2", "dup failed");
 	close_descriptors(shell);
