@@ -35,21 +35,26 @@ void	check_exit(t_shell *shell)
 		i++;
 	if (i != 1)
 		return ;
-	if (ft_strcmp(sp[0], "exit"))
-		return ;
-	shell->exit = 1;
+	if (!ft_strcmp(sp[0], "exit"))
+		shell->exit = 1;
+	i = 0;
+	while (sp[i])
+		free(sp[i++]);
+	free(sp);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	shell;
+	char	*str;
 
 	if (init_shell(&shell, envp))
 		return (1);
 	while (!shell.exit)
 	{
-		char * str = readline(YELLOW PROMPT NONE);
-		add_history(str);
+		// str = readline(YELLOW PROMPT NONE);
+		// add_history(str);
+		str = get_next_line(0);
 		parse_commands(&shell, str);
 		free(str);
 		check_exit(&shell);
