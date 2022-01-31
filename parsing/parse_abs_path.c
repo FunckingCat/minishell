@@ -9,7 +9,6 @@ int	move_path(char **path)
 	count = 0;
 	while (**path && ft_strchr("./", **path))
 	{
-		printf("%c\n", **path);
 		if (**path == '.')
 			count++;
 		if (**path == '/')
@@ -21,11 +20,10 @@ int	move_path(char **path)
 		if (count > 2)
 		{
 			(*path)++;
-			break;
+			break ;
 		}
 		(*path)++;
 	}
-	printf("%d\n", back);
 	*path -= count;
 	return (back);
 }
@@ -42,7 +40,7 @@ char	*move_pwd(int back, t_env *env)
 	while (back > 0)
 	{
 		if (len == 1)
-			break;
+			break ;
 		if (pwd[len - 1] == '/')
 			pwd[len - 1] = RCH;
 		while (pwd[len - 1] != '/')
@@ -59,15 +57,24 @@ char	*parse_abs_path(t_env *env, char *path)
 {
 	int		back;
 	char	*pwd;
+	char	*res;
+	char	*tmp;
 
 	while (*path && *path == ' ')
 		path++;
 	if (*path == '/')
 		return (path);
 	back = move_path(&path);
-	printf("%d\n", back);
 	pwd = move_pwd(back, env);
 	if (!pwd)
 		return (NULL);
-	return (ft_strjoin(pwd, path));
+	if (back == 0)
+	{
+		tmp = pwd;
+		pwd = ft_strjoin(tmp, "/");
+		free(tmp);
+	}
+	res = ft_strjoin(pwd, path);
+	free(pwd);
+	return (res);
 }
