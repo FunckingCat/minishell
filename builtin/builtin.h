@@ -11,6 +11,10 @@ int	pwd(t_env *envi);
 int cd(char *arg, t_env *envi);
 int echo(char *str);
 
+int is_builtin(char *name);
+void manage_builtin(char *name, char *arg, t_env *envi);
+
 void	clean_split(char **new_var);
+void check_args(char *extra);
 
 #endif

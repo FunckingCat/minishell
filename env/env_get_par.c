@@ -6,7 +6,7 @@ char	*env_get(char *name, t_env *envi)
 	int		i;
 
 	i = 0;
-	if (!name || !envi->vars || !envi)
+	if (!name || !envi || !envi->vars)
 	{
 		put_error(ENV, ENV_NO_PAR);
 		return (NULL);
