@@ -38,7 +38,8 @@ ENV =	./env/env_init.c \
 		./env/env_free.c
 
 PARSE =	./parsing/parse_pipes.c \
-		./parsing/parse_redirects.c
+		./parsing/parse_redirects.c \
+		./parsing/parse_full_path.c
 
 BUILT =	./builtin/env.c \
 		./builtin/unset.c \

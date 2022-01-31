@@ -3,6 +3,7 @@
 
 # include "../libft/libft.h"
 # include "../constants.h"
+# include "../env/env.h"
 # include "../command/command.h"
 # include "../error/error.h"
 # include "../redirect/redirect.h"
@@ -11,5 +12,6 @@
 
 char	**parse_pipes(char *cmd);
 int		parse_redirects(t_cmd *cmd);
+char	*parse_abs_path(t_env *env, char *path);
 
 #endif
