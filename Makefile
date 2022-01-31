@@ -73,6 +73,12 @@ fclean: clean
 	make fclean -C ./libft
 	$(RM) $(NAME) libft.a
 
+leaks :	all
+	leaks --at-Exit ./minishell
+
+valgrind : all
+	valgrind --leak-check=full ./minishell
+
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re leaks valgrind

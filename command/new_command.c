@@ -4,7 +4,6 @@ t_cmd	*new_cmd(char	*cmd)
 {
 	t_cmd	*res;
 
-	printf(PURPLE "new CMD: %s\n" NONE, cmd);
 	res = malloc(sizeof(t_cmd));
 	res->full = cmd;
 	res->cmd = NULL;

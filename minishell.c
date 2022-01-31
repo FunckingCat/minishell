@@ -22,19 +22,43 @@ void	*parse_commands(t_shell *shell, char *cmd)
 	free(parse);
 }
 
+void	check_exit(t_shell *shell)
+{
+	int		i;
+	char	**sp;
+
+	i = 0;
+	if (shell->cmds != 1)
+		return ;
+	sp = ft_split(shell->cmds_arr[0]->full, ' ');
+	while (sp[i])
+		i++;
+	if (i != 1)
+		return ;
+	if (!ft_strcmp(sp[0], "exit"))
+		shell->exit = 1;
+	i = 0;
+	while (sp[i])
+		free(sp[i++]);
+	free(sp);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	shell;
+	char	*str;
 
 	if (init_shell(&shell, envp))
 		return (1);
-	while (1)
+	while (!shell.exit)
 	{
-		char * str = readline(YELLOW PROMPT NONE);
+		str = readline(YELLOW PROMPT NONE);
 		add_history(str);
+		//str = get_next_line(0);
 		parse_commands(&shell, str);
-		pipex(&shell);
 		free(str);
+		check_exit(&shell);
+		pipex(&shell);
 		shell_middle_clean(&shell);
 	}
 	shell_full_clean(&shell);
