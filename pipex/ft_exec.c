@@ -7,6 +7,8 @@ char	*full_path(char *path, char *name)
 
 	if (name[0] == '/')
 		return (name);
+	if (name[0] == '.' && name[0] == '/')
+		return (name);
 	if (path[ft_strlen(path) - 1] != '/')
 	{
 		tmp = ft_strjoin(path, "/");
