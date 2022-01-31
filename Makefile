@@ -44,7 +44,9 @@ BUILT =	./builtin/env.c \
 		./builtin/unset.c \
 		./builtin/export.c \
 		./builtin/pwd.c \
-		./builtin/echo.c
+		./builtin/echo.c \
+		./builtin/cd.c \
+		./builtin/manage_builtin.c
 
 ERROR =	./error/error.c
 
