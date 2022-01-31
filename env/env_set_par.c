@@ -47,6 +47,7 @@ int	env_set(char *name, char *content, t_env *envi)
 		return(put_error(ENV, ENV_NO_PAR));
 	str1 = ft_strjoin(name, "=");
 	str = ft_strjoin(str1, content);
+	free(str1);
 	if (env_contain(name, envi) == 0)
 	{
 		extra = envi->vars;
@@ -57,6 +58,5 @@ int	env_set(char *name, char *content, t_env *envi)
 	}
 	else
 		env_reset(envi, name, str);
-	free(str1);
 	return (0);
 }

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_exec.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 12:46:46 by unix              #+#    #+#             */
-/*   Updated: 2021/12/11 13:15:30 by tyamcha          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "pipex.h"
 
 char	*full_path(char *path, char *name)
@@ -50,44 +38,46 @@ void	run(char *comand, char **envp)
 		execve(full_path(path[i], ac[0]), ac, envp);
 		i++;
 	}
-	error(ac[0], "command not found");
+	put_error_exit(ac[0], "command not found");
 }
 
-void	close_descriptors(t_env *env)
+void	close_descriptors(t_shell *shell)
 {
 	int	i;
 
 	i = 0;
-	while (i < env->cmds)
+	while (i < shell->cmds)
 	{
-		if (env->commands[i].in != 0)
-			close(env->commands[i].in);
-		if (env->commands[i].out != 1)
-			close(env->commands[i].out);
+		if (shell->cmds_arr[i]->in != 0)
+			close(shell->cmds_arr[i]->in);
+		if (shell->cmds_arr[i]->out != 1)
+			close(shell->cmds_arr[i]->out);
 		i++;
 	}
 }
 
-void	exec(t_command *cmd, t_env *env)
+void	exec(t_cmd *cmd, t_shell *shell)
 {
+	printf(GREEN "%s\n" NONE, cmd->full);
 	if (dup2(cmd->in, 0) == -1 || dup2(cmd->out, 1) == -1)
-		error("dup2", "dup failed");
-	close_descriptors(env);
-	run(cmd->arg, env->ep);
+		put_error_exit("dup2", "dup failed");
+	close_descriptors(shell);
+	run(cmd->full, shell->env->vars);
 }
 
-void	fork_proc(t_env *env)
+int	fork_proc(t_shell *shell)
 {
 	int	i;
 
 	i = 0;
-	while (i < env->cmds)
+	while (i < shell->cmds)
 	{
-		env->pids[i] = fork();
-		if (env->pids[i] == -1)
-			error("fork", "fork failed");
-		else if (env->pids[i] == 0)
-			exec(&env->commands[i], env);
+		shell->cmds_arr[i]->pid = fork();
+		if (shell->cmds_arr[i]->pid == -1)
+			put_error("fork", "fork failed");
+		else if (shell->cmds_arr[i]->pid == 0)
+			exec(shell->cmds_arr[i], shell);
 		i++;
 	}
+	return (0);
 }

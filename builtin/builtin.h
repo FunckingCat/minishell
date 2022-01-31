@@ -12,4 +12,5 @@ int cd(char *arg, t_env *envi);
 int echo(char *str);
 
 void	clean_split(char **new_var);
+
 #endif

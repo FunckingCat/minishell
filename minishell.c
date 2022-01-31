@@ -1,47 +1,42 @@
 #include "minishell.h"
 
-int	init_shell(t_shell *shell)
+void	*parse_commands(t_shell *shell, char *cmd)
 {
-	shell->cmds = 0;
-	shell->cmds_arr = NULL;
-	return (0);
-}
+	char	**parse;
+	int		i;
 
-int	free_last_commands_data(t_shell *shell)
-{
-	int	i;
-
-	printf(PURPLE "Commands clean\n" NONE);
-	if (shell->cmds_arr)
+	i = 0;
+	parse = parse_pipes(cmd);
+	if (!parse)
+		return (NULL);
+	while (*(parse + shell->cmds))
+		shell->cmds++;
+	shell->cmds_arr = malloc(sizeof(t_cmd *) * shell->cmds);
+	if (!shell->cmds_arr)
+		return(put_error_null(MINISHELL, MALLOC_ERR));
+	while (i < shell->cmds)
 	{
-		i = 0;
-		while (i < shell->cmds)
-		{
-			if (shell->cmds_arr[i])
-				free(shell->cmds_arr[i]);
-			i++;
-		}
-		free(shell->cmds_arr);
+		shell->cmds_arr[i] = new_cmd(ft_strtrim(parse[i], " \t"));
+		free(parse[i++]);
 	}
-	shell->cmds = 0;
-	return (0);
+	free(parse);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-
 	t_shell	shell;
 
-	init_shell(&shell);
+	if (init_shell(&shell, envp))
+		return (1);
 	while (1)
 	{
 		char * str = readline(YELLOW PROMPT NONE);
 		add_history(str);
-		if (!parse_pipes(&shell, str))
-		{
-			free_last_commands_data(&shell);
-		}
+		parse_commands(&shell, str);
+		pipex(&shell);
 		free(str);
+		shell_middle_clean(&shell);
 	}
+	shell_full_clean(&shell);
 	return (0);
 }
