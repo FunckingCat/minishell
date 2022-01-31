@@ -12,17 +12,19 @@
 # define PURPLE	"\001\033[0;35m\002"
 # define NONE	"\001\033[0m\002"
 
-// Parsing errors
+// Parsing constants
 # define Q_NCL			"quotes are not closed"
 # define SYNTAX_PIPE	"syntax error near unexpected token '|'"
 # define MALLOC_ERR		"malloc error"
+# define DIR_CURRENT	"./"
+# define DIR_PREV		"../"
 
-// Env errors
+// Env constants
 # define ENV		"env"
 # define ENV_MALLOC	"malloc error" 
 # define ENV_NO_PAR	"no parameters"
 
-// Redirect errors
+// Redirect constants
 # define RD			"redirect"
 # define RD_FAIL	"invalid params"
 # define RD_FD_NF	"No such file or directory"

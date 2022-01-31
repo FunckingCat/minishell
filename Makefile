@@ -38,7 +38,9 @@ ENV =	./env/env_init.c \
 		./env/env_free.c
 
 PARSE =	./parsing/parse_pipes.c \
-		./parsing/parse_redirects.c
+		./parsing/parse_redirects.c \
+		./parsing/parse_abs_path.c \
+		./parsing/parse_cmd_name.c
 
 BUILT =	./builtin/env.c \
 		./builtin/unset.c \
@@ -79,7 +81,7 @@ leaks :	all
 	leaks --at-Exit ./minishell
 
 valgrind : all
-	valgrind --leak-check=full ./minishell
+	valgrind --leak-check=full --show-leak-kinds=all ./minishell
 
 re: fclean all
 
