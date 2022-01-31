@@ -52,9 +52,9 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	while (!shell.exit)
 	{
-		// str = readline(YELLOW PROMPT NONE);
-		// add_history(str);
-		str = get_next_line(0);
+		str = readline(YELLOW PROMPT NONE);
+		add_history(str);
+		//str = get_next_line(0);
 		parse_commands(&shell, str);
 		free(str);
 		check_exit(&shell);
