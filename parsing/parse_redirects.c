@@ -21,21 +21,23 @@ int	parse_redirects(t_cmd *cmd)
 	char		*tmp;
 
 	i = 0;
-	while ((cmd->full)[i])
+	while ((cmd->input)[i])
 	{
-		if (ft_strchr("<>", cmd->full[i]))
+		if (cmd->input[i] == '\'' || cmd->input[i] == '\"')
+			i = skip_quotes(cmd->input + i) - cmd->input;
+		if (ft_strchr("<>", cmd->input[i]))
 		{
-			len = calc_red_len(cmd->full + i);
+			len = calc_red_len(cmd->input + i);
 			tmp = malloc(len + 1);
-			ft_strlcpy(tmp, cmd->full + i, len + 1);
+			ft_strlcpy(tmp, cmd->input + i, len + 1);
 			add_redirect(cmd, tmp);
-			ft_memset(cmd->full + i, RCH, len);
+			ft_memset(cmd->input + i, RCH, len);
 			free(tmp);
 			i += len;
 		}
 		else
 			i++;
 	}
-	cmd->full = ft_remove_char(cmd->full, RCH);
+	cmd->input = ft_remove_char(cmd->input, RCH);
 	return (0);
 }

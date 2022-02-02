@@ -31,7 +31,7 @@ void	check_exit(t_shell *shell)
 	i = 0;
 	if (shell->cmds != 1)
 		return ;
-	sp = ft_split(shell->cmds_arr[0]->full, ' ');
+	sp = ft_split(shell->cmds_arr[0]->input, ' ');
 	while (sp[i])
 		i++;
 	if (i != 1)

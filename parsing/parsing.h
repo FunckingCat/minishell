@@ -15,4 +15,6 @@ int		parse_redirects(t_cmd *cmd);
 char	*parse_abs_path(t_env *env, char *path);
 char	*parse_cmd_name(char	*full);
 
+char	*skip_quotes(char *cmd);
+
 #endif

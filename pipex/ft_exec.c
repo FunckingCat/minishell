@@ -22,8 +22,8 @@ void	run(t_shell *shell, t_cmd *cmd)
 	int		i;
 
 	i = 0;
-	ac = ft_split(cmd->full, ' ');
-	if (!ft_strcmp(ft_strtrim(cmd->full, " \t"), "exit"))
+	ac = ft_split(cmd->input, ' ');
+	if (!ft_strcmp(ft_strtrim(cmd->input, " \t"), "exit"))
 		exit(0);
 	path = ft_split(env_get("PATH", shell->env), ':');
 	cmd->cmd = parse_abs_path(shell->env, ac[0]);
@@ -33,7 +33,7 @@ void	run(t_shell *shell, t_cmd *cmd)
 		execve(full_path(path[i], cmd->cmd), ac, shell->env->vars);
 		i++;
 	}
-	put_error_exit(ac[0], "command not found");
+	put_error_exit(ac[0], "command not found", 127);
 }
 
 void	close_descriptors(t_shell *shell)
@@ -54,7 +54,7 @@ void	close_descriptors(t_shell *shell)
 void	exec(t_cmd *cmd, t_shell *shell)
 {
 	if (dup2(cmd->in, 0) == -1 || dup2(cmd->out, 1) == -1)
-		put_error_exit("dup2", "dup failed");
+		put_error_exit("dup2", "dup failed", 1);
 	close_descriptors(shell);
 	run(shell, cmd);
 }
