@@ -20,6 +20,7 @@ void	*parse_commands(t_shell *shell, char *cmd)
 		free(parse[i++]);
 	}
 	free(parse);
+	return (NULL);
 }
 
 void	check_exit(t_shell *shell)

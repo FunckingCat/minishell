@@ -12,6 +12,7 @@ t_cmd	*new_cmd(char	*cmd)
 	res->out = 1;
 	res->left = NULL;
 	res->right = NULL;
+	return (res);
 }
 
 t_cmd	*free_cmd(t_cmd *cmd)
