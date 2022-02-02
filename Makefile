@@ -40,7 +40,9 @@ ENV =	./env/env_init.c \
 PARSE =	./parsing/parse_pipes.c \
 		./parsing/parse_redirects.c \
 		./parsing/parse_abs_path.c \
-		./parsing/parse_cmd_name.c
+		./parsing/parse_cmd_name.c \
+		./parsing/parse_beautify.c \
+		./parsing/parse_global.c
 
 BUILT =	./builtin/env.c \
 		./builtin/unset.c \
@@ -50,7 +52,8 @@ BUILT =	./builtin/env.c \
 		./builtin/cd.c \
 		./builtin/manage_builtin.c
 
-ERROR =	./error/error.c
+ERROR =	./error/error.c \
+		./error/error_ext.c
 
 SRC = 	$(MAIN)		$(GNL)		$(PIPEX)	$(REDIR)	$(ENV) \
 		$(PARSE)	$(BUILT)	$(ERROR)	$(SHLL)		$(CMD)

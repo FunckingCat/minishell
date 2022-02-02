@@ -31,7 +31,7 @@ void	check_exit(t_shell *shell)
 	i = 0;
 	if (shell->cmds != 1)
 		return ;
-	sp = ft_split(shell->cmds_arr[0]->full, ' ');
+	sp = ft_split(shell->cmds_arr[0]->input, ' ');
 	while (sp[i])
 		i++;
 	if (i != 1)
@@ -56,6 +56,8 @@ int	main(int argc, char **argv, char **envp)
 		str = readline(YELLOW PROMPT NONE);
 		add_history(str);
 		//str = get_next_line(0);
+		str = parse_beautify(str);
+		str = parse_global(str, shell.env);
 		parse_commands(&shell, str);
 		free(str);
 		check_exit(&shell);
