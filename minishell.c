@@ -55,14 +55,13 @@ int	main(int argc, char **argv, char **envp)
 	{
 		str = readline(YELLOW PROMPT NONE);
 		add_history(str);
-		str = parse_beautify(str);
-		printf("%s\n", str);
 		//str = get_next_line(0);
-		//parse_commands(&shell, str);
-		//free(str);
-		//check_exit(&shell);
-		//pipex(&shell);
-		//shell_middle_clean(&shell);
+		str = parse_beautify(str);
+		parse_commands(&shell, str);
+		free(str);
+		check_exit(&shell);
+		pipex(&shell);
+		shell_middle_clean(&shell);
 	}
 	//shell_full_clean(&shell);
 	return (0);
