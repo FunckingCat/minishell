@@ -58,13 +58,12 @@ int	main(int argc, char **argv, char **envp)
 		//str = get_next_line(0);
 		str = parse_beautify(str);
 		str = parse_global(str, shell.env);
-		printf("--> %s\n", str);
-		//parse_commands(&shell, str);
-		//free(str);
-		//check_exit(&shell);
-		//pipex(&shell);
-		//shell_middle_clean(&shell);
+		parse_commands(&shell, str);
+		free(str);
+		check_exit(&shell);
+		pipex(&shell);
+		shell_middle_clean(&shell);
 	}
-	//shell_full_clean(&shell);
+	shell_full_clean(&shell);
 	return (0);
 }

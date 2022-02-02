@@ -100,5 +100,6 @@ char	*parse_global(char *cmd, t_env *env)
 			res[j++] = cmd[i++];
 	}
 	res[j] = '\0';
+	free(cmd);
 	return (res);
 }
