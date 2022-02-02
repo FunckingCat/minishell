@@ -19,12 +19,11 @@ int	read_loop(t_redirect *this, int *pip)
 
 	while (1)
 	{
-		ft_putstr_fd(GREEN "> " NONE, 1);
-		line = get_next_line(0);
+		line = readline(GREEN "> " NONE);
 		if (!line)
 		{
 			close(pip[1]);
-			return (1);
+			return (0);
 		}
 		if (!ft_strcmp(line, this->file))
 		{
