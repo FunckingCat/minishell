@@ -23,5 +23,5 @@ char	*env_get(char *name, t_env *envi)
 		}
 		i++;
 	}
-	return (NULL);
+	return (ft_strdup(" "));
 }

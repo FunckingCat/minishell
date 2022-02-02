@@ -41,7 +41,8 @@ PARSE =	./parsing/parse_pipes.c \
 		./parsing/parse_redirects.c \
 		./parsing/parse_abs_path.c \
 		./parsing/parse_cmd_name.c \
-		./parsing/parse_beautify.c
+		./parsing/parse_beautify.c \
+		./parsing/parse_global.c
 
 BUILT =	./builtin/env.c \
 		./builtin/unset.c \
