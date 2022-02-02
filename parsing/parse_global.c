@@ -50,14 +50,28 @@ int	calc_length(char *cmd, t_env *env)
 	return (i + 1);
 }
 
+char	*get_val(char	*cmd, int	*i, t_env	*env)
+{
+	char	*name;
+	char	*val;
+
+	name = get_name(cmd + *i);
+	if (name)
+	{
+		*i += ft_strlen(name) + 1;
+		val = env_get(name, env);
+		free(name);
+		return (val);
+	}
+	return (NULL);
+}
+
 char	*parse_global(char *cmd, t_env *env)
 {
 	char	*res;
-	char	*name;
 	char	*val;
 	int		i;
 	int		j;
-	int		k;
 
 	res = malloc(sizeof(char) * calc_length(cmd, env));
 	i = 0;
@@ -70,15 +84,11 @@ char	*parse_global(char *cmd, t_env *env)
 			while (cmd[i] && cmd [i] != '\'')
 				res[j++] = cmd[i++];
 		}
-		name = get_name(cmd + i);
-		if (name)
+		val = get_val(cmd, &i, env);
+		if (val)
 		{
-			cmd += ft_strlen(name) + 1;
-			val = env_get(name, env);
-			k = 0;
-			while (val[k])
-				res[j++] = val[k++];
-			free(name);
+			ft_strlcpy(res + j, val, ft_strlen(val) + 1);
+			j += ft_strlen(val);
 			free(val);
 		}
 		else
