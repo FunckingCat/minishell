@@ -8,7 +8,7 @@ void	cp(char *str, char *tmp)
 
 	i = 0;
 	j = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '\'' || str[i] == '\"')
 		{
@@ -43,5 +43,5 @@ char	*parse_beautify(char *str)
 	}
 	str = ft_strdup(tmp);
 	free(tmp);
-	return(str);
+	return (str);
 }

@@ -12,7 +12,7 @@ char	*get_name(char *cmd)
 	{
 		while (ft_isalnum(*tmp) || *tmp == '_')
 			tmp++;
-		while(*tmp)
+		while (*tmp)
 			*tmp++ = RCH;
 		cmd = ft_remove_char(cmd, RCH);
 		return (cmd);
@@ -66,6 +66,16 @@ char	*get_val(char	*cmd, int	*i, t_env	*env)
 	return (NULL);
 }
 
+void	skip(char *cmd, char *res, int *i, int *j)
+{
+	if (cmd[*i] == '\'')
+	{
+		res[(*j)++] = cmd[(*i)++];
+		while (cmd[*i] && cmd [*i] != '\'')
+			res[(*j)++] = cmd[(*i)++];
+	}
+}
+
 char	*parse_global(char *cmd, t_env *env)
 {
 	char	*res;
@@ -78,12 +88,7 @@ char	*parse_global(char *cmd, t_env *env)
 	j = 0;
 	while (cmd[i])
 	{
-		if (cmd[i] == '\'')
-		{
-			res[j++] = cmd[i++];
-			while (cmd[i] && cmd [i] != '\'')
-				res[j++] = cmd[i++];
-		}
+		skip(cmd, res, &i, &j);
 		val = get_val(cmd, &i, env);
 		if (val)
 		{
