@@ -17,7 +17,6 @@ void	*parse_commands(t_shell *shell, char *cmd)
 	while (i < shell->cmds)
 	{
 		shell->cmds_arr[i] = new_cmd(ft_strtrim(parse[i], " \t"));
-		parse_command(shell->cmds_arr[i], shell->env);
 		free(parse[i++]);
 	}
 	free(parse);
