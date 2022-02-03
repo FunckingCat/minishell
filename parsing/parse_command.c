@@ -35,6 +35,5 @@ int	parse_command(t_cmd *cmd, t_env *env)
 	}
 	cmd->cmd = cmd->args[0];
 	cmd->full_path = parse_abs_path(env, cmd->cmd);
-	printf("cmd: %s     %s\n", cmd->cmd, cmd->full_path);
 	return (0);
 }
