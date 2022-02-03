@@ -9,7 +9,7 @@ typedef struct s_cmd
 {
 	char	*input;
 	char	*cmd;
-	char	*args;
+	char	**args;
 	char	*full_path;
 	int		in;
 	int		out;

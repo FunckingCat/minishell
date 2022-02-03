@@ -16,7 +16,7 @@ char	*parse_abs_path(t_env *env, char *path);
 char	*parse_cmd_name(char	*full);
 char	*parse_beautify(char	*str);
 char	*parse_global(char *cmd, t_env *env);
-int		parse_command(t_cmd *cmd);
+int		parse_command(t_cmd *cmd, t_env *env);
 
 char	*skip_quotes(char *cmd);
 
