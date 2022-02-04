@@ -57,9 +57,13 @@ int	pipex(t_shell *shell)
 {
 	if (set_in_out(shell))
 		return (1);
+	if (shell->cmds == 1 && is_no_fork(shell->cmds_arr[0]->cmd))
+		return (run_no_fork(shell->cmds_arr[0], shell->env));
 	for (int i = 0; i < shell->cmds; i++)
 	{
 		if (parse_redirects(shell->cmds_arr[i]))
+			return (1);
+		if (parse_command(shell->cmds_arr[i], shell->env))
 			return (1);
 	}
 	fork_proc(shell);

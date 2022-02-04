@@ -57,7 +57,7 @@ int	cmd_export(char **args, t_env *env)
 	i = 0;
 	while (args && args[i])
 	{
-		if (set_elem(env, args[i]) == 1)
+		if (set_element(env, args[i]) == 1)
 			return (1);
 		i++;
 	}
