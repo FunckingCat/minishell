@@ -4,17 +4,20 @@
 # include "../env/env.h"
 # include "../constants.h"
 
-int	env(t_env *envi);
-int	unset( t_env *envi, char *name);
-int	export(t_env *envi, char *str);
-int	pwd(t_env *envi);
-int cd(char *arg, t_env *envi);
-int echo(char *str);
+int		cmd_env(char **args, t_env *env);
+int		cmd_unset(char **args, t_env *env);
+int		cmd_export(char **args, t_env *env);
+int		cmd_pwd(char **args, t_env *env);
+int		cmd_cd(char **args, t_env *env);
+int		cmd_echo(char **args, t_env *env);
 
-int is_builtin(char *name);
-void manage_builtin(char *name, char *arg, t_env *envi);
+int		is_builtin(char *cmd);
+void	run_builtin(char *cmd, char **args, t_env *env);
 
+int		is_no_fork(char *cmd);
+void	run_no_fork(char *cmd, char **args, t_env *env);
+
+void	check_args(char **args);
 void	clean_split(char **new_var);
-void check_args(char *extra);
 
 #endif
