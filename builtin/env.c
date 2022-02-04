@@ -1,6 +1,6 @@
 #include "builtin.h"
 
-int		cmd_env(char **args, t_env *env);
+int		cmd_env(char **args, t_env *env)
 {
 	int	i;
 
