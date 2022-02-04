@@ -22,7 +22,7 @@
 // Env constants
 # define ENV		"env"
 # define ENV_MALLOC	"malloc error" 
-# define ENV_NO_PAR	"no parameters"
+# define ENV_NO_PAR	"some paramets are NULL"
 
 // Redirect constants
 # define RD			"redirect"
@@ -41,6 +41,7 @@
 
 // Builtin errors
 # define EXP "Export"
+# define UNS "unset"
 # define EXP_NOT_VALID "not a valid identifier"
 # define CD "cd"
 # define CD_NO_FILE "No such file or directory"

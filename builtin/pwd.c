@@ -1,15 +1,16 @@
 #include "builtin.h"
 
-int	pwd(t_env *envi)
+int		cmd_pwd(char **args, t_env *env)
 {
-	char *new;
+	char *res;
 
-	if (!envi || !envi->vars)
-		return (1);
-	new = env_get("PWD", envi);
-	ft_putstr_fd(new, 1);
+	if (!env || !env->vars)
+		return (put_error("pwd", "env is corrupted"));
+	res = env_get("PWD", env);
+	if (!res)
+		return(1);
+	ft_putstr_fd(res, 1);
 	write (1, "\n", 1);
-	if (new)
-		free(new);
+	free(res);
 	return (0);
 }

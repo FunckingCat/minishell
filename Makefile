@@ -51,7 +51,7 @@ BUILT =	./builtin/env.c \
 		./builtin/pwd.c \
 		./builtin/echo.c \
 		./builtin/cd.c \
-		./builtin/manage_builtin.c
+		./builtin/run_builtin.c
 
 ERROR =	./error/error.c \
 		./error/error_ext.c

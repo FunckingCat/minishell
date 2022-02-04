@@ -14,101 +14,51 @@ void	clean_split(char **new_var)
 }
 
 
-int check_name(char **extra)
+int check_name(char *arg)
 {
 	int i;
 
 	i = 0;
-	if (!extra || !extra[0])
+	if (!ft_isalpha(arg[0]))
 		return (1);
-	while (extra[0][i] != '\0')
+	while (arg[i] != '\0')
 	{
-		if ((extra[0][0] > 47 && extra[0][0] < 58)
-			|| (!(extra[0][i] > 47 && extra[0][i] < 58)
-			&& !(extra[0][i] > 64 && extra[0][i] < 91)
-			&& !(extra[0][i] > 96 && extra[0][i] < 123)
-			&& extra[0][i] != '_'))
-		{
-			clean_split(extra);
-			put_error(EXP, EXP_NOT_VALID);
+		if (!ft_isalnum(arg[i]) && arg[i] != '_')
 			return (1);
-		}
 		i++;
 	}
 	return (0);
 }
 
-int	setting_element(t_env *envi, char *str)
+int	set_element(t_env *env, char *arg)
 {
-	char *new;
-	char **extra;
+	char	*name;
+	char	*value;
+	char	**spl;
+	int		status;
 
-	new = ft_strchr(str, '=');
-	extra = ft_split(str, '=');
-	if (check_name(extra) == 1)
-		return (0);
-	if (new)
-		new = ft_strdup(&new[1]);
-	else
-	{
-		clean_split(extra);
-		return (env_set(extra[0], "", envi));
-	}
-	if (env_set(extra[0], new, envi) == 1)
-	{
-		clean_split(extra);
-		free(new);
-		return (1);
-	}
-	free(new);
-	clean_split(extra);
-	return (0);
+	if (arg[0] == '=' || !ft_strchr(arg, '='))
+		return (put_error(EXP, EXP_NOT_VALID));
+	spl = ft_split(arg, '=');
+	name = spl[0];
+	value = ft_strchr(arg, '=') + 1;
+	if (check_name(name) || check_name(value))
+		return (put_error(EXP, EXP_NOT_VALID));
+	status = env_set(name, value, env);
+	clean_split(spl);
+	return (status);
 }
 
-int	set_good_elem(t_env *envi, char **new, int i)
+int	cmd_export(char **args, t_env *env)
 {
-	if (new[i][0] == '=')
-	{
-		put_error(EXP, EXP_NOT_VALID);
-		return (0);
-	}
-	else
-	{
-		if (setting_element(envi, new[i]))
-		{
-			clean_split(new);
-			return (1);
-		}
-		else
-			return (0);
-	}
-}
-
-int	export(t_env *envi, char *str)
-{
-	char **new;
 	int i;
 
 	i = 0;
-	if (!str)
-		return (1);
-	if (ft_strchr(str, '=') == NULL)
+	while (args && args[i])
 	{
-		check_args(str);
-		return (0);
-	}
-	new = ft_split(str, ' ');
-	while (new && new[i])
-	{
-		if (ft_strchr(new[i], '=') != NULL)
-		{
-			if (set_good_elem(envi, new, i) == 1)
-				return (1);
-		}
-		else
-			check_args(new[i]);
+		if (set_element(env, args[i]) == 1)
+			return (1);
 		i++;
 	}
-	clean_split(new);
 	return (0);
 }

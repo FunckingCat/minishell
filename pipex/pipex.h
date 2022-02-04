@@ -10,6 +10,7 @@
 # include "../constants.h"
 # include "../shell/shell.h"
 # include "../error/error.h"
+# include "../builtin/builtin.h"
 # include "../parsing/parsing.h"
 
 int	fork_proc(t_shell *shell);
