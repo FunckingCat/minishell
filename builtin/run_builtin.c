@@ -17,20 +17,23 @@ int		is_builtin(char *cmd)
     return (0);
 }
 
-void    run_builtin(char *cmd, char **args, t_env *env)
+int run_builtin(char *cmd, char **args, t_env *env)
 {
+    int status;
+
     if (ft_strcmp(cmd, "cd") == 0)
-        cmd_cd(args, env);
+        status = cmd_cd(args, env);
     else if (ft_strcmp(cmd, "pwd") == 0)
-        cmd_pwd(args, env);
+        status = cmd_pwd(args, env);
     else if (ft_strcmp(cmd, "unset") == 0)
-        cmd_unset(args, env);
+        status = cmd_unset(args, env);
     else if (ft_strcmp(cmd, "export") == 0)
-        cmd_export(args, env);
+        status = cmd_export(args, env);
     else if (ft_strcmp(cmd, "echo") == 0)
-        cmd_echo(args, env);
+        status = cmd_echo(args, env);
     else if (ft_strcmp(cmd, "env") == 0)
-        cmd_env(args, env);
+        status = cmd_env(args, env);
+    exit(status);
 }
 
 int is_no_fork(char *cmd)
@@ -44,12 +47,15 @@ int is_no_fork(char *cmd)
     return (0);
 }
 
-void run_no_fork(char *cmd, char **args, t_env *env)
+int run_no_fork(char *cmd, char **args, t_env *env)
 {
+    int status;
+
     if (ft_strcmp(cmd, "cd") == 0)
-        cmd_cd(args, env);
+        status = cmd_cd(args, env);
     else if (ft_strcmp(cmd, "unset") == 0)
-        cmd_unset(args, env);
+        status = cmd_unset(args, env);
     else if (ft_strcmp(cmd, "export") == 0)
-        cmd_export(args, env);
+        status = cmd_export(args, env);
+    return (status);
 }
