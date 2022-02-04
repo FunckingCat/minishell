@@ -1,2 +1,31 @@
 ls
+/bin/ls
+./tests/exec_linux
+./tests/exec_mac
+
+                        
+	 	 	 	 	 	 
+
+echo one
+echo one two three
+echo -n one two three
+echo one two three -n
+echo $?
+expr $? + $?
+echo "cat lol.c | cat > lol.c"
+echo "$PWD | <Makefile > res"
+echo '$PWD | <Makefile > res'
+env
+export WWW=nanana
+env
+unset WWW
+env
+pwd
+cd ..
+pwd
+cd ./minishell
+pwd
+cd .
+pwd
+
 exit

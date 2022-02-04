@@ -16,16 +16,26 @@ t_cmd	*new_cmd(char	*cmd)
 	return (res);
 }
 
+void	free_char_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
+}
+
 t_cmd	*free_cmd(t_cmd *cmd)
 {
 	if (cmd)
 	{
 		if (cmd->input)
 			free(cmd->input);
-		if (cmd->cmd)
-			free(cmd->cmd);
+		if (cmd->full_path)
+			free(cmd->full_path);
 		if (cmd->args)
-			free(cmd->args);
+			free_char_arr(cmd->args);
 		if (cmd->left)
 			free_redirect(cmd->left);
 		if (cmd->right)

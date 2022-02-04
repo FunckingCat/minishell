@@ -14,16 +14,16 @@
 			"MIMode": "gdb"
 		},
 		{
-		"name": "RUN MacOs",
-		"type": "cppdbg",
-		"request": "launch",
-		"program": "${workspaceFolder}/${workspaceFolderBasename}",
-		"args": [],
-		"stopAtEntry": false,
-		"cwd": "${workspaceFolder}",
-		"environment": [ { "name": "squid", "value": "clam" } ],
-		"externalConsole": true,
-		"MIMode": "lldb"
+			"name": "RUN MacOs",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/${workspaceFolderBasename}",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [ { "name": "squid", "value": "clam" } ],
+			"externalConsole": true,
+			"MIMode": "lldb"
 		}
 	]
 }
