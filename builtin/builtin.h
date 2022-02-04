@@ -17,7 +17,6 @@ void	run_builtin(char *cmd, char **args, t_env *env);
 int		is_no_fork(char *cmd);
 void	run_no_fork(char *cmd, char **args, t_env *env);
 
-void	check_args(char **args);
-void	clean_split(char **new_var);
+int		check_amount(char **args);
 
 #endif
