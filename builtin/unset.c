@@ -7,7 +7,7 @@ int	cmd_unset(char **args, t_env *env)
 	i = 0;
 	while (args[i])
 	{
-		if (check_name(args[i]))
+		if (!check_name(args[i]))
 			env_delete(args[i], env);
 		else
 			put_ext_error(UNS, args[i], EXP_NOT_VALID);

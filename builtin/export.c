@@ -46,7 +46,6 @@ int	set_element(t_env *env, char *arg)
 		return (put_error(EXP, EXP_NOT_VALID));
 	status = env_set(name, value, env);
 	clean_split(spl);
-	free(name);
 	return (status);
 }
 
