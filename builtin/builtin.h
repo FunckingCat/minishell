@@ -18,5 +18,6 @@ int		is_no_fork(char *cmd);
 void	run_no_fork(char *cmd, char **args, t_env *env);
 
 int		check_amount(char **args);
+int		check_name(char *arg)ж
 
 #endif

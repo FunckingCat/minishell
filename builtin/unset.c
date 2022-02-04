@@ -1,44 +1,17 @@
 #include "builtin.h"
 
-void check_args(char *extra)
+int	cmd_unset(char **args, t_env *env)
 {
 	int i;
 
 	i = 0;
-	while (extra[i] != '\0')
+	while (args[i])
 	{
-		if ((extra[0] > 47 && extra[0] < 58)
-			|| (!(extra[i] > 47 && extra[i] < 58)
-			&& !(extra[i] > 64 && extra[i] < 91)
-			&& !(extra[i] > 96 && extra[i] < 123)
-			&& extra[i] != '_'))
-		{
-			put_error(EXP, EXP_NOT_VALID);
-			return ;
-		}
+		if (check_name(args[i]))
+			env_delete(args[i], env);
+		else
+			put_ext_error(UNS, args[i], EXP_NOT_VALID);
 		i++;
 	}
-}
-
-int	unset(t_env *envi, char *args)
-{
-	char **names;
-	int i;
-
-	i = 0;
-	names = ft_split(args, ' ');
-	if (!names)
-		return (1);
-	while (names[i])
-	{
-		check_args(names[i]);
-		if (env_delete(names[i], envi) == 1)
-		{
-			clean_split(names);
-			return (1);
-		}
-		i++;
-	}
-	clean_split(names);
 	return (0);
 }
