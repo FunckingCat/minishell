@@ -6,6 +6,8 @@ char	*get_name(char *cmd)
 
 	if (*cmd++ != '$')
 		return (NULL);
+	if (*cmd == '?')
+		return (ft_substr(cmd, 0 , 2));
 	cmd = ft_strdup(cmd);
 	tmp = cmd;
 	if (ft_isalnum(*tmp) || *tmp == '_')

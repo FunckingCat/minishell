@@ -33,5 +33,6 @@ t_env	*env_init(char **envp)
 		return (put_error_null(ENV, ENV_MALLOC));
 	if (get_memory_env(envp, envi))
 		return (put_error_null(ENV, ENV_MALLOC));
+	env_set("?", "0", envi);
 	return (envi);
 }

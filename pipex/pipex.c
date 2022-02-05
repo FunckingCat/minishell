@@ -18,12 +18,15 @@ void	wait_children(t_shell *shell)
 {
 	int			i;
 	int			ret;
+	int			stat;
 	t_cmd		*child;
 
 	i = 0;
+	stat = 0;
 	while (i < shell->cmds)
 	{
-		ret = wait(NULL);
+		ret = waitpid(0, &stat, 0);
+		env_set("?", ft_itoa(WEXITSTATUS(stat)), shell->env);
 		child = who_returned(shell, ret);
 		if (child)
 		{
