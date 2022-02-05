@@ -40,6 +40,5 @@ char	*parse_beautify(char *str)
 			tmp[i] = ' ';
 		i++;
 	}
-	str = ft_strdup(tmp);
-	return (str);
+	return (ft_strdup(tmp));
 }

@@ -46,9 +46,6 @@ void	ft_free()
 
 	i = 0;
 	while (i < heap.count)
-	{
-		printf("free %p\n", heap.ptrs[i]);
 		free(heap.ptrs[i++]);
-	}
 	free(heap.ptrs);
 }

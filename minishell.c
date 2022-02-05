@@ -42,23 +42,24 @@ void	check_exit(t_shell *shell)
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	shell;
+	char	*read;
 	char	*str;
 
 	if (init_shell(&shell, envp))
 		return (1);
-	// while (!shell.exit)
-	// {
-		// str = readline(YELLOW PROMPT NONE);
-		// add_history(str);
-		str = ft_strdup("ls -lah | wc -l");
+	while (!shell.exit)
+	{
+		read = readline(YELLOW PROMPT NONE);
+		add_history(read);
+		str = ft_strdup(read);
+		free(read);
 		str = parse_beautify(str);
 		str = parse_global(str, shell.env);
 		parse_commands(&shell, str);
-		//free(str);
 		check_exit(&shell);
 		pipex(&shell);
 		shell_middle_clean(&shell);
-	//}
+	}
 	shell_full_clean(&shell);
 	return (0);
 }
