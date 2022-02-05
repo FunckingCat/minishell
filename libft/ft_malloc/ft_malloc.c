@@ -5,7 +5,7 @@ int	add(void *ptr)
 	void		**new;
 	size_t		i;
 
-	new = malloc(sizeof(void *) * heap.count + 2);
+	new = malloc(sizeof(void *) * (heap.count + 1));
 	if (!new)
 		return (0);
 	i = 0;
@@ -16,7 +16,8 @@ int	add(void *ptr)
 	}
 	new[heap.count] = ptr;
 	heap.count++;
-	free(heap.ptrs);
+	if (heap.ptrs)
+		free(heap.ptrs);
 	heap.ptrs = new;
 	return (1);
 }
@@ -26,7 +27,10 @@ void	*ft_malloc(size_t size)
 	void	*ptr;
 
 	if (!heap.count)
+	{
 		heap.count = 0;
+		heap.ptrs = NULL;
+	}
 	ptr = malloc(size);
 	if (!ptr)
 		return (NULL);
