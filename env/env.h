@@ -16,7 +16,6 @@ char	*env_get(char *name, t_env *envi);
 int		env_contain(char *name, t_env *envi);
 int		env_set(char *name, char *content, t_env *envi);
 int		env_delete(char *name, t_env *envi);
-t_env	*env_free(t_env *envi);
 
 t_env	*malloc_return_pointer(t_env *envi);
 int		malloc_return_int(void);

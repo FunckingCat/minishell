@@ -5,7 +5,7 @@ int	fill_new_vars(t_env *envi, char *str, char **extra)
 	int	i;
 
 	i = 0;
-	envi->vars = malloc(sizeof(char *) * (envi->length + 2));
+	envi->vars = ft_malloc(sizeof(char *) * (envi->length + 2));
 	if (!envi->vars)
 		return (1);
 	while (i < envi->length)
@@ -31,7 +31,6 @@ void	env_reset(t_env *envi, char *name, char *str)
 		{
 			old = envi->vars[i];
 			envi->vars[i] = str;
-			free(old);
 		}
 		i++;
 	}
@@ -47,14 +46,12 @@ int	env_set(char *name, char *content, t_env *envi)
 		return(put_error(ENV, ENV_NO_PAR));
 	str1 = ft_strjoin(name, "=");
 	str = ft_strjoin(str1, content);
-	free(str1);
 	if (env_contain(name, envi) == 0)
 	{
 		extra = envi->vars;
 		if (fill_new_vars(envi, str, extra) == 1)
 			return (put_error(ENV, ENV_MALLOC));
 		envi->length++;
-		free(extra);
 	}
 	else
 		env_reset(envi, name, str);

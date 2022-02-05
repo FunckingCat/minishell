@@ -11,6 +11,5 @@ int		cmd_pwd(char **args, t_env *env)
 		return(1);
 	ft_putstr_fd(res, 1);
 	write (1, "\n", 1);
-	free(res);
 	return (0);
 }

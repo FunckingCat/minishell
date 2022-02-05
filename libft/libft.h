@@ -6,7 +6,7 @@
 /*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 14:20:53 by tyamcha           #+#    #+#             */
-/*   Updated: 2022/01/29 12:07:27 by unix             ###   ########.fr       */
+/*   Updated: 2022/02/05 10:16:57 by unix             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
+
+# include "./ft_malloc/ft_malloc.h"
 
 int		ft_isalpha(int ch);
 int		ft_isdigit(int ch);

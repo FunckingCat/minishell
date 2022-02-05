@@ -17,7 +17,6 @@ char	*get_name(char *cmd)
 		cmd = ft_remove_char(cmd, RCH);
 		return (cmd);
 	}
-	free(cmd);
 	return (NULL);
 }
 
@@ -42,7 +41,6 @@ int	calc_length(char *cmd, t_env *env)
 		{
 			i += ft_strlen(env_get(name, env)) - 1;
 			cmd += ft_strlen(name);
-			free(name);
 		}
 		i++;
 		cmd++;
@@ -60,7 +58,6 @@ char	*get_val(char	*cmd, int	*i, t_env	*env)
 	{
 		*i += ft_strlen(name) + 1;
 		val = env_get(name, env);
-		free(name);
 		return (val);
 	}
 	return (NULL);
@@ -83,7 +80,7 @@ char	*parse_global(char *cmd, t_env *env)
 	int		i;
 	int		j;
 
-	res = malloc(sizeof(char) * calc_length(cmd, env));
+	res = ft_malloc(sizeof(char) * calc_length(cmd, env));
 	i = 0;
 	j = 0;
 	while (cmd[i])
@@ -94,12 +91,10 @@ char	*parse_global(char *cmd, t_env *env)
 		{
 			ft_strlcpy(res + j, val, ft_strlen(val) + 1);
 			j += ft_strlen(val);
-			free(val);
 		}
 		else
 			res[j++] = cmd[i++];
 	}
 	res[j] = '\0';
-	free(cmd);
 	return (res);
 }

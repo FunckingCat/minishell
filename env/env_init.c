@@ -16,21 +16,6 @@ int	get_memory_env(char **envp, t_env *envi)
 	return (0);
 }
 
-t_env	*malloc_return_pointer(t_env *envi)
-{
-	int i;
-
-	i = 0;
-	put_error(ENV, ENV_MALLOC);
-	while (envi && envi->vars[i])
-	{
-		free(envi->vars[i]);
-		i++;
-	}
-	free(envi);
-	return (NULL);
-}
-
 t_env	*env_init(char **envp)
 {
 	t_env	*envi;
@@ -39,14 +24,14 @@ t_env	*env_init(char **envp)
 	count = 0;
 	while (envp[count])
 		count++;
-	envi = malloc(sizeof(t_env));
+	envi = ft_malloc(sizeof(t_env));
 	if (!envi)
-		return (malloc_return_pointer(envi));
+		return (put_error_null(ENV, ENV_MALLOC));
 	envi->length = count;
-	envi->vars = malloc(sizeof(char *) * (envi->length + 1));
+	envi->vars = ft_malloc(sizeof(char *) * (envi->length + 1));
 	if (!envi->vars)
-		return (malloc_return_pointer(envi));
+		return (put_error_null(ENV, ENV_MALLOC));
 	if (get_memory_env(envp, envi))
-		return (malloc_return_pointer(envi));
+		return (put_error_null(ENV, ENV_MALLOC));
 	return (envi);
 }

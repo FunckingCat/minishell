@@ -72,9 +72,7 @@ char	*parse_abs_path(t_env *env, char *path)
 	{
 		tmp = pwd;
 		pwd = ft_strjoin(tmp, "/");
-		free(tmp);
 	}
 	res = ft_strjoin(pwd, path);
-	free(pwd);
 	return (res);
 }

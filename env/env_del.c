@@ -11,10 +11,7 @@ void	exclude_var(t_env *envi, char *name, char **extra)
 	while (j < envi->length)
 	{
 		if (ft_strncmp(extra[j], name, ft_strlen(name)) == 0)
-		{
-			free(extra[j]);
 			j++;
-		}
 		else
 		{
 			envi->vars[i] = extra[j];
@@ -35,11 +32,10 @@ int	env_delete(char *name, t_env *envi)
 	if (env_contain(name, envi))
 	{
 		extra = envi->vars;
-		envi->vars = malloc(sizeof(char *) * (envi->length));
+		envi->vars = ft_malloc(sizeof(char *) * (envi->length));
 		if (!envi->vars)
 			return (put_error(ENV, ENV_MALLOC));
 		exclude_var(envi, name, extra);
-		free(extra);
 	}
 	return (0);
 }

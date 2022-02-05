@@ -45,5 +45,6 @@ int	put_ext_error_exit(char *module, char *obj, char *text,  int st)
 	ft_putstr_fd(": " NONE, 2);
 	ft_putstr_fd(text, 2);
 	ft_putstr_fd("\n", 2);
+	ft_free();
 	exit(st);
 }

@@ -19,7 +19,7 @@ char	*ft_remove_char(char *str, char ch)
 	int		i;
 	int		j;
 
-	res = malloc(sizeof(char) * count_size(str, ch));
+	res = ft_malloc(sizeof(char) * count_size(str, ch));
 	if (!res)
 		return (NULL);
 	i = 0;
@@ -31,6 +31,5 @@ char	*ft_remove_char(char *str, char ch)
 		i++;
 	}
 	res[j] = '\0';
-	free(str);
 	return (res);
 }

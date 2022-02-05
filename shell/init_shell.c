@@ -2,36 +2,27 @@
 
 int	init_shell(t_shell *shell, char **envp)
 {
+	char	*buf;
+
 	shell->exit = 0;
 	shell->cmds = 0;
 	shell->cmds_arr = NULL;
 	shell->env = env_init(envp);
 	if (!shell->env)
 		return (1);
+	buf = ft_itoa(ft_atoi(env_get("SHLVL", shell->env)) + 1);
+	env_set("SHLVL", buf, shell->env);
 	return (0);
 }
 
 int	shell_middle_clean(t_shell *shell)
 {
-	int	i;
-
-	if (shell->cmds_arr)
-	{
-		i = 0;
-		while (i < shell->cmds)
-		{
-			if (shell->cmds_arr[i])
-				free_cmd(shell->cmds_arr[i]);
-			i++;
-		}
-		free(shell->cmds_arr);
-	}
 	shell->cmds = 0;
 	return (0);
 }
 
 int	shell_full_clean(t_shell *shell)
 {
-	env_free(shell->env);
+	ft_free();
 	return (0);
 }
