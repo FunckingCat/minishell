@@ -32,9 +32,8 @@ char	*parse_beautify(char *str)
 	int		i;
 
 	i = 0;
-	tmp = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	tmp = ft_malloc(sizeof(char) * (ft_strlen(str) + 1));
 	cp(str, tmp);
-	free(str);
 	while (tmp[i])
 	{
 		if (tmp[i] == '\t')
@@ -42,6 +41,5 @@ char	*parse_beautify(char *str)
 		i++;
 	}
 	str = ft_strdup(tmp);
-	free(tmp);
 	return (str);
 }

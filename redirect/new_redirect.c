@@ -59,7 +59,7 @@ t_redirect	*new_redirect(char *str)
 
 	if (validate_input(str))
 		return (put_error_null(MINISHELL, RD_ERR_T));
-	this = malloc(sizeof(t_redirect));
+	this = ft_malloc(sizeof(t_redirect));
 	if (!this)
 		return (put_error_null(MINISHELL, MALLOC_ERR));
 	if (str[0] == '<' && str[1] == '<')

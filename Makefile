@@ -6,7 +6,6 @@ LIB = -L '.' -lft -lreadline
 HEADER = 	./minishell.h \
 			./shell/shell.h \
 			./command/command.h \
-			./gnl/get_next_line.h \
 			./pipex/pipex.h \
 			./redirect/redirect.h \
 			./parsing/parsing.h \
@@ -21,9 +20,6 @@ SHLL =	./shell/init_shell.c
 
 CMD =	./command/new_command.c
 
-GNL =	./gnl/get_next_line_utils.c \
-		./gnl/get_next_line.c
-
 PIPEX =	./pipex/pipex.c \
 		./pipex/ft_exec.c
 
@@ -34,8 +30,7 @@ ENV =	./env/env_init.c \
 		./env/env_contain.c \
 		./env/env_get_par.c \
 		./env/env_set_par.c \
-		./env/env_del.c \
-		./env/env_free.c
+		./env/env_del.c
 
 PARSE =	./parsing/parse_pipes.c \
 		./parsing/parse_redirects.c \
@@ -56,7 +51,7 @@ BUILT =	./builtin/env.c \
 ERROR =	./error/error.c \
 		./error/error_ext.c
 
-SRC = 	$(MAIN)		$(GNL)		$(PIPEX)	$(REDIR)	$(ENV) \
+SRC = 	$(MAIN)		$(PIPEX)	$(REDIR)	$(ENV) \
 		$(PARSE)	$(BUILT)	$(ERROR)	$(SHLL)		$(CMD)
 
 OBJ = $(SRC:.c=.o)

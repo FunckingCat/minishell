@@ -83,7 +83,7 @@ char	*parse_global(char *cmd, t_env *env)
 	int		i;
 	int		j;
 
-	res = malloc(sizeof(char) * calc_length(cmd, env));
+	res = ft_malloc(sizeof(char) * calc_length(cmd, env));
 	i = 0;
 	j = 0;
 	while (cmd[i])
@@ -94,12 +94,10 @@ char	*parse_global(char *cmd, t_env *env)
 		{
 			ft_strlcpy(res + j, val, ft_strlen(val) + 1);
 			j += ft_strlen(val);
-			free(val);
 		}
 		else
 			res[j++] = cmd[i++];
 	}
 	res[j] = '\0';
-	free(cmd);
 	return (res);
 }

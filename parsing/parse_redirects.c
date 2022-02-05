@@ -28,12 +28,11 @@ int	parse_redirects(t_cmd *cmd)
 		if (ft_strchr("<>", cmd->input[i]))
 		{
 			len = calc_red_len(cmd->input + i);
-			tmp = malloc(len + 1);
+			tmp = ft_malloc(len + 1);
 			ft_strlcpy(tmp, cmd->input + i, len + 1);
 			if (add_redirect(cmd, tmp))
 				return(1);
 			ft_memset(cmd->input + i, RCH, len);
-			free(tmp);
 			i += len;
 		}
 		else

@@ -33,6 +33,7 @@ int run_builtin(t_cmd *cmd, t_env *env)
         status = cmd_echo(cmd->args + 1, env);
     else if (ft_strcmp(cmd->cmd, "env") == 0)
         status = cmd_env(cmd->args + 1, env);
+    ft_free();
     exit(status);
 }
 

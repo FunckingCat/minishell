@@ -17,7 +17,6 @@
 # include "./parsing/parsing.h"
 # include "./builtin/builtin.h"
 
-char	*get_next_line(int fd);
 int		pipex(t_shell *shell);
 
 #endif

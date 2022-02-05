@@ -1,11 +1,21 @@
-./libft/ft_calloc.c:	addr = malloc(count * size);
-./libft/ft_itoa.c:		res = malloc(dis + 2);
-./libft/ft_itoa.c:		res = malloc(dis + 1);
-./libft/ft_remove_char.c:	res = malloc(sizeof(char) * count_size(str, ch));
-./libft/ft_split.c:		res[i] = malloc(end - s + 1);
-./libft/ft_split.c:		res = malloc((count + 1) * sizeof(char *));
-./libft/ft_strdup.c:	res = malloc((ft_strlen(s1) + 1) * sizeof(char));
-./libft/ft_strjoin.c:	res = (char *)malloc(sizeof(char) * (res_len + 1));
-./libft/ft_strmapi.c:	res = malloc(ft_strlen(s) + 1);
-./libft/ft_strtrim.c:	res = malloc(sizeof(char) * end + 1);
-./libft/ft_substr.c:	res = (char *)malloc(sizeof(char) * (len));
+./command/new_command.c:	res = malloc(sizeof(t_cmd));
+./constants.h:# define MALLOC_ERR		"malloc error"
+./constants.h:# define ENV_MALLOC	"malloc error" 
+./env/env_del.c:		envi->vars = malloc(sizeof(char *) * (envi->length));
+./env/env_init.c:t_env	*malloc_return_pointer(t_env *envi)
+./env/env_init.c:	envi = malloc(sizeof(t_env));
+./env/env_init.c:		return (malloc_return_pointer(envi));
+./env/env_init.c:	envi->vars = malloc(sizeof(char *) * (envi->length + 1));
+./env/env_init.c:		return (malloc_return_pointer(envi));
+./env/env_init.c:		return (malloc_return_pointer(envi));
+./env/env.h:t_env	*malloc_return_pointer(t_env *envi);
+./env/env.h:int		malloc_return_int(void);
+./env/env_set_par.c:	envi->vars = malloc(sizeof(char *) * (envi->length + 2));
+./gnl/get_next_line.c:	res = malloc(sizeof(char) * ((ft_strlen(rd) - i) + 1));
+./gnl/get_next_line.c:	res = malloc(i + 2);
+./gnl/get_next_line_utils.c:	res = (char *)malloc(res_len);
+./minishell.c:	shell->cmds_arr = malloc(sizeof(t_cmd *) * shell->cmds);
+./parsing/parse_global.c:	res = malloc(sizeof(char) * calc_length(cmd, env));
+./parsing/parse_redirects.c:			tmp = malloc(len + 1);
+./parsing/parse_beautify.c:	tmp = malloc(sizeof(char) * (ft_strlen(str) + 1));
+./redirect/new_redirect.c:	this = malloc(sizeof(t_redirect));

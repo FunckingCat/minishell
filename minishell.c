@@ -11,15 +11,14 @@ void	*parse_commands(t_shell *shell, char *cmd)
 		return (NULL);
 	while (*(parse + shell->cmds))
 		shell->cmds++;
-	shell->cmds_arr = malloc(sizeof(t_cmd *) * shell->cmds);
+	shell->cmds_arr = ft_malloc(sizeof(t_cmd *) * shell->cmds);
 	if (!shell->cmds_arr)
 		return(put_error_null(MINISHELL, MALLOC_ERR));
 	while (i < shell->cmds)
 	{
 		shell->cmds_arr[i] = new_cmd(ft_strtrim(parse[i], " \t"));
-		free(parse[i++]);
+		i++;
 	}
-	free(parse);
 	return (NULL);
 }
 
@@ -38,10 +37,6 @@ void	check_exit(t_shell *shell)
 		return ;
 	if (!ft_strcmp(sp[0], "exit"))
 		shell->exit = 1;
-	i = 0;
-	while (sp[i])
-		free(sp[i++]);
-	free(sp);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -49,23 +44,21 @@ int	main(int argc, char **argv, char **envp)
 	t_shell	shell;
 	char	*str;
 
-	ft_split("Z yt k,k. yfwdfq", ' ');
-	ft_free();
-	// if (init_shell(&shell, envp))
-	// 	return (1);
+	if (init_shell(&shell, envp))
+		return (1);
 	// while (!shell.exit)
 	// {
-	// 	str = readline(YELLOW PROMPT NONE);
-	// 	add_history(str);
-	// 	//str = get_next_line(0);
-	// 	str = parse_beautify(str);
-	// 	str = parse_global(str, shell.env);
-	// 	parse_commands(&shell, str);
-	// 	free(str);
-	// 	check_exit(&shell);
-	// 	pipex(&shell);
-	// 	shell_middle_clean(&shell);
-	// }
-	// shell_full_clean(&shell);
+		// str = readline(YELLOW PROMPT NONE);
+		// add_history(str);
+		str = ft_strdup("ls | lah");
+		str = parse_beautify(str);
+		str = parse_global(str, shell.env);
+		parse_commands(&shell, str);
+		//free(str);
+		check_exit(&shell);
+		pipex(&shell);
+		shell_middle_clean(&shell);
+	//}
+	shell_full_clean(&shell);
 	return (0);
 }

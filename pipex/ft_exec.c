@@ -9,7 +9,6 @@ char	*full_path(char *path, char *name)
 	{
 		tmp = ft_strjoin(path, "/");
 		res = ft_strjoin(tmp, name);
-		free(tmp);
 		return (res);
 	}
 	return (ft_strjoin(path, name));

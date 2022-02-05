@@ -13,25 +13,12 @@ int	init_shell(t_shell *shell, char **envp)
 
 int	shell_middle_clean(t_shell *shell)
 {
-	int	i;
-
-	if (shell->cmds_arr)
-	{
-		i = 0;
-		while (i < shell->cmds)
-		{
-			if (shell->cmds_arr[i])
-				free_cmd(shell->cmds_arr[i]);
-			i++;
-		}
-		free(shell->cmds_arr);
-	}
 	shell->cmds = 0;
 	return (0);
 }
 
 int	shell_full_clean(t_shell *shell)
 {
-	env_free(shell->env);
+	ft_free();
 	return (0);
 }
