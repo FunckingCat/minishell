@@ -50,7 +50,7 @@ int	main(int argc, char **argv, char **envp)
 	// {
 		// str = readline(YELLOW PROMPT NONE);
 		// add_history(str);
-		str = ft_strdup("ls | lah");
+		str = ft_strdup("ls -lah | wc -l");
 		str = parse_beautify(str);
 		str = parse_global(str, shell.env);
 		parse_commands(&shell, str);
