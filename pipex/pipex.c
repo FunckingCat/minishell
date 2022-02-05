@@ -26,8 +26,9 @@ void	wait_children(t_shell *shell)
 	while (i < shell->cmds)
 	{
 		ret = waitpid(0, &stat, 0);
-		env_set("?", ft_itoa(WEXITSTATUS(stat)), shell->env);
 		child = who_returned(shell, ret);
+		env_set("?", ft_itoa(WEXITSTATUS(stat)), shell->env);
+		env_set("_", child->cmd, shell->env);
 		if (child)
 		{
 			if (child->out != 1)
