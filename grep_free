@@ -1,0 +1,3 @@
+./libft/ft_remove_char.c:	free(str);
+./libft/ft_split.c:			free(res[i++]);
+./libft/ft_split.c:			free(res);

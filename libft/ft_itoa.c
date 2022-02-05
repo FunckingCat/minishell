@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tyamcha <tyamcha@student.42.fr>            +#+  +:+       +#+        */
+/*   By: unix <unix@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 14:34:30 by tyamcha           #+#    #+#             */
-/*   Updated: 2021/10/16 09:02:33 by tyamcha          ###   ########.fr       */
+/*   Updated: 2022/02/05 12:01:04 by unix             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ char	*ft_itoa(int n)
 	ln = (long int)n;
 	dis = ft_disch(ln);
 	if (ln < 0)
-		res = malloc(dis + 2);
+		res = ft_malloc(dis + 2);
 	else
-		res = malloc(dis + 1);
+		res = ft_malloc(dis + 1);
 	if (!res)
 		return (NULL);
 	if (ln < 0 && dis++ != -1)

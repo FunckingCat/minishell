@@ -49,17 +49,7 @@ int	main(int argc, char **argv, char **envp)
 	t_shell	shell;
 	char	*str;
 
-	str = ft_malloc(sizeof(char *) * 10);
-	str = ft_malloc(sizeof(char *) * 10);
-	str = ft_malloc(sizeof(char *) * 10);
-	str = ft_malloc(sizeof(char *) * 10);
-	str = ft_malloc(sizeof(char *) * 10);
-	str = ft_malloc(sizeof(char *) * 10);
-	str = ft_malloc(sizeof(char *) * 10);
-	str = ft_malloc(sizeof(char *) * 10);
-	str = ft_malloc(sizeof(char *) * 10);
-	str = ft_malloc(sizeof(char *) * 10);
-	str = ft_malloc(sizeof(char *) * 10);
+	ft_split("Z yt k,k. yfwdfq", ' ');
 	ft_free();
 	// if (init_shell(&shell, envp))
 	// 	return (1);

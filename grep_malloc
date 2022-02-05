@@ -1,0 +1,11 @@
+./libft/ft_calloc.c:	addr = malloc(count * size);
+./libft/ft_itoa.c:		res = malloc(dis + 2);
+./libft/ft_itoa.c:		res = malloc(dis + 1);
+./libft/ft_remove_char.c:	res = malloc(sizeof(char) * count_size(str, ch));
+./libft/ft_split.c:		res[i] = malloc(end - s + 1);
+./libft/ft_split.c:		res = malloc((count + 1) * sizeof(char *));
+./libft/ft_strdup.c:	res = malloc((ft_strlen(s1) + 1) * sizeof(char));
+./libft/ft_strjoin.c:	res = (char *)malloc(sizeof(char) * (res_len + 1));
+./libft/ft_strmapi.c:	res = malloc(ft_strlen(s) + 1);
+./libft/ft_strtrim.c:	res = malloc(sizeof(char) * end + 1);
+./libft/ft_substr.c:	res = (char *)malloc(sizeof(char) * (len));
