@@ -27,12 +27,10 @@ int	cmd_cd(char **args, t_env *env)
 		return (put_error(CD, MALLOC_ERR));
 	if (env_set("OLDPWD", buff, env))
 		status = 1;
-	free(buff);
 	buff = getcwd(NULL, 1044480);
 	if (!buff)
 		return (put_error(CD, MALLOC_ERR));
 	if (env_set("PWD", buff, env))
 		status = 1;
-	free(buff);
 	return (status);
 }

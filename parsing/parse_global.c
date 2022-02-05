@@ -17,7 +17,6 @@ char	*get_name(char *cmd)
 		cmd = ft_remove_char(cmd, RCH);
 		return (cmd);
 	}
-	free(cmd);
 	return (NULL);
 }
 
@@ -42,7 +41,6 @@ int	calc_length(char *cmd, t_env *env)
 		{
 			i += ft_strlen(env_get(name, env)) - 1;
 			cmd += ft_strlen(name);
-			free(name);
 		}
 		i++;
 		cmd++;
@@ -60,7 +58,6 @@ char	*get_val(char	*cmd, int	*i, t_env	*env)
 	{
 		*i += ft_strlen(name) + 1;
 		val = env_get(name, env);
-		free(name);
 		return (val);
 	}
 	return (NULL);

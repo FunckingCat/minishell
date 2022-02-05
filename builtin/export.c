@@ -1,19 +1,5 @@
 #include "builtin.h"
 
-void	clean_split(char **new_var)
-{
-	int	i;
-
-	i = 0;
-	while (new_var && new_var[i])
-	{
-		free(new_var[i]);
-		i++;
-	}
-	free(new_var);
-}
-
-
 int check_name(char *arg)
 {
 	int i;
@@ -45,7 +31,6 @@ int	set_element(t_env *env, char *arg)
 	if (check_name(name) || check_name(value))
 		return (put_error(EXP, EXP_NOT_VALID));
 	status = env_set(name, value, env);
-	clean_split(spl);
 	return (status);
 }
 
