@@ -1,0 +1,29 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "RUN WSL",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/a.out",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${fileDirname}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb"
+		},
+		{
+			"name": "RUN MacOs",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/${workspaceFolderBasename}",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [ { "name": "squid", "value": "clam" } ],
+			"externalConsole": true,
+			"MIMode": "lldb"
+		}
+	]
+}
