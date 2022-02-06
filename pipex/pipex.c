@@ -70,6 +70,7 @@ int	pipex(t_shell *shell)
 			return (1);
 		if (parse_command(shell->cmds_arr[i], shell->env))
 			return (1);
+		i++;
 	}
 	if (shell->cmds == 1 && is_no_fork(shell->cmds_arr[0]->cmd))
 		return (run_no_fork(shell->cmds_arr[0], shell->env));
