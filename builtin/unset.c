@@ -2,7 +2,7 @@
 
 int	cmd_unset(char **args, t_env *env)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (args[i])

@@ -27,7 +27,7 @@ void	env_reset(t_env *envi, char *name, char *str)
 	while (i < envi->length)
 	{
 		if (ft_strncmp(envi->vars[i], name, ft_strlen(name)) == 0
-				&& envi->vars[i][ft_strlen(name)] == '=')
+			&& envi->vars[i][ft_strlen(name)] == '=')
 		{
 			old = envi->vars[i];
 			envi->vars[i] = str;
@@ -43,7 +43,7 @@ int	env_set(char *name, char *content, t_env *envi)
 	char	*str1;
 
 	if (!name || !envi || !envi->vars)
-		return(put_error(ENV, ENV_NO_PAR));
+		return (put_error(ENV, ENV_NO_PAR));
 	str1 = ft_strjoin(name, "=");
 	str = ft_strjoin(str1, content);
 	if (env_contain(name, envi) == 0)

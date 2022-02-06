@@ -1,5 +1,5 @@
 #ifndef PARSING_H
-#define PARSING_H
+# define PARSING_H
 
 # include "../libft/libft.h"
 # include "../constants.h"

@@ -1,8 +1,8 @@
 #ifndef FT_MALLOC_H
 # define FT_MALLOC_H
 
-#include <stdlib.h>
-#include <stdio.h>
+# include <stdlib.h>
+# include <stdio.h>
 
 typedef struct s_heap
 {
@@ -10,9 +10,9 @@ typedef struct s_heap
 	void	**ptrs;
 }	t_heap;
 
-t_heap heap;
+t_heap	g_heap;
 
 void	*ft_malloc(size_t size);
-void	ft_free();
+void	ft_free(void);
 
 #endif

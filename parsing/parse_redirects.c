@@ -31,7 +31,7 @@ int	parse_redirects(t_cmd *cmd)
 			tmp = ft_malloc(len + 1);
 			ft_strlcpy(tmp, cmd->input + i, len + 1);
 			if (add_redirect(cmd, tmp))
-				return(1);
+				return (1);
 			ft_memset(cmd->input + i, RCH, len);
 			i += len;
 		}

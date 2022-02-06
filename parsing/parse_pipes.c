@@ -5,7 +5,7 @@ char	*skip_quotes(char *cmd)
 	char	quote;
 
 	quote = *cmd++;
-	while(*cmd && *cmd != quote)
+	while (*cmd && *cmd != quote)
 		cmd++;
 	return (cmd);
 }
@@ -20,7 +20,7 @@ char	*replace_pipes(char *cmd)
 		if (*cmd == '\'' || *cmd == '\"')
 			cmd = skip_quotes(cmd);
 		if (!*cmd)
-			return(NULL);
+			return (NULL);
 		if (*cmd == '|')
 			*cmd = RCH;
 		cmd++;
@@ -39,11 +39,11 @@ int	check_tail(char *cmd)
 
 int	check_pipes(char *cmd)
 {
-	int pipe_fl;
+	int	pipe_fl;
 
 	pipe_fl = 0;
 	while (*cmd == ' ')
-			cmd++;
+		cmd++;
 	if (*cmd == RCH)
 		return (1);
 	while (*cmd)
@@ -65,6 +65,7 @@ int	check_pipes(char *cmd)
 char	**parse_pipes(char *cmd)
 {
 	char	**res;
+
 	cmd = replace_pipes(cmd);
 	if (!cmd)
 		return (put_error_null(MINISHELL, Q_NCL));

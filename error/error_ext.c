@@ -36,7 +36,7 @@ void	*put_ext_error_null(char *module, char *obj, char *text)
 	return (NULL);
 }
 
-int	put_ext_error_exit(char *module, char *obj, char *text,  int st)
+int	put_ext_error_exit(char *module, char *obj, char *text, int st)
 {
 	ft_putstr_fd(RED, 2);
 	ft_putstr_fd(module, 2);

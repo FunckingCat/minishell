@@ -40,12 +40,12 @@
 # define RD_DOUT	4
 
 // Builtin errors
-# define EXP "Export"
-# define UNS "unset"
-# define EXP_NOT_VALID "not a valid identifier"
-# define CD "cd"
-# define CD_NO_FILE "No such file or directory"
-# define CD_MN_ARGS "too many arguments"
-# define ENV_NO_FILE "No such file or directory"
+# define EXP			"Export"
+# define UNS			"unset"
+# define EXP_NOT_VALID	"not a valid identifier"
+# define CD				"cd"
+# define CD_NO_FILE		"No such file or directory"
+# define CD_MN_ARGS		"too many arguments"
+# define ENV_NO_FILE	"No such file or directory"
 
 #endif

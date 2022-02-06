@@ -59,9 +59,12 @@ int	set_in_out(t_shell *shell)
 
 int	pipex(t_shell *shell)
 {
+	int	i;
+
+	i = 0;
 	if (set_in_out(shell))
 		return (1);
-	for (int i = 0; i < shell->cmds; i++)
+	while (i < shell->cmds)
 	{
 		if (parse_redirects(shell->cmds_arr[i]))
 			return (1);

@@ -1,8 +1,8 @@
 #include "builtin.h"
 
-int check_name(char *arg)
+int	check_name(char *arg)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!ft_isalpha(arg[0]))
@@ -36,7 +36,7 @@ int	set_element(t_env *env, char *arg)
 
 int	cmd_export(char **args, t_env *env)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (args && args[i])

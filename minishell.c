@@ -13,7 +13,7 @@ void	*parse_commands(t_shell *shell, char *cmd)
 		shell->cmds++;
 	shell->cmds_arr = ft_malloc(sizeof(t_cmd *) * shell->cmds);
 	if (!shell->cmds_arr)
-		return(put_error_null(MINISHELL, MALLOC_ERR));
+		return (put_error_null(MINISHELL, MALLOC_ERR));
 	while (i < shell->cmds)
 	{
 		shell->cmds_arr[i] = new_cmd(ft_strtrim(parse[i], " \t"));

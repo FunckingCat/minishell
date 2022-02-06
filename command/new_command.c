@@ -18,7 +18,7 @@ t_cmd	*new_cmd(char	*cmd)
 
 int	add_redirect(t_cmd *cmd, char *redirect)
 {
-	t_redirect *new;
+	t_redirect	*new;
 
 	new = new_redirect(redirect);
 	if (!new)
@@ -26,14 +26,14 @@ int	add_redirect(t_cmd *cmd, char *redirect)
 	if (new->type == RD_IN || new->type == RD_DIN)
 	{
 		if (cmd->left == NULL && cmd->in > 2)
-		 	close(cmd->in);
+			close(cmd->in);
 		free_redirect(cmd->left);
 		cmd->left = new;
 	}
 	else
 	{
 		if (cmd->right == NULL && cmd->out > 2)
-		 	close(cmd->out);
+			close(cmd->out);
 		free_redirect(cmd->right);
 		cmd->right = new;
 	}

@@ -25,6 +25,6 @@ char		*get_next_line(int fd);
 t_redirect	*new_redirect(char *str);
 t_redirect	*free_redirect(t_redirect *this);
 
-int	read_multiline(t_redirect *this);
+int			read_multiline(t_redirect *this);
 
 #endif
