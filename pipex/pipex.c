@@ -49,7 +49,7 @@ int	set_in_out(t_shell *shell)
 	while (i < shell->cmds)
 	{
 		if (pipe(pip) == -1)
-			return (put_error(MINISHELL, "pipe create failed"));
+			return (put_error(MINISHELL, PIPE_FAIL));
 		shell->cmds_arr[i - 1]->out = pip[1];
 		shell->cmds_arr[i]->in = pip[0];
 		i++;

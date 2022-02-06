@@ -6,7 +6,7 @@ int	cmd_env(char **args, t_env *env)
 
 	i = 0;
 	if (!env || !env->vars)
-		return (put_error(ENV, "env is corrupted"));
+		return (put_error(ENV, NO_ENV));
 	if (check_amount(args) > 0)
 		return (put_error(ENV, CD_MN_ARGS));
 	while (i < env->length)

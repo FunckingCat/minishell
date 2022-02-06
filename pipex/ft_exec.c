@@ -25,9 +25,9 @@ void	run(t_shell *shell, t_cmd *cmd)
 		exit(0);
 	if (is_builtin(cmd->cmd))
 		run_builtin(cmd, shell->env);
-	if (!ft_strcmp(ft_strtrim(cmd->cmd, " \t"), "exit"))
+	if (!ft_strcmp(ft_strtrim(cmd->cmd, " \t"), EXIT))
 		exit(0);
-	path = ft_split(env_get("PATH", shell->env), ':');
+	path = ft_split(env_get(PATH, shell->env), ':');
 	if (ft_strcmp(cmd->cmd, cmd->full_path))
 	{
 		status = execve(cmd->full_path, cmd->args, shell->env->vars);
@@ -38,7 +38,7 @@ void	run(t_shell *shell, t_cmd *cmd)
 		execve(full_path(path[i], cmd->cmd), cmd->args, shell->env->vars);
 		i++;
 	}
-	put_error_exit(cmd->cmd, "command not found", 127);
+	put_error_exit(cmd->cmd, CMD_NF, 127);
 }
 
 void	close_descriptors(t_shell *shell)
@@ -59,7 +59,7 @@ void	close_descriptors(t_shell *shell)
 void	exec(t_cmd *cmd, t_shell *shell)
 {
 	if (dup2(cmd->in, 0) == -1 || dup2(cmd->out, 1) == -1)
-		put_error_exit("dup2", "dup failed", 1);
+		put_error_exit(DUP, DUP_FAIL, 1);
 	close_descriptors(shell);
 	run(shell, cmd);
 }
@@ -73,7 +73,7 @@ int	fork_proc(t_shell *shell)
 	{
 		shell->cmds_arr[i]->pid = fork();
 		if (shell->cmds_arr[i]->pid == -1)
-			put_error("fork", "fork failed");
+			put_error(FORK, FORK_FAIL);
 		else if (shell->cmds_arr[i]->pid == 0)
 			exec(shell->cmds_arr[i], shell);
 		i++;

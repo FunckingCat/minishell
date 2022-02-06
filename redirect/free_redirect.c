@@ -39,10 +39,10 @@ int	read_multiline(t_redirect *this)
 	int		pip[2];
 
 	if (pipe(pip) == -1)
-		return (put_error("pipe", "failed create a pipe"));
+		return (put_error(PIPE, PIPE_FAIL));
 	this->fd = pip[0];
 	if (read_loop(this, pip))
-		return (put_error(RD, "failed to read input"));
+		return (put_error(RD, RD_RAD_FL));
 	close(pip[1]);
 	return (0);
 }
