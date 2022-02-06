@@ -54,7 +54,6 @@
 # define NO_ENV			"env is corrupted"
 
 //PIPEX
-# define PIPE_FAIL		"pipe create failed"
 # define PATH			"PATH"
 # define DUP			"dup2"
 # define DUP_FAIL		"dup failed"

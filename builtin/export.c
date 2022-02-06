@@ -5,6 +5,8 @@ int	check_name(char *arg)
 	int	i;
 
 	i = 0;
+	if (ft_strlen(arg) == 0)
+		return (0);
 	if (!ft_isalpha(arg[0]))
 		return (1);
 	while (arg[i] != '\0')
@@ -20,18 +22,22 @@ int	set_element(t_env *env, char *arg)
 {
 	char	*name;
 	char	*value;
-	char	**spl;
-	int		status;
 
-	if (arg[0] == '=' || !ft_strchr(arg, '='))
+	if (arg[0] == '=')
 		return (put_error(EXP, EXP_NOT_VALID));
-	spl = ft_split(arg, '=');
-	name = spl[0];
-	value = ft_strchr(arg, '=') + 1;
+	if (!ft_strchr(arg, '='))
+	{
+		name = ft_strtrim(arg, " ");
+		value = ft_strdup("");
+	}
+	else
+	{
+		name = ft_substr(arg, 0, ft_strchr(arg, '=') - arg);
+		value = ft_strtrim(ft_strchr(arg, '=') + 1 , " ");
+	}
 	if (check_name(name) || check_name(value))
 		return (put_error(EXP, EXP_NOT_VALID));
-	status = env_set(name, value, env);
-	return (status);
+	return (env_set(name, value, env));
 }
 
 int	cmd_export(char **args, t_env *env)
