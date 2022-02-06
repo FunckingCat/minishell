@@ -21,6 +21,8 @@ void	run(t_shell *shell, t_cmd *cmd)
 	int		status;
 
 	i = 0;
+	if (!cmd->cmd)
+		exit(0);
 	if (is_builtin(cmd->cmd))
 		run_builtin(cmd, shell->env);
 	if (!ft_strcmp(ft_strtrim(cmd->cmd, " \t"), "exit"))
