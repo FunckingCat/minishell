@@ -33,10 +33,14 @@ void	check_exit(t_shell *shell)
 	sp = ft_split(shell->cmds_arr[0]->input, ' ');
 	while (sp[i])
 		i++;
-	if (i != 1)
-		return ;
 	if (!ft_strcmp(sp[0], "exit"))
+	{
 		shell->exit = 1;
+		if (i > 1)
+			shell->exit_status = ft_atoi(sp[1]);
+		if (i > 2)
+			put_error("exit", "too many arguments");
+	}
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -61,5 +65,5 @@ int	main(int argc, char **argv, char **envp)
 		shell_middle_clean(&shell);
 	}
 	shell_full_clean(&shell);
-	return (0);
+	return (shell.exit_status);
 }

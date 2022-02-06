@@ -7,6 +7,7 @@
 typedef struct s_shell
 {
 	int		exit;
+	int		exit_status;
 	int		cmds;
 	t_cmd	**cmds_arr;
 	t_env	*env;

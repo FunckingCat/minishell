@@ -5,6 +5,7 @@ int	init_shell(t_shell *shell, char **envp)
 	char	*buf;
 
 	shell->exit = 0;
+	shell->exit_status = 0;
 	shell->cmds = 0;
 	shell->cmds_arr = NULL;
 	shell->env = env_init(envp);

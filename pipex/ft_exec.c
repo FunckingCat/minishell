@@ -18,6 +18,7 @@ void	run(t_shell *shell, t_cmd *cmd)
 {
 	char	**path;
 	int		i;
+	int		status;
 
 	i = 0;
 	if (is_builtin(cmd->cmd))
@@ -25,7 +26,11 @@ void	run(t_shell *shell, t_cmd *cmd)
 	if (!ft_strcmp(ft_strtrim(cmd->cmd, " \t"), "exit"))
 		exit(0);
 	path = ft_split(env_get("PATH", shell->env), ':');
-	execve(cmd->full_path, cmd->args, shell->env->vars);
+	if (ft_strcmp(cmd->cmd, cmd->full_path))
+	{
+		status = execve(cmd->full_path, cmd->args, shell->env->vars);
+		put_error_exit(cmd->cmd, strerror(errno), 126);
+	}
 	while (path[i] != NULL)
 	{
 		execve(full_path(path[i], cmd->cmd), cmd->args, shell->env->vars);
