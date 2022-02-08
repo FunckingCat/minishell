@@ -33,7 +33,7 @@ int	set_element(t_env *env, char *arg)
 	else
 	{
 		name = ft_substr(arg, 0, ft_strchr(arg, '=') - arg);
-		value = ft_strtrim(ft_strchr(arg, '=') + 1 , " ");
+		value = ft_strtrim(ft_strchr(arg, '=') + 1, " ");
 	}
 	if (check_name(name) || check_name(value))
 		return (put_error(EXP, EXP_NOT_VALID));
