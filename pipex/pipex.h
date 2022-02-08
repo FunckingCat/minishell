@@ -7,6 +7,7 @@
 # include <unistd.h>
 # include <sys/wait.h>
 # include <errno.h>
+# include <string.h>
 # include "../libft/libft.h"
 # include "../constants.h"
 # include "../shell/shell.h"
