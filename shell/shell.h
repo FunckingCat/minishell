@@ -13,8 +13,10 @@ typedef struct s_shell
 	t_env	*env;
 }	t_shell;
 
-int	init_shell(t_shell *shell, char **envp);
-int	shell_middle_clean(t_shell *shell);
-int	shell_full_clean(t_shell *shell);
+int		init_shell(t_shell *shell, char **envp);
+int		shell_middle_clean(t_shell *shell);
+int		shell_full_clean(t_shell *shell);
+void	handler(int sig);
+void	tty_mask(void);
 
 #endif
