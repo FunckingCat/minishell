@@ -24,7 +24,7 @@ int	set_element(t_env *env, char *arg)
 	char	*value;
 
 	if (arg[0] == '=')
-		return (put_ext_error(EXP, arg[0], EXP_NOT_VALID));
+		return (put_ext_error(EXP, arg, EXP_NOT_VALID));
 	if (!ft_strchr(arg, '='))
 	{
 		name = ft_strtrim(arg, " ");

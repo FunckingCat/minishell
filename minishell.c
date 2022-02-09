@@ -33,13 +33,21 @@ void	check_exit(t_shell *shell)
 	sp = ft_split(shell->cmds_arr[0]->input, ' ');
 	while (sp[i])
 		i++;
-	if (!ft_strcmp(sp[0], "exit"))
+	if (!ft_strcmp(sp[0], EXIT))
 	{
 		shell->exit = 1;
 		if (i > 1)
 			shell->exit_status = ft_atoi(sp[1]);
-		if (i > 2)
-			put_error("exit", "too many arguments");
+		if (i > 1 && !ft_isstrdigit(sp[1]))
+		{
+			put_ext_error(EXIT, sp[1], EXIT_ERR_ARGS);
+			shell->exit_status = 255;
+		}
+		else if (i > 2)
+		{
+			shell->exit = 0;
+			put_error(EXIT, EXIT_ERR_NUM);
+		}
 	}
 }
 
@@ -54,7 +62,8 @@ int	main(int argc, char **argv, char **envp)
 	while (!shell.exit)
 	{
 		read = readline(YELLOW PROMPT NONE);
-		add_history(read);
+		if (ft_strlen(read) > 0)
+			add_history(read);
 		str = ft_strdup(read);
 		free(read);
 		str = parse_beautify(str);

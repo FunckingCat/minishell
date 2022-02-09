@@ -53,6 +53,11 @@
 # define ENV_NO_FILE	"No such file or directory"
 # define NO_ENV			"env is corrupted"
 
+// Exit
+# define EXIT			"exit"
+# define EXIT_ERR_ARGS	"numeric argument required"
+# define EXIT_ERR_NUM	"too many arguments"
+
 //PIPEX
 # define PATH			"PATH"
 # define DUP			"dup2"
