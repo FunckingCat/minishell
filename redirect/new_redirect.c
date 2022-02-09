@@ -5,7 +5,7 @@ int	open_out(t_redirect *this)
 	if (!access(this->file, ACCESS_EXIST))
 	{
 		if (access(this->file, ACCESS_WRITE))
-			return (put_error(RD, RD_FD_PD));
+			return (put_ext_error(RD, this->file, RD_FD_PD));
 	}
 	if (this->type == RD_OUT)
 		this->fd = open(this->file, O_TRUNC | O_WRONLY | O_CREAT, 0644);
@@ -21,12 +21,12 @@ int	rd_open_fd(t_redirect *this)
 	if (this->type == RD_IN)
 	{
 		if (access(this->file, ACCESS_EXIST))
-			return (put_error(RD, RD_FD_NF));
+			return (put_ext_error(RD, this->file, RD_FD_NF));
 		else if (access(this->file, ACCESS_READ))
-			return (put_error(RD, RD_FD_PD));
+			return (put_ext_error(RD, this->file, RD_FD_PD));
 		this->fd = open(this->file, O_RDONLY);
 		if (this->fd == -1)
-			return (put_error(RD, RD_FD_FR));
+			return (put_ext_error(RD, this->file, RD_FD_FR));
 		return (0);
 	}
 	else if (this->type == RD_OUT || this->type == RD_DOUT)
@@ -58,7 +58,7 @@ t_redirect	*new_redirect(char *str)
 	t_redirect	*this;
 
 	if (validate_input(str))
-		return (put_error_null(MINISHELL, RD_ERR_T));
+		return (put_ext_error_null(MINISHELL, str, RD_ERR_T));
 	this = ft_malloc(sizeof(t_redirect));
 	if (!this)
 		return (put_error_null(MINISHELL, MALLOC_ERR));
