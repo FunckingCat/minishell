@@ -61,7 +61,7 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	while (!shell.exit)
 	{
-		read = readline(YELLOW PROMPT NONE);
+		read = readline(PROMPT);
 		if (ft_strlen(read) > 0)
 			add_history(read);
 		str = ft_strdup(read);

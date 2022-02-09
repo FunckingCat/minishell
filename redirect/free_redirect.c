@@ -13,7 +13,7 @@ int	read_loop(t_redirect *this, int *pip)
 
 	while (1)
 	{
-		line = readline(GREEN "> " NONE);
+		line = readline("> ");
 		if (!line)
 		{
 			close(pip[1]);
