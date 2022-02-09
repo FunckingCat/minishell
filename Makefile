@@ -1,7 +1,10 @@
 NAME = minishell
 CC = gcc -g
 #FLAGS = -Wall -Werror -Wextra
-LIB = -L '.' -lft -lreadline
+# LIB = -L '.' -lft -lreadline
+LIB =  -L '.' -lft -lreadline -ledit
+INCLUDE_LBR = /Users/wmika/.brew/Cellar/readline/8.1.2/include
+SYS_LBR = /Users/wmika/.brew/opt/readline/lib/
 
 HEADER = 	./minishell.h \
 			./shell/shell.h \
@@ -51,8 +54,10 @@ BUILT =	./builtin/env.c \
 ERROR =	./error/error.c \
 		./error/error_ext.c
 
-SRC = 	$(MAIN)		$(PIPEX)	$(REDIR)	$(ENV) \
-		$(PARSE)	$(BUILT)	$(ERROR)	$(SHLL)		$(CMD)
+SIGNAL = ./signals/signal_handler.c
+
+SRC = 	$(MAIN)		$(SHLL)     $(PIPEX)	$(REDIR)	$(ENV) \
+		$(PARSE)	$(BUILT)	$(ERROR)	$(CMD) 		$(SIGNAL)
 
 OBJ = $(SRC:.c=.o)
 
@@ -61,12 +66,12 @@ RM = rm -f
 all: $(NAME)
 
 %.o : %.c $(HEADER)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@ -I$(INCLUDE_LBR)
 
 $(NAME): $(OBJ) $(HEADER)
 	make bonus -C ./libft
 	cp libft/libft.a ./
-	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIB)
+	$(CC) $(FLAGS) $(OBJ) -L $(SYS_LBR) $(LIB) -o $(NAME)
 
 clean:
 	make clean -C ./libft

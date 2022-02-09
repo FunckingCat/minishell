@@ -7,6 +7,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <signal.h>
+# include <termios.h>
 
 # include "./constants.h"
 # include "./libft/libft.h"
