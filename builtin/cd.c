@@ -32,5 +32,6 @@ int	cmd_cd(char **args, t_env *env)
 		return (put_error(CD, MALLOC_ERR));
 	if (env_set("PWD", buff, env))
 		status = 1;
+	free(buff);
 	return (status);
 }

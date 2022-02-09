@@ -19,6 +19,7 @@ void	run(t_shell *shell, t_cmd *cmd)
 	char	**path;
 	int		i;
 	int		status;
+	DIR		*dr;
 
 	i = 0;
 	if (!cmd->cmd)
@@ -30,8 +31,15 @@ void	run(t_shell *shell, t_cmd *cmd)
 	path = ft_split(env_get(PATH, shell->env), ':');
 	if (cmd->full_path[0] == '/')
 	{
+		dr = opendir(cmd->full_path);
+		if (dr)
+		{
+			closedir(dr);
+			put_ext_error_exit(MINISHELL, cmd->full_path, IS_DIR, 126);
+		}
 		status = execve(cmd->full_path, cmd->args, shell->env->vars);
 		put_error_exit(cmd->cmd, strerror(errno), 126);
+
 	}
 	while (path[i] != NULL)
 	{

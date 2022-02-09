@@ -2,15 +2,16 @@
 # define CONSTANTS_H
 
 # define MINISHELL	"minishell"
-# define PROMPT		"MINISHELL > "
+# define PROMPT		"ᕙ(•ᴗ•)ᕗ "
+# define REDIRECT	"★ "
 
 // Console colors
-# define RED	"\001\033[0;31m\002"
-# define GREEN	"\001\033[0;32m\002"
-# define YELLOW	"\001\033[0;33m\002"
-# define BLUE	"\001\033[0;34m\002"
-# define PURPLE	"\001\033[0;35m\002"
-# define NONE	"\001\033[0m\002"
+# define RED	""
+# define GREEN	""
+# define YELLOW	""
+# define BLUE	""
+# define PURPLE	""
+# define NONE	""
 
 // Parsing constants
 # define Q_NCL			"quotes are not closed"
@@ -53,6 +54,11 @@
 # define ENV_NO_FILE	"No such file or directory"
 # define NO_ENV			"env is corrupted"
 
+// Exit
+# define EXIT			"exit"
+# define EXIT_ERR_ARGS	"numeric argument required"
+# define EXIT_ERR_NUM	"too many arguments"
+
 //PIPEX
 # define PATH			"PATH"
 # define DUP			"dup2"
@@ -60,5 +66,6 @@
 # define FORK			"fork"
 # define FORK_FAIL		"fork failed"
 # define CMD_NF			"command not found"
+# define IS_DIR			"is a directory"
 
 #endif

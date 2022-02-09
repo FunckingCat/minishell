@@ -2,11 +2,10 @@
 
 int	put_ext_error(char *module, char *obj, char *text)
 {
-	ft_putstr_fd(RED, 2);
 	ft_putstr_fd(module, 2);
-	ft_putstr_fd(": " NONE, 2);
+	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(obj, 2);
-	ft_putstr_fd(": " NONE, 2);
+	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(text, 2);
 	ft_putstr_fd("\n", 2);
 	return (1);
@@ -14,11 +13,10 @@ int	put_ext_error(char *module, char *obj, char *text)
 
 int	put_ext_error_status(char *module, char *obj, char *text, int st)
 {
-	ft_putstr_fd(RED, 2);
 	ft_putstr_fd(module, 2);
-	ft_putstr_fd(": " NONE, 2);
+	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(obj, 2);
-	ft_putstr_fd(": " NONE, 2);
+	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(text, 2);
 	ft_putstr_fd("\n", 2);
 	return (st);
@@ -26,11 +24,10 @@ int	put_ext_error_status(char *module, char *obj, char *text, int st)
 
 void	*put_ext_error_null(char *module, char *obj, char *text)
 {
-	ft_putstr_fd(RED, 2);
 	ft_putstr_fd(module, 2);
-	ft_putstr_fd(": " NONE, 2);
+	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(obj, 2);
-	ft_putstr_fd(": " NONE, 2);
+	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(text, 2);
 	ft_putstr_fd("\n", 2);
 	return (NULL);
@@ -38,11 +35,10 @@ void	*put_ext_error_null(char *module, char *obj, char *text)
 
 int	put_ext_error_exit(char *module, char *obj, char *text, int st)
 {
-	ft_putstr_fd(RED, 2);
 	ft_putstr_fd(module, 2);
-	ft_putstr_fd(": " NONE, 2);
+	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(obj, 2);
-	ft_putstr_fd(": " NONE, 2);
+	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(text, 2);
 	ft_putstr_fd("\n", 2);
 	ft_free();
