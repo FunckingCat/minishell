@@ -5,12 +5,12 @@
 # define PROMPT		"MINISHELL > "
 
 // Console colors
-# define RED	"\001\033[0;31m\002"
-# define GREEN	"\001\033[0;32m\002"
-# define YELLOW	"\001\033[0;33m\002"
-# define BLUE	"\001\033[0;34m\002"
-# define PURPLE	"\001\033[0;35m\002"
-# define NONE	"\001\033[0m\002"
+# define RED	"\033[0;31m"
+# define GREEN	"\033[0;32m"
+# define YELLOW	"\033[0;33m"
+# define BLUE	"\033[0;34m"
+# define PURPLE	"\033[0;35m"
+# define NONE	"\033[0m"
 
 // Parsing constants
 # define Q_NCL			"quotes are not closed"
