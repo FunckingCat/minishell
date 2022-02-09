@@ -6,6 +6,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <sys/wait.h>
+# include <sys/types.h>
+# include <dirent.h>
 # include <errno.h>
 # include <string.h>
 # include "../libft/libft.h"

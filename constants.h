@@ -65,5 +65,6 @@
 # define FORK			"fork"
 # define FORK_FAIL		"fork failed"
 # define CMD_NF			"command not found"
+# define IS_DIR			"is a directory"
 
 #endif
