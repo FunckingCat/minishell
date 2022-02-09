@@ -2,7 +2,8 @@
 # define CONSTANTS_H
 
 # define MINISHELL	"minishell"
-# define PROMPT		"MINISHELL > "
+# define PROMPT		"ᕙ(•ᴗ•)ᕗ "
+# define REDIRECT	"★ "
 
 // Console colors
 # define RED	""
