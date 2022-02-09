@@ -60,6 +60,7 @@ char	*get_val(char	*cmd, int	*i, t_env	*env)
 	{
 		*i += ft_strlen(name) + 1;
 		val = env_get(name, env);
+		printf("VAL: %s\n", val);
 		return (val);
 	}
 	return (NULL);
