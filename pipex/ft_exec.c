@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exec.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/10 18:35:06 by david             #+#    #+#             */
+/*   Updated: 2022/02/10 18:35:07 by david            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 char	*full_path(char *path, char *name)
@@ -16,18 +28,12 @@ char	*full_path(char *path, char *name)
 
 void	run(t_shell *shell, t_cmd *cmd)
 {
-	char	**path;
-	int		i;
-	int		status;
 	DIR		*dr;
+	char	**path;
+	int		status;
+	int		i;
 
 	i = 0;
-	if (!cmd->cmd)
-		exit(0);
-	if (is_builtin(cmd->cmd))
-		run_builtin(cmd, shell->env);
-	if (!ft_strcmp(ft_strtrim(cmd->cmd, " \t"), EXIT))
-		exit(0);
 	path = ft_split(env_get(PATH, shell->env), ':');
 	if (cmd->full_path[0] == '/')
 	{
@@ -39,7 +45,6 @@ void	run(t_shell *shell, t_cmd *cmd)
 		}
 		status = execve(cmd->full_path, cmd->args, shell->env->vars);
 		put_error_exit(cmd->cmd, strerror(errno), 126);
-
 	}
 	while (path[i] != NULL)
 	{
@@ -49,10 +54,12 @@ void	run(t_shell *shell, t_cmd *cmd)
 	put_error_exit(cmd->cmd, CMD_NF, 127);
 }
 
-void	close_descriptors(t_shell *shell)
+void	exec(t_cmd *cmd, t_shell *shell)
 {
 	int	i;
 
+	if (dup2(cmd->in, 0) == -1 || dup2(cmd->out, 1) == -1)
+		put_error_exit(DUP, DUP_FAIL, 1);
 	i = 0;
 	while (i < shell->cmds)
 	{
@@ -62,19 +69,18 @@ void	close_descriptors(t_shell *shell)
 			close(shell->cmds_arr[i]->out);
 		i++;
 	}
-}
-
-void	exec(t_cmd *cmd, t_shell *shell)
-{
-	if (dup2(cmd->in, 0) == -1 || dup2(cmd->out, 1) == -1)
-		put_error_exit(DUP, DUP_FAIL, 1);
-	close_descriptors(shell);
+	if (!cmd->cmd)
+		exit(0);
+	if (is_builtin(cmd->cmd))
+		run_builtin(cmd, shell->env);
+	if (!ft_strcmp(ft_strtrim(cmd->cmd, " \t"), EXIT))
+		exit(0);
 	run(shell, cmd);
 }
 
-int  fork_proc(t_shell *shell)
+int	fork_proc(t_shell *shell)
 {
-	int  i;
+	int	i;
 
 	i = 0;
 	while (i < shell->cmds)

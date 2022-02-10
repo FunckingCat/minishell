@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/10 18:33:32 by david             #+#    #+#             */
+/*   Updated: 2022/02/10 18:33:33 by david            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "builtin.h"
 
 int	check_name(char *arg)
@@ -43,13 +55,15 @@ int	set_element(t_env *env, char *arg)
 int	cmd_export(char **args, t_env *env)
 {
 	int	i;
+	int	stat;
 
 	i = 0;
+	stat = 0;
 	while (args && args[i])
 	{
 		if (set_element(env, args[i]) == 1)
-			return (1);
+			stat = 1;
 		i++;
 	}
-	return (0);
+	return (stat);
 }

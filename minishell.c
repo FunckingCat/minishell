@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/10 18:36:22 by david             #+#    #+#             */
+/*   Updated: 2022/02/10 18:36:23 by david            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	check_exit(t_shell *shell)
@@ -39,7 +51,7 @@ void	routine(t_shell *shell, char *cmd)
 	str = ft_strdup(cmd);
 	str = parse_beautify(str);
 	str = parse_global(str, shell->env);
-	parse = parse_pipes(cmd);
+	parse = parse_pipes(str);
 	if (!parse)
 		return ;
 	while (*(parse + shell->cmds))
