@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:35:32 by david             #+#    #+#             */
-/*   Updated: 2022/02/10 18:35:33 by david            ###   ########.fr       */
+/*   Updated: 2022/02/10 18:55:45 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_exit_ctrl_d(char *read)
 {
 	if (!read)
 	{
-		write(1, "\nexit\n", 6);
+		write(1, "exit\n", 6);
 		return (1);
 	}
 	return (0);
