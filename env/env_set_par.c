@@ -6,66 +6,69 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:34:05 by david             #+#    #+#             */
-/*   Updated: 2022/02/10 18:34:06 by david            ###   ########.fr       */
+/*   Updated: 2022/02/10 18:48:33 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 
-int	fill_new_vars(t_env *envi, char *str, char **extra)
+int	fill_new_vars(t_env *env, char *str, char **extra)
 {
 	int	i;
 
 	i = 0;
-	envi->vars = ft_malloc(sizeof(char *) * (envi->length + 2));
-	if (!envi->vars)
+	env->vars = ft_malloc(sizeof(char *) * (env->length + 2));
+	if (!env->vars)
 		return (1);
-	while (i < envi->length)
+	while (i < env->length)
 	{
-		envi->vars[i] = extra[i];
+		env->vars[i] = extra[i];
 		i++;
 	}
-	envi->vars[i] = str;
-	envi->vars[++i] = NULL;
+	env->vars[i] = str;
+	env->vars[++i] = NULL;
 	return (0);
 }
 
-void	env_reset(t_env *envi, char *name, char *str)
+void	env_reset(t_env *env, char *name, char *str)
 {
 	int		i;
 	char	*old;
 
 	i = 0;
-	while (i < envi->length)
+	while (i < env->length)
 	{
-		if (ft_strncmp(envi->vars[i], name, ft_strlen(name)) == 0
-			&& envi->vars[i][ft_strlen(name)] == '=')
+		if (env->vars[i])
 		{
-			old = envi->vars[i];
-			envi->vars[i] = str;
+			if (ft_strncmp(env->vars[i], name, ft_strlen(name)) == 0
+				&& env->vars[i][ft_strlen(name)] == '=')
+			{
+				old = env->vars[i];
+				env->vars[i] = str;
+			}
 		}
 		i++;
 	}
 }
 
-int	env_set(char *name, char *content, t_env *envi)
+int	env_set(char *name, char *content, t_env *env)
 {
 	char	**extra;
 	char	*str;
 	char	*str1;
 
-	if (!name || !envi || !envi->vars)
+	if (!name || !env || !env->vars)
 		return (put_error(ENV, ENV_NO_PAR));
 	str1 = ft_strjoin(name, "=");
 	str = ft_strjoin(str1, content);
-	if (env_contain(name, envi) == 0)
+	if (env_contain(name, env) == 0)
 	{
-		extra = envi->vars;
-		if (fill_new_vars(envi, str, extra) == 1)
+		extra = env->vars;
+		if (fill_new_vars(env, str, extra) == 1)
 			return (put_error(ENV, ENV_MALLOC));
-		envi->length++;
+		env->length++;
 	}
 	else
-		env_reset(envi, name, str);
+		env_reset(env, name, str);
 	return (0);
 }
