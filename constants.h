@@ -5,14 +5,6 @@
 # define PROMPT		"ᕙ(•ᴗ•)ᕗ "
 # define REDIRECT	"★ "
 
-// Console colors
-# define RED	""
-# define GREEN	""
-# define YELLOW	""
-# define BLUE	""
-# define PURPLE	""
-# define NONE	""
-
 // Parsing constants
 # define Q_NCL			"quotes are not closed"
 # define SYNTAX_PIPE	"syntax error near unexpected token '|'"

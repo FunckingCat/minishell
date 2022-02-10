@@ -7,9 +7,7 @@ int	check_amount(char **args)
 	i = 0;
 	while (args[i])
 		i++;
-	if (i > 1)
-		return (1);
-	return (0);
+	return (i);
 }
 
 int	cmd_cd(char **args, t_env *env)
@@ -18,7 +16,9 @@ int	cmd_cd(char **args, t_env *env)
 	int		status;
 
 	status = 0;
-	if (check_amount(args) == 1)
+	if (check_amount(args) == 0)
+		return (0);
+	if (check_amount(args) > 1)
 		return (put_error(CD, CD_MN_ARGS));
 	if (chdir(args[0]) == -1)
 		return (put_error(CD, CD_NO_FILE));

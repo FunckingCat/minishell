@@ -29,26 +29,29 @@ void	check_exit(t_shell *shell)
 	}
 }
 
-void	*parse_commands(t_shell *shell, char *cmd)
+void	routine(t_shell *shell, char *cmd)
 {
 	char	**parse;
+	char	*str;
 	int		i;
 
 	i = 0;
+	str = ft_strdup(cmd);
+	str = parse_beautify(str);
+	str = parse_global(str, shell->env);
 	parse = parse_pipes(cmd);
 	if (!parse)
-		return (NULL);
+		return ;
 	while (*(parse + shell->cmds))
 		shell->cmds++;
 	shell->cmds_arr = ft_malloc(sizeof(t_cmd *) * shell->cmds);
-	if (!shell->cmds_arr)
-		return (put_error_null(MINISHELL, MALLOC_ERR));
 	while (i < shell->cmds)
 	{
 		shell->cmds_arr[i] = new_cmd(ft_strtrim(parse[i], " \t"));
 		i++;
 	}
-	return (NULL);
+	check_exit(shell);
+	pipex(shell);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -63,22 +66,17 @@ int	main(int argc, char **argv, char **envp)
 	signal(SIGQUIT, SIG_IGN);
 	while (!shell.exit)
 	{
+		shell.cmds = 0;
 		signal(SIGINT, sig_int_empty);
-		read = readline(YELLOW PROMPT NONE);
+		read = readline(PROMPT);
 		if (check_exit_ctrl_d(read))
 			break ;
 		if (check_int_skip(&shell, read))
 			continue ;
 		if (ft_strlen(read) > 0)
 			add_history(read);
-		str = ft_strdup(read);
+		routine(&shell, read);
 		free(read);
-		str = parse_beautify(str);
-		str = parse_global(str, shell.env);
-		parse_commands(&shell, str);
-		check_exit(&shell);
-		pipex(&shell);
-		shell.cmds = 0;
 	}
 	ft_free();
 	return (shell.exit_status);
