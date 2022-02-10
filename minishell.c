@@ -33,51 +33,62 @@ void	check_exit(t_shell *shell)
 	sp = ft_split(shell->cmds_arr[0]->input, ' ');
 	while (sp[i])
 		i++;
-	if (!ft_strcmp(sp[0], EXIT))
+	if (!ft_strcmp(sp[0], "exit"))
 	{
 		shell->exit = 1;
 		if (i > 1)
 			shell->exit_status = ft_atoi(sp[1]);
-		if (i > 1 && !ft_isstrdigit(sp[1]))
-		{
-			put_ext_error(EXIT, sp[1], EXIT_ERR_ARGS);
-			shell->exit_status = 255;
-		}
-		else if (i > 2)
-		{
-			shell->exit = 0;
-			put_error(EXIT, EXIT_ERR_NUM);
-		}
+		if (i > 2)
+			put_error("exit", "too many arguments");
 	}
 }
 
+int	check_exit_ctrl_d(char *read)
+{
+	if (!read)
+	{
+		write(1, "\nexit\n", 6);
+		return (1);
+	}
+	return (0);
+}
+
+int	check_int_skip(char **read)
+{
+	if (g_shell.skip == 1)
+	{
+		g_shell.skip = 0;
+		free(*read);
+	}
+}
+
+t_shell	g_shell;
+
 int	main(int argc, char **argv, char **envp)
 {
-	t_shell	shell;
-	char	*read;
 	char	*str;
 
-	if (init_shell(&shell, envp))
+	if (init_shell(&g_shell, envp))
 		return (1);
-	while (!shell.exit)
+	signal(SIGQUIT, SIG_IGN);
+	while (!g_shell.exit)
 	{
-		read = readline(PROMPT);
-    if (read == NULL )
-		{
-			write(1, "exit\n", 6);
-			exit(0);
-		}
-		if (ft_strlen(read) > 0)
-			add_history(read);
-		str = ft_strdup(read);
-		free(read);
+		signal(SIGINT, sig_int_empty);
+		g_shell.read = readline(YELLOW PROMPT NONE);
+		if (check_exit_ctrl_d(g_shell.read))
+			break ;
+		if (check_int_skip(&g_shell.read))
+			continue ;
+		add_history(g_shell.read);
+		str = ft_strdup(g_shell.read);
+		free(g_shell.read);
 		str = parse_beautify(str);
-		str = parse_global(str, shell.env);
-		parse_commands(&shell, str);
-		check_exit(&shell);
-		pipex(&shell);
-		shell_middle_clean(&shell);
+		str = parse_global(str, g_shell.env);
+		parse_commands(&g_shell, str);
+		check_exit(&g_shell);
+		pipex(&g_shell);
+		shell_middle_clean(&g_shell);
 	}
-	shell_full_clean(&shell);
-	return (shell.exit_status);
+	shell_full_clean(&g_shell);
+	return (g_shell.exit_status);
 }

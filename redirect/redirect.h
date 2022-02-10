@@ -4,7 +4,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "../error/error.h"

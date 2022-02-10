@@ -12,8 +12,7 @@ char	*env_get(char *name, t_env *envi)
 	}
 	while (envi->vars[i])
 	{
-		if (ft_strncmp(envi->vars[i], name, ft_strlen(name)) == 0
-			&& envi->vars[i][ft_strlen(name)] == '=')
+		if (ft_strncmp(envi->vars[i], name, ft_strlen(name)) == 0)
 			return (ft_strdup(&envi->vars[i][ft_strlen(name) + 1]));
 		i++;
 	}

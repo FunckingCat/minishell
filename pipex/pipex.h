@@ -6,8 +6,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <sys/wait.h>
-# include <sys/types.h>
-# include <dirent.h>
 # include <errno.h>
 # include <string.h>
 # include "../libft/libft.h"
@@ -16,6 +14,8 @@
 # include "../error/error.h"
 # include "../builtin/builtin.h"
 # include "../parsing/parsing.h"
+# include "../signals/signals.h"
+
 
 int	fork_proc(t_shell *shell);
 

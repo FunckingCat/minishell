@@ -6,7 +6,7 @@ char	*get_name(char *cmd)
 
 	if (*cmd++ != '$')
 		return (NULL);
-	if (*cmd == '?' || ft_isdigit(*cmd))
+	if (*cmd == '?')
 		return (ft_substr(cmd, 0, 1));
 	cmd = ft_strdup(cmd);
 	tmp = cmd;

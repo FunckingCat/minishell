@@ -24,7 +24,7 @@ int	set_element(t_env *env, char *arg)
 	char	*value;
 
 	if (arg[0] == '=')
-		return (put_ext_error(EXP, arg, EXP_NOT_VALID));
+		return (put_error(EXP, EXP_NOT_VALID));
 	if (!ft_strchr(arg, '='))
 	{
 		name = ft_strtrim(arg, " ");
@@ -35,8 +35,8 @@ int	set_element(t_env *env, char *arg)
 		name = ft_substr(arg, 0, ft_strchr(arg, '=') - arg);
 		value = ft_strtrim(ft_strchr(arg, '=') + 1, " ");
 	}
-	if (check_name(name))
-		return (put_ext_error(EXP, name, EXP_NOT_VALID));
+	if (check_name(name) || check_name(value))
+		return (put_error(EXP, EXP_NOT_VALID));
 	return (env_set(name, value, env));
 }
 
