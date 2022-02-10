@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 22:12:43 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/10 14:48:56 by david            ###   ########.fr       */
+/*   Updated: 2022/02/10 15:06:51 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ void	sig_int_empty(int signum)
 	if (signum == SIGINT)
 	{
 		write(2, "\n\r\0", 3);
-		// ft_putstr_fd(YELLOW PROMPT NONE, 1);
-		// g_shell.skip = 1;
-		// signal(SIGINT, sig_int_empty);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();

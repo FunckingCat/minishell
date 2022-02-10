@@ -1,10 +1,6 @@
 NAME = minishell
 CC = gcc -g
-#FLAGS = -Wall -Werror -Wextra
 LIB = -L '.' -lft -lreadline
-#LIB =  -L '.' -lft -lreadline -ledit
-#INCLUDE_LBR = -I /Users/wmika/.brew/Cellar/readline/8.1.2/include
-#SYS_LBR = /Users/wmika/.brew/opt/readline/lib/
 
 HEADER = 	./minishell.h \
 			./shell/shell.h \
