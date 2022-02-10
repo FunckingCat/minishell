@@ -1,20 +1,23 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   signal_handlers.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 22:12:43 by rusty             #+#    #+#             */
-/*   Updated: 2022/02/10 15:06:51 by david            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "signals.h"
 
-/*
-** CTRL-C
-*/
+int	check_exit_ctrl_d(char *read)
+{
+	if (!read)
+	{
+		write(1, "\nexit\n", 6);
+		return (1);
+	}
+	return (0);
+}
+
+int	check_int_skip(t_shell *shell, char *read)
+{
+	if (shell->skip == 1)
+	{
+		shell->skip = 0;
+		free(read);
+	}
+}
 
 void	sig_int_empty(int signum)
 {
@@ -29,8 +32,8 @@ void	sig_int_empty(int signum)
 
 void	sig_int_proc(int signum)
 {
-	t_shell *shell;
-	
+	t_shell	*shell;
+
 	shell = (t_shell *)g_heap.ptr;
 	if (signum == SIGINT)
 	{

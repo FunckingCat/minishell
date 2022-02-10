@@ -1,27 +1,5 @@
 #include "minishell.h"
 
-void	*parse_commands(t_shell *shell, char *cmd)
-{
-	char	**parse;
-	int		i;
-
-	i = 0;
-	parse = parse_pipes(cmd);
-	if (!parse)
-		return (NULL);
-	while (*(parse + shell->cmds))
-		shell->cmds++;
-	shell->cmds_arr = ft_malloc(sizeof(t_cmd *) * shell->cmds);
-	if (!shell->cmds_arr)
-		return (put_error_null(MINISHELL, MALLOC_ERR));
-	while (i < shell->cmds)
-	{
-		shell->cmds_arr[i] = new_cmd(ft_strtrim(parse[i], " \t"));
-		i++;
-	}
-	return (NULL);
-}
-
 void	check_exit(t_shell *shell)
 {
 	int		i;
@@ -51,26 +29,29 @@ void	check_exit(t_shell *shell)
 	}
 }
 
-int  check_exit_ctrl_d(char *read)
+void	*parse_commands(t_shell *shell, char *cmd)
 {
-	if (!read)
+	char	**parse;
+	int		i;
+
+	i = 0;
+	parse = parse_pipes(cmd);
+	if (!parse)
+		return (NULL);
+	while (*(parse + shell->cmds))
+		shell->cmds++;
+	shell->cmds_arr = ft_malloc(sizeof(t_cmd *) * shell->cmds);
+	if (!shell->cmds_arr)
+		return (put_error_null(MINISHELL, MALLOC_ERR));
+	while (i < shell->cmds)
 	{
-		write(1, "\nexit\n", 6);
-		return (1);
+		shell->cmds_arr[i] = new_cmd(ft_strtrim(parse[i], " \t"));
+		i++;
 	}
-	return (0);
+	return (NULL);
 }
 
-int  check_int_skip(t_shell *shell, char *read)
-{
-	if (shell->skip == 1)
-	{
-		shell->skip = 0;
-		free(read);
-	}
-}
-
-int  main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	t_shell	shell;
 	char	*read;
