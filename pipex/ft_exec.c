@@ -72,9 +72,9 @@ void	exec(t_cmd *cmd, t_shell *shell)
 	run(shell, cmd);
 }
 
-int	fork_proc(t_shell *shell)
+int  fork_proc(t_shell *shell)
 {
-	int	i;
+	int  i;
 
 	i = 0;
 	while (i < shell->cmds)
@@ -84,6 +84,9 @@ int	fork_proc(t_shell *shell)
 			put_error(FORK, FORK_FAIL);
 		else if (shell->cmds_arr[i]->pid == 0)
 			exec(shell->cmds_arr[i], shell);
+		signal(SIGINT, sig_int_proc);
+		signal(SIGQUIT, sig_int_proc);
+		shell->pid_c = shell->cmds_arr[i]->pid;
 		i++;
 	}
 	return (0);

@@ -10,6 +10,7 @@
 # include <dirent.h>
 # include <errno.h>
 # include <string.h>
+# include "../signals/signals.h"
 # include "../libft/libft.h"
 # include "../constants.h"
 # include "../shell/shell.h"

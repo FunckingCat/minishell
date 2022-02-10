@@ -8,6 +8,7 @@ typedef struct s_heap
 {
 	size_t	count;
 	void	**ptrs;
+	void	*ptr;
 }	t_heap;
 
 t_heap	g_heap;

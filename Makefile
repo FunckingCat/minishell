@@ -15,9 +15,12 @@ HEADER = 	./minishell.h \
 			./env/env.h \
 			./builtin/builtin.h \
 			./error/error.h \
-			./constants.h
+			./constants.h \
+			./signals/signals.h
 
 MAIN =	./minishell.c
+
+SIGNALS = ./signals/signal_handlers.c
 
 SHLL =	./shell/init_shell.c
 
@@ -54,10 +57,8 @@ BUILT =	./builtin/env.c \
 ERROR =	./error/error.c \
 		./error/error_ext.c
 
-SIGNAL = ./signals/signal_handler.c
-
 SRC = 	$(MAIN)		$(SHLL)     $(PIPEX)	$(REDIR)	$(ENV) \
-		$(PARSE)	$(BUILT)	$(ERROR)	$(CMD) 		$(SIGNAL)
+		$(PARSE)	$(BUILT)	$(ERROR)	$(CMD) 		$(SIGNALS)
 
 OBJ = $(SRC:.c=.o)
 

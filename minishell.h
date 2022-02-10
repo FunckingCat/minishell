@@ -18,6 +18,7 @@
 # include "./redirect/redirect.h"
 # include "./parsing/parsing.h"
 # include "./builtin/builtin.h"
+# include "./signals/signals.h"
 
 int		pipex(t_shell *shell);
 

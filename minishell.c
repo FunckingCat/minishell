@@ -51,22 +51,43 @@ void	check_exit(t_shell *shell)
 	}
 }
 
-int	main(int argc, char **argv, char **envp)
+int  check_exit_ctrl_d(char *read)
+{
+	if (!read)
+	{
+		write(1, "\nexit\n", 6);
+		return (1);
+	}
+	return (0);
+}
+
+int  check_int_skip(t_shell *shell, char *read)
+{
+	if (shell->skip == 1)
+	{
+		shell->skip = 0;
+		free(read);
+	}
+}
+
+int  main(int argc, char **argv, char **envp)
 {
 	t_shell	shell;
 	char	*read;
 	char	*str;
 
+	g_heap.ptr = (void *)&shell;
 	if (init_shell(&shell, envp))
 		return (1);
+	signal(SIGQUIT, SIG_IGN);
 	while (!shell.exit)
 	{
-		read = readline(PROMPT);
-    if (read == NULL )
-		{
-			write(1, "exit\n", 6);
-			exit(0);
-		}
+		signal(SIGINT, sig_int_empty);
+		read = readline(YELLOW PROMPT NONE);
+		if (check_exit_ctrl_d(read))
+			break ;
+		if (check_int_skip(&shell, read))
+			continue ;
 		if (ft_strlen(read) > 0)
 			add_history(read);
 		str = ft_strdup(read);
@@ -76,8 +97,8 @@ int	main(int argc, char **argv, char **envp)
 		parse_commands(&shell, str);
 		check_exit(&shell);
 		pipex(&shell);
-		shell_middle_clean(&shell);
+		shell.cmds = 0;
 	}
-	shell_full_clean(&shell);
+	ft_free();
 	return (shell.exit_status);
 }
