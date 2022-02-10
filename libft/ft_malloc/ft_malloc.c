@@ -1,13 +1,22 @@
 #include "ft_malloc.h"
 
-int	add(void *ptr)
+void	alloc_error(int size)
+{
+	ft_putstr_fd("ft_malloc: cannot allocate ", 2);
+	ft_putnbr_fd(size, 2);
+	ft_putstr_fd("bytes", 2);
+	ft_free();
+	exit(2);
+}
+
+void	add(void *ptr)
 {
 	void		**new;
 	size_t		i;
 
 	new = malloc(sizeof(void *) * (g_heap.count + 1));
 	if (!new)
-		return (0);
+		alloc_error(sizeof(void *) * (g_heap.count + 1));
 	i = 0;
 	while (i < g_heap.count)
 	{
@@ -19,7 +28,6 @@ int	add(void *ptr)
 	if (g_heap.ptrs)
 		free(g_heap.ptrs);
 	g_heap.ptrs = new;
-	return (1);
 }
 
 void	*ft_malloc(size_t size)
@@ -33,11 +41,9 @@ void	*ft_malloc(size_t size)
 	}
 	ptr = malloc(size);
 	if (!ptr)
-		return (NULL);
-	if (add(ptr))
-		return (ptr);
-	free(ptr);
-	return (NULL);
+		alloc_error(size);
+	add(ptr);
+	return (ptr);
 }
 
 void	ft_free(void)

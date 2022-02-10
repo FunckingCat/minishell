@@ -1,6 +1,7 @@
 #ifndef FT_MALLOC_H
 # define FT_MALLOC_H
 
+# include "../libft.h"
 # include <stdlib.h>
 # include <stdio.h>
 
