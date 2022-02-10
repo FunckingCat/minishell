@@ -1,6 +1,7 @@
 #ifndef SHELL_H
 # define SHELL_H
 
+# include <signal.h>
 # include "../env/env.h"
 # include "../command/command.h"
 

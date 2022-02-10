@@ -1,10 +1,10 @@
 NAME = minishell
 CC = gcc -g
 #FLAGS = -Wall -Werror -Wextra
-# LIB = -L '.' -lft -lreadline
-LIB =  -L '.' -lft -lreadline -ledit
-INCLUDE_LBR = /Users/wmika/.brew/Cellar/readline/8.1.2/include
-SYS_LBR = /Users/wmika/.brew/opt/readline/lib/
+LIB = -L '.' -lft -lreadline
+#LIB =  -L '.' -lft -lreadline -ledit
+#INCLUDE_LBR = -I /Users/wmika/.brew/Cellar/readline/8.1.2/include
+#SYS_LBR = /Users/wmika/.brew/opt/readline/lib/
 
 HEADER = 	./minishell.h \
 			./shell/shell.h \
@@ -66,12 +66,12 @@ RM = rm -f
 all: $(NAME)
 
 %.o : %.c $(HEADER)
-	$(CC) $(FLAGS) -c $< -o $@ -I$(INCLUDE_LBR)
+	$(CC) $(FLAGS) -c $< -o $@ $(INCLUDE_LBR)
 
 $(NAME): $(OBJ) $(HEADER)
 	make bonus -C ./libft
 	cp libft/libft.a ./
-	$(CC) $(FLAGS) $(OBJ) -L $(SYS_LBR) $(LIB) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME) $(LIB) $(SYS_LBR)
 
 clean:
 	make clean -C ./libft

@@ -1,4 +1,6 @@
 # include "../minishell.h"
+# include <signal.h>
+# include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -18,7 +20,7 @@ void tty_mask(void)
 {
 	struct termios sterm;
 	tcgetattr(0, &sterm);
-	sterm.c_lflag &= ~ECHOCTL;
+	//sterm.c_lflag &= ~ECHOCTL;
 	tcsetattr(0, 0, &sterm);
 	signal(SIGQUIT, SIG_IGN);
 }
