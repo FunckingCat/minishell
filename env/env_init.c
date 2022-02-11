@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:34:03 by david             #+#    #+#             */
-/*   Updated: 2022/02/10 18:49:00 by david            ###   ########.fr       */
+/*   Updated: 2022/02/11 14:33:38 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	get_memory_env(char **envp, t_env *env)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < env->length && envp[i])

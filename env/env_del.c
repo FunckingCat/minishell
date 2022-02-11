@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:33:58 by david             #+#    #+#             */
-/*   Updated: 2022/02/10 18:51:16 by david            ###   ########.fr       */
+/*   Updated: 2022/02/11 14:35:37 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	exclude_var(t_env *env, char *name, char **extra)
 {
-	int		i;
-	int		j;
-	char	*old;
+	size_t		i;
+	size_t		j;
 
 	i = 0;
 	j = 0;

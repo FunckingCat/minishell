@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:33:34 by david             #+#    #+#             */
-/*   Updated: 2022/02/10 18:33:35 by david            ###   ########.fr       */
+/*   Updated: 2022/02/11 14:36:26 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	cmd_pwd(char **args, t_env *env)
 
 	if (!env || !env->vars)
 		return (put_error("pwd", "env is corrupted"));
+	(void)args;
 	res = env_get("PWD", env);
 	if (!res)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:35:32 by david             #+#    #+#             */
-/*   Updated: 2022/02/10 18:55:45 by david            ###   ########.fr       */
+/*   Updated: 2022/02/11 14:40:33 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ int	check_int_skip(t_shell *shell, char *read)
 	{
 		shell->skip = 0;
 		free(read);
+		return (0);
 	}
+	return (0);
 }
 
 void	sig_int_empty(int signum)

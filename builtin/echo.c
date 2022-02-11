@@ -38,9 +38,9 @@ void	print_args(char **args, int option)
 int	cmd_echo(char **args, t_env *env)
 {
 	int	option;
-	int	i;
 
 	option = 0;
+	(void)env;
 	if (ft_strcmp(args[0], "-n") == 0)
 		option = 1;
 	print_args(args, option);

@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:35:06 by david             #+#    #+#             */
-/*   Updated: 2022/02/10 18:35:07 by david            ###   ########.fr       */
+/*   Updated: 2022/02/11 14:32:59 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	run(t_shell *shell, t_cmd *cmd)
 {
 	DIR		*dr;
 	char	**path;
-	int		status;
 	int		i;
 
 	i = 0;
@@ -43,7 +42,7 @@ void	run(t_shell *shell, t_cmd *cmd)
 			closedir(dr);
 			put_ext_error_exit(MINISHELL, cmd->full_path, IS_DIR, 126);
 		}
-		status = execve(cmd->full_path, cmd->args, shell->env->vars);
+		execve(cmd->full_path, cmd->args, shell->env->vars);
 		put_error_exit(cmd->cmd, strerror(errno), 126);
 	}
 	while (path[i] != NULL)

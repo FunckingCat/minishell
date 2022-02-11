@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:36:22 by david             #+#    #+#             */
-/*   Updated: 2022/02/10 18:36:23 by david            ###   ########.fr       */
+/*   Updated: 2022/02/11 14:31:42 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_shell	shell;
 	char	*read;
-	char	*str;
 
+	(void)argc;
+	(void)argv;
 	g_heap.ptr = (void *)&shell;
 	if (init_shell(&shell, envp))
 		return (1);

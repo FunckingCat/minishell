@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:34:05 by david             #+#    #+#             */
-/*   Updated: 2022/02/10 18:48:33 by david            ###   ########.fr       */
+/*   Updated: 2022/02/11 14:35:07 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	fill_new_vars(t_env *env, char *str, char **extra)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	env->vars = ft_malloc(sizeof(char *) * (env->length + 2));
@@ -32,8 +32,7 @@ int	fill_new_vars(t_env *env, char *str, char **extra)
 
 void	env_reset(t_env *env, char *name, char *str)
 {
-	int		i;
-	char	*old;
+	size_t		i;
 
 	i = 0;
 	while (i < env->length)
@@ -42,10 +41,7 @@ void	env_reset(t_env *env, char *name, char *str)
 		{
 			if (ft_strncmp(env->vars[i], name, ft_strlen(name)) == 0
 				&& env->vars[i][ft_strlen(name)] == '=')
-			{
-				old = env->vars[i];
 				env->vars[i] = str;
-			}
 		}
 		i++;
 	}
