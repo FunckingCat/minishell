@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:36:22 by david             #+#    #+#             */
-/*   Updated: 2022/02/11 14:31:42 by david            ###   ########.fr       */
+/*   Updated: 2022/02/11 16:02:48 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ int	main(int argc, char **argv, char **envp)
 	g_heap.ptr = (void *)&shell;
 	if (init_shell(&shell, envp))
 		return (1);
-	signal(SIGQUIT, SIG_IGN);
 	while (!shell.exit)
 	{
 		shell.cmds = 0;
+		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, sig_int_empty);
 		read = readline(PROMPT);
 		if (check_exit_ctrl_d(read))
