@@ -28,7 +28,7 @@ int	check_int_skip(t_shell *shell, char *read)
 	{
 		shell->skip = 0;
 		free(read);
-		return (0);
+		return (1);
 	}
 	return (0);
 }
