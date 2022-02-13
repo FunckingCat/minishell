@@ -27,10 +27,7 @@ int	read_loop(t_redirect *this, int *pip)
 	{
 		line = readline(REDIRECT);
 		if (!line)
-		{
-			close(pip[1]);
 			return (0);
-		}
 		if (!ft_strcmp(line, this->file))
 		{
 			free(line);

@@ -33,6 +33,7 @@ int	run_builtin(t_cmd *cmd, t_env *env)
 {
 	int	status;
 
+	status =0;
 	if (ft_strcmp(cmd->cmd, "cd") == 0)
 		status = cmd_cd(cmd->args + 1, env);
 	else if (ft_strcmp(cmd->cmd, "pwd") == 0)
@@ -64,6 +65,7 @@ int	run_no_fork(t_cmd *cmd, t_env *env)
 {
 	int	status;
 
+	status = 0;
 	if (ft_strcmp(cmd->cmd, "cd") == 0)
 		status = cmd_cd(cmd->args + 1, env);
 	else if (ft_strcmp(cmd->cmd, "unset") == 0)
