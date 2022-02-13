@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:35:15 by david             #+#    #+#             */
-/*   Updated: 2022/02/10 18:35:16 by david            ###   ########.fr       */
+/*   Updated: 2022/02/13 09:53:18 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ int	read_loop(t_redirect *this, int *pip)
 	{
 		line = readline(REDIRECT);
 		if (!line)
+		{
+			printf("warning: here-document \
+delimited by EOF (wanted '%s')\n", this->file);
 			return (0);
+		}
 		if (!ft_strcmp(line, this->file))
 		{
 			free(line);
