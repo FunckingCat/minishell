@@ -3,15 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:36:15 by david             #+#    #+#             */
-/*   Updated: 2022/02/10 18:36:16 by david            ###   ########.fr       */
+/*   Updated: 2022/02/13 07:50:25 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONSTANTS_H
 # define CONSTANTS_H
+
+# define WELCOME "░░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄░░░░░░░ 99 procents done by David The Great Juravlev\n\
+░░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄░░░░ 1 procent done by Valentin Aladin \n\
+░░░░█░░░▒▒▒▒▒▒░░░░░░░░▒▒▒░░█░░░ what have you done Nastya??? \n\
+░░░█░░░░░░▄██▀▄▄░░░░░▄▄▄░░░░█░░ oh you said you faster \n\
+░▄▀▒▄▄▄▒░█▀▀▀▀▄▄█░░░██▄▄█░░░░█░ you made minitalk and did not learn anything \n\
+█░▒█▒▄░▀▄▄▄▀░░░░░░░░█░░░▒▒▒▒▒░█ about signals \n\
+█░▒█░█▀▄▄░░░░░█▀░░░░▀▄░░▄▀▀▀▄▒█ what have you learned during minishell \n\
+░█░▀▄░█▄░█▀▄▄░▀░▀▀░▄▄▀░░░░█░░█░ what will you do next after philo? \n\
+░░█░░░▀▄▀█▄▄░█▀▀▀▄▄▄▄▀▀█▀██░█░░ does it fair ? \n\
+░░░█░░░░██░░▀█▄▄▄█▄▄█▄████░█░░░ or you just want to done and forget like in uni? \n\
+░░░░█░░░░▀▀▄░█░░░█░█▀██████░█░░ or you should be honest about your skills a have a \n\
+░░░░░▀▄░░░░░▀▀▄▄▄█▄█▄█▄█▄▀░░█░░ fair practice ? \n\
+░░░░░░░▀▄▄░▒▒▒▒░░░░░░░░░░▒░░░█░ zero efforts leads to zero outcome \n\
+░░░░░░░░░░▀▀▄▄░▒▒▒▒▒▒▒▒▒▒░░░░█░ keep rushing trough projects with 'deep understandig' \n\
+░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░░░░█░░ \n\
+"
 
 # define MINISHELL	"minishell"
 # define PROMPT		"ᕙ(•ᴗ•)ᕗ "

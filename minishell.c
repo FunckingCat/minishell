@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rusty <rusty@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:36:22 by david             #+#    #+#             */
-/*   Updated: 2022/02/11 16:02:48 by david            ###   ########.fr       */
+/*   Updated: 2022/02/13 07:48:11 by rusty            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	main(int argc, char **argv, char **envp)
 	g_heap.ptr = (void *)&shell;
 	if (init_shell(&shell, envp))
 		return (1);
+	ft_putstr_fd(WELCOME, 1);
 	while (!shell.exit)
 	{
 		shell.cmds = 0;
