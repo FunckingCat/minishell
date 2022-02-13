@@ -72,5 +72,7 @@ int	run_no_fork(t_cmd *cmd, t_env *env)
 		status = cmd_unset(cmd->args + 1, env);
 	else if (ft_strcmp(cmd->cmd, "export") == 0)
 		status = cmd_export(cmd->args + 1, env);
+	env_set("_", cmd->cmd, env);
+	env_set("?", ft_itoa(status), env);
 	return (status);
 }

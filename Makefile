@@ -6,7 +6,7 @@
 #    By: david <david@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/10 18:36:19 by david             #+#    #+#              #
-#    Updated: 2022/02/11 14:30:36 by david            ###   ########.fr        #
+#    Updated: 2022/02/13 10:18:57 by david            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ leaks :	all
 	leaks --at-Exit ./minishell
 
 valgrind : all
-	valgrind --leak-check=full --show-leak-kinds=all ./minishell
+	valgrind ./minishell
 
 re: fclean all
 
